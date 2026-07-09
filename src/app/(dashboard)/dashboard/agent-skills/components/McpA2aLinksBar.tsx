@@ -78,7 +78,7 @@ export function McpA2aLinksBar(): JSX.Element {
         label={t("mcpUrl")}
         url={mcpUrl}
         icon="electrical_services"
-        prompt="Add this MCP endpoint to your agent to give it 37 OmniRoute tools."
+        prompt="Add this MCP endpoint to your agent to give it 37 BlackRiver Gateway tools."
       />
       <LinkCard
         label={t("a2aLink")}

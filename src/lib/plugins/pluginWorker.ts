@@ -48,7 +48,7 @@ type WorkerMessage = LoadMessage | CallMessage | CleanupMessage;
  * prototype-chain escapes are possible). Plugin execution is safe only because:
  *   1. /api/plugins/ is classified LOCAL_ONLY in routeGuard — loopback enforced
  *      before any auth check (Hard Rules #15/#17).
- *   2. The `exec` permission additionally requires OMNIROUTE_PLUGINS_ALLOW_EXEC=1
+ *   2. The `exec` permission additionally requires BlackRiver Gateway_PLUGINS_ALLOW_EXEC=1
  *      (opt-in, default OFF) — child_process is never wired silently.
  * Treat plugins as local-operator-trusted code, not sandboxed untrusted code.
  */
@@ -130,9 +130,9 @@ function createSandbox(permissions: string[], pluginDir: string): Record<string,
   }
 
   if (permissions.includes("exec")) {
-    if (process.env.OMNIROUTE_PLUGINS_ALLOW_EXEC !== "1") {
+    if (process.env.BlackRiver Gateway_PLUGINS_ALLOW_EXEC !== "1") {
       throw new Error(
-        `Plugin '${name}' requested the 'exec' permission, which is disabled. Set OMNIROUTE_PLUGINS_ALLOW_EXEC=1 to enable (local operator only).`
+        `Plugin '${name}' requested the 'exec' permission, which is disabled. Set BlackRiver Gateway_PLUGINS_ALLOW_EXEC=1 to enable (local operator only).`
       );
     }
     sandbox.child_process = {

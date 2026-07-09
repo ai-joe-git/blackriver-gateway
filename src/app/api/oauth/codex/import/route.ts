@@ -3,7 +3,7 @@ import { z } from "zod";
 import { normalizeCodexImportRecord, flattenCodexImportPayload } from "@/lib/oauth/services/codexImport";
 import { createProviderConnection } from "@/models";
 import { isAuthRequired, isAuthenticated } from "@/shared/utils/apiAuth";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error.ts";
 
 /**
  * POST /api/oauth/codex/import

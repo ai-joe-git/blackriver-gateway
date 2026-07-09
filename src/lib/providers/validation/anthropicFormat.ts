@@ -8,7 +8,7 @@ import {
   CLAUDE_CODE_COMPATIBLE_DEFAULT_MODELS_PATH,
   joinClaudeCodeCompatibleUrl,
   joinBaseUrlAndPath,
-} from "@omniroute/open-sse/services/claudeCodeCompatible.ts";
+} from "@BlackRiver Gateway/open-sse/services/claudeCodeCompatible.ts";
 import {
   normalizeAnthropicBaseUrl,
   normalizeClaudeCodeCompatibleBaseUrl,
@@ -140,7 +140,7 @@ export async function validateClaudeOAuthInline({
     providerSpecificData?.validationModelId || modelId || "claude-haiku-4-5-20251001";
 
   try {
-    const { getExecutor } = await import("@omniroute/open-sse/executors/index.ts");
+    const { getExecutor } = await import("@BlackRiver Gateway/open-sse/executors/index.ts");
     const { response } = await getExecutor("claude").execute({
       model: testModelId,
       body: {

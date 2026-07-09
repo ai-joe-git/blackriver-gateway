@@ -10,7 +10,7 @@ import {
   replaceUserBypassPatterns,
   getUserBypassPatterns,
 } from "@/lib/db/agentBridgeBypass";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
 import { createErrorResponse } from "@/lib/api/errorResponse";
 
 export async function GET(): Promise<Response> {

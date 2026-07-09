@@ -4,7 +4,7 @@
  */
 
 import { getResolvedModelCapabilities } from "@/lib/modelCapabilities";
-import { PROVIDER_MODELS, PROVIDER_ID_TO_ALIAS } from "@omniroute/open-sse/config/providerModels";
+import { PROVIDER_MODELS, PROVIDER_ID_TO_ALIAS } from "@BlackRiver Gateway/open-sse/config/providerModels";
 
 export interface VisionModelCandidate {
   modelId: string;

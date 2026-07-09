@@ -12,9 +12,9 @@ export const APIKEY_PROVIDERS_SPECIALTY = {
     textIcon: "NLPC",
     website: "https://docs.nlpcloud.com",
     authHint:
-      "Use your NLP Cloud API key in Authorization: Token <key>. OmniRoute targets the chatbot endpoint on https://api.nlpcloud.io/v1/gpu/<model>/chatbot by default.",
+      "Use your NLP Cloud API key in Authorization: Token <key>. BlackRiver Gateway targets the chatbot endpoint on https://api.nlpcloud.io/v1/gpu/<model>/chatbot by default.",
     apiHint:
-      "NLP Cloud uses a proprietary chatbot API instead of OpenAI chat/completions. OmniRoute adapts OpenAI messages to input/context/history and exposes a local catalog of supported chatbot models.",
+      "NLP Cloud uses a proprietary chatbot API instead of OpenAI chat/completions. BlackRiver Gateway adapts OpenAI messages to input/context/history and exposes a local catalog of supported chatbot models.",
     hasFree: true,
     freeNote: "Trial credits for new accounts",
   },
@@ -27,9 +27,9 @@ export const APIKEY_PROVIDERS_SPECIALTY = {
     textIcon: "RW",
     website: "https://docs.dev.runwayml.com",
     authHint:
-      "Use your Runway API key in Authorization: Bearer <key>. OmniRoute targets the current Runway API at https://api.dev.runwayml.com/v1 and sends the required X-Runway-Version header automatically.",
+      "Use your Runway API key in Authorization: Bearer <key>. BlackRiver Gateway targets the current Runway API at https://api.dev.runwayml.com/v1 and sends the required X-Runway-Version header automatically.",
     apiHint:
-      "Runway video generation is task-based. OmniRoute submits text-to-video or image-to-video jobs, polls /v1/tasks/{id}, and normalizes the finished video outputs back into the OpenAI-like /v1/videos/generations response.",
+      "Runway video generation is task-based. BlackRiver Gateway submits text-to-video or image-to-video jobs, polls /v1/tasks/{id}, and normalizes the finished video outputs back into the OpenAI-like /v1/videos/generations response.",
   },
   kie: {
     id: "kie",
@@ -257,7 +257,7 @@ export const APIKEY_PROVIDERS_SPECIALTY = {
     textIcon: "TF",
     website: "https://docs.tinyfish.ai/fetch-api",
     notice: {
-      text: "Fetch does not use TinyFish credits. Submit up to 10 URLs per request (OmniRoute fetches one URL per call).",
+      text: "Fetch does not use TinyFish credits. Submit up to 10 URLs per request (BlackRiver Gateway fetches one URL per call).",
       apiKeyUrl: "https://agent.tinyfish.ai/api-keys",
     },
     authHint: "X-API-Key from agent.tinyfish.ai/api-keys",

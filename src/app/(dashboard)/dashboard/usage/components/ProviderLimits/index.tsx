@@ -36,10 +36,10 @@ import { fetchWithTimeout } from "@/shared/utils/fetchTimeout";
 // never settles (browser connection-pool starvation under the RSC prefetch storm).
 const PROVIDER_LIMITS_FETCH_TIMEOUT_MS = 20_000;
 
-const LS_PURCHASE_FILTER = "omniroute:limits:purchaseFilter";
-const LS_STATUS_FILTER = "omniroute:limits:statusFilter";
-const LS_ENV_FILTER = "omniroute:limits:envFilter";
-const LS_PROVIDER_FILTER = "omniroute:limits:providerFilter";
+const LS_PURCHASE_FILTER = "BlackRiver Gateway:limits:purchaseFilter";
+const LS_STATUS_FILTER = "BlackRiver Gateway:limits:statusFilter";
+const LS_ENV_FILTER = "BlackRiver Gateway:limits:envFilter";
+const LS_PROVIDER_FILTER = "BlackRiver Gateway:limits:providerFilter";
 
 const MIN_FETCH_INTERVAL_MS = 30000;
 const QUOTA_BAR_GREEN_THRESHOLD = 50;

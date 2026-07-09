@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getDiversityReport } from "../../../../../open-sse/services/autoCombo/providerDiversity";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
 
 export const dynamic = "force-dynamic";
 

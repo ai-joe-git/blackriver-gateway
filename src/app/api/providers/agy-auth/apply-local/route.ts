@@ -11,7 +11,7 @@ import {
 } from "@/lib/oauth/utils/agyAuthImport";
 import { getAuditRequestContext, logAuditEvent } from "@/lib/compliance/index";
 import { getProviderAuditTarget } from "@/lib/compliance/providerAudit";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
 import { applyLocalAgyAuthSchema } from "@/shared/validation/schemas";
 import { validateBody, isValidationFailure } from "@/shared/validation/helpers";
 import { sanitizeProviderSpecificDataForResponse } from "@/lib/providers/requestDefaults";

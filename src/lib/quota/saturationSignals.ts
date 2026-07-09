@@ -284,7 +284,7 @@ async function fetchCodexSaturation(
   dim: DimensionSpec
 ): Promise<number> {
   // Dynamic import — codexQuotaFetcher lives in open-sse workspace
-  const mod = await import("@omniroute/open-sse/services/codexQuotaFetcher");
+  const mod = await import("@BlackRiver Gateway/open-sse/services/codexQuotaFetcher");
   const quota = await mod.fetchCodexQuota(connectionId);
   if (!quota) return 0;
 
@@ -302,7 +302,7 @@ async function fetchBailianSaturation(
   connectionId: string,
   dim: DimensionSpec
 ): Promise<number> {
-  const mod = await import("@omniroute/open-sse/services/bailianQuotaFetcher");
+  const mod = await import("@BlackRiver Gateway/open-sse/services/bailianQuotaFetcher");
   const quota = await mod.fetchBailianQuota(connectionId);
   if (!quota) return 0;
 
@@ -362,7 +362,7 @@ export function __setAnthropicSaturationDepsForTests(
 async function defaultAnthropicDeps(): Promise<AnthropicSaturationDeps> {
   const [providersMod, usageMod] = await Promise.all([
     import("@/lib/db/providers"),
-    import("@omniroute/open-sse/services/usage"),
+    import("@BlackRiver Gateway/open-sse/services/usage"),
   ]);
   return {
     loadConnection: (connectionId) =>
@@ -474,7 +474,7 @@ async function defaultGenericUsageFetch(
   connectionId: string,
   provider: string
 ): Promise<unknown> {
-  const mod = await import("@omniroute/open-sse/services/usage");
+  const mod = await import("@BlackRiver Gateway/open-sse/services/usage");
   const conn = { id: connectionId, provider } as Parameters<typeof mod.getUsageForProvider>[0];
   return mod.getUsageForProvider(conn);
 }

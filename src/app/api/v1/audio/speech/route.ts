@@ -1,4 +1,4 @@
-import { handleAudioSpeech } from "@omniroute/open-sse/handlers/audioSpeech.ts";
+import { handleAudioSpeech } from "@BlackRiver Gateway/open-sse/handlers/audioSpeech.ts";
 import { withInjectionGuard } from "@/middleware/promptInjectionGuard";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";
 import {
@@ -6,9 +6,9 @@ import {
   getSpeechProvider,
   buildDynamicAudioProvider,
   type ProviderNodeRow,
-} from "@omniroute/open-sse/config/audioRegistry.ts";
-import { errorResponse } from "@omniroute/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
+} from "@BlackRiver Gateway/open-sse/config/audioRegistry.ts";
+import { errorResponse } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@BlackRiver Gateway/open-sse/config/constants.ts";
 import { enforceApiKeyPolicy } from "@/shared/utils/apiKeyPolicy";
 import { getProviderNodes } from "@/lib/localDb";
 import { v1AudioSpeechSchema } from "@/shared/validation/schemas";
@@ -17,7 +17,7 @@ import {
   isAllRateLimitedCredentials,
   rateLimitedProviderResponse,
 } from "@/app/api/v1/_shared/rateLimit";
-import { attachOmniRouteMetaToResponse } from "@/domain/omnirouteResponseMeta";
+import { attachBlackRiver GatewayMetaToResponse } from "@/domain/BlackRiver GatewayResponseMeta";
 import { calculateModalCost } from "@/lib/usage/costCalculator";
 import { generateRequestId } from "@/shared/utils/requestId";
 
@@ -118,7 +118,7 @@ async function postHandler(request, context) {
     const costUsd = await calculateModalCost("audio", provider, resolvedModel || body.model, {
       characters,
     });
-    response = attachOmniRouteMetaToResponse(response, {
+    response = attachBlackRiver GatewayMetaToResponse(response, {
       provider,
       model: resolvedModel || body.model,
       costUsd,

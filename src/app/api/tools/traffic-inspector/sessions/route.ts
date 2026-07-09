@@ -5,7 +5,7 @@
  * LOCAL_ONLY enforced by routeGuard.
  */
 
-import { buildErrorBody, sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
+import { buildErrorBody, sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error.ts";
 import { InspectorSessionStartSchema } from "@/shared/schemas/inspector";
 import { listSessions, createSession } from "@/lib/db/inspectorSessions";
 

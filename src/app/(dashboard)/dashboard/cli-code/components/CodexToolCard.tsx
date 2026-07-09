@@ -146,12 +146,12 @@ export default function CodexToolCard({
     setApplying(true);
     setMessage(null);
     try {
-      // Use sk_omniroute for localhost if no key, otherwise use selected key
+      // Use sk_BlackRiver Gateway for localhost if no key, otherwise use selected key
       const keyToUse =
         selectedApiKey && selectedApiKey.trim()
           ? selectedApiKey
           : !cloudEnabled
-            ? "sk_omniroute"
+            ? "sk_BlackRiver Gateway"
             : selectedApiKey;
 
       // Send both apiKey (as fallback) and keyId to look up the unmasked string natively
@@ -348,9 +348,9 @@ export default function CodexToolCard({
   };
 
   const getManualConfigs = () => {
-    const keyToUse = !cloudEnabled ? "sk_omniroute" : "<YOUR_OMNIROUTE_API_KEY>";
+    const keyToUse = !cloudEnabled ? "sk_BlackRiver Gateway" : "<YOUR_BlackRiver Gateway_API_KEY>";
 
-    let configContent = `# OmniRoute Configuration for Codex CLI
+    let configContent = `# BlackRiver Gateway Configuration for Codex CLI
 model = "${selectedModel || CODEX_DEFAULT_MODELS[0]}"`;
 
     if (reasoningEffort && reasoningEffort !== "none") {
@@ -359,10 +359,10 @@ model = "${selectedModel || CODEX_DEFAULT_MODELS[0]}"`;
 
     if (wireApi === "responses") {
       configContent += `
-model_provider = "omniroute"
+model_provider = "BlackRiver Gateway"
 
-[model_providers.omniroute]
-name = "OmniRoute"
+[model_providers.BlackRiver Gateway]
+name = "BlackRiver Gateway"
 base_url = "${getEffectiveBaseUrl()}"
 wire_api = "responses"
 env_key = "OPENAI_API_KEY"
@@ -370,7 +370,7 @@ env_key = "OPENAI_API_KEY"
     } else {
       configContent += `
 
-# Utilize the built-in OpenAI provider pointed to OmniRoute
+# Utilize the built-in OpenAI provider pointed to BlackRiver Gateway
 openai_base_url = "${getEffectiveBaseUrl()}"
 `;
     }
@@ -568,7 +568,7 @@ openai_base_url = "${getEffectiveBaseUrl()}"
                     </select>
                   ) : (
                     <span className="flex-1 text-xs text-text-muted px-2 py-1.5">
-                      {cloudEnabled ? t("noApiKeysCreateOne") : t("defaultOmnirouteKey")}
+                      {cloudEnabled ? t("noApiKeysCreateOne") : t("defaultBlackRiver GatewayKey")}
                     </span>
                   )}
                 </div>

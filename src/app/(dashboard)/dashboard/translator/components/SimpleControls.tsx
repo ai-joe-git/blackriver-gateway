@@ -145,7 +145,7 @@ export default function SimpleControls({
             <span className="text-sm font-medium text-text-main">
               {tr("simpleSendToLabel", "Send to")}
             </span>
-            <InfoTooltip text={tr("simpleSendToHint", "Where to actually send the request (a provider connected in OmniRoute).")} />
+            <InfoTooltip text={tr("simpleSendToHint", "Where to actually send the request (a provider connected in BlackRiver Gateway).")} />
           </div>
           <Select
             aria-label={tr("simpleSendToLabel", "Send to")}

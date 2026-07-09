@@ -15,7 +15,7 @@
  * LOCAL_ONLY enforced by routeGuard.
  */
 
-import { buildErrorBody, sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
+import { buildErrorBody, sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error.ts";
 import { InspectorSystemProxyActionSchema } from "@/shared/schemas/inspector";
 import { apply, revert } from "@/mitm/inspector/systemProxyConfig";
 import {

@@ -25,7 +25,7 @@ export default function QdrantConfigCard() {
     enabled: false,
     host: "",
     port: 6333,
-    collection: "omniroute_memory",
+    collection: "BlackRiver Gateway_memory",
     embeddingModel: "openai/text-embedding-3-small",
     hasApiKey: false,
     apiKeyMasked: null,
@@ -295,7 +295,7 @@ export default function QdrantConfigCard() {
           <input
             value={qdrant.collection}
             onChange={(e) => setQdrant((s) => ({ ...s, collection: e.target.value }))}
-            placeholder="omniroute_memory"
+            placeholder="BlackRiver Gateway_memory"
             className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
           <p className="text-[11px] text-text-muted mt-1.5">{t("qdrant.collectionHelp")}</p>

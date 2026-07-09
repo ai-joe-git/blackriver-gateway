@@ -27,7 +27,7 @@ import {
 // ── State (globalThis singleton) ──────────────────────────────────────────
 
 declare global {
-  var __omniroutePreRequestRegistry:
+  var __BlackRiver GatewayPreRequestRegistry:
     | {
         initialized: boolean;
         hooks: Map<string, HookConfig>;
@@ -39,8 +39,8 @@ declare global {
 }
 
 function getRegistryState() {
-  if (!globalThis.__omniroutePreRequestRegistry) {
-    globalThis.__omniroutePreRequestRegistry = {
+  if (!globalThis.__BlackRiver GatewayPreRequestRegistry) {
+    globalThis.__BlackRiver GatewayPreRequestRegistry = {
       initialized: false,
       hooks: new Map(),
       middlewares: new Map(),
@@ -48,7 +48,7 @@ function getRegistryState() {
       maxLogs: 1000,
     };
   }
-  return globalThis.__omniroutePreRequestRegistry;
+  return globalThis.__BlackRiver GatewayPreRequestRegistry;
 }
 
 // ── Compile hook code into middleware function ────────────────────────────
@@ -116,7 +116,7 @@ function compileHookCode(code: string, hookName: string): HookMiddleware {
   let script: vm.Script;
   try {
     script = new vm.Script(`(async () => { ${code} })();`, {
-      filename: `omniroute-hook:${hookName}`,
+      filename: `BlackRiver Gateway-hook:${hookName}`,
     });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Compilation error";

@@ -8,9 +8,9 @@
  * Response: { provider, url, content, links, metadata, screenshot_url }
  */
 
-import { errorResponse } from "@omniroute/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
-import { handleWebFetch } from "@omniroute/open-sse/handlers/webFetch.ts";
+import { errorResponse } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@BlackRiver Gateway/open-sse/config/constants.ts";
+import { handleWebFetch } from "@BlackRiver Gateway/open-sse/handlers/webFetch.ts";
 import * as log from "@/sse/utils/logger";
 import { extractApiKey, isValidApiKey, getProviderCredentials } from "@/sse/services/auth";
 import { enforceApiKeyPolicy } from "@/shared/utils/apiKeyPolicy";

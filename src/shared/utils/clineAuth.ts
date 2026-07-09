@@ -44,10 +44,10 @@ export function buildClineHeaders(
   const headers: Record<string, string> = {
     "HTTP-Referer": "https://cline.bot",
     "X-Title": "Cline",
-    "User-Agent": `OmniRoute/${APP_VERSION}`,
+    "User-Agent": `BlackRiver Gateway/${APP_VERSION}`,
     "X-PLATFORM": process.platform || "unknown",
     "X-PLATFORM-VERSION": process.version || "unknown",
-    "X-CLIENT-TYPE": "omniroute",
+    "X-CLIENT-TYPE": "BlackRiver Gateway",
     "X-CLIENT-VERSION": APP_VERSION,
     "X-CORE-VERSION": APP_VERSION,
     "X-IS-MULTIROOT": "false",

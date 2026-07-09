@@ -309,7 +309,7 @@ export function createObsidianClient(apiKey: string, baseUrl?: string) {
 export type ObsidianClient = ReturnType<typeof createObsidianClient>;
 
 const DEFAULT_SYNC_SERVER_URL = "http://127.0.0.1:27781";
-const SYNC_TOKEN_KEY = "omniroute_sync_token";
+const SYNC_TOKEN_KEY = "BlackRiver Gateway_sync_token";
 
 export function getSyncToken(): string | null {
   try {

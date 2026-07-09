@@ -3,7 +3,7 @@
  *
  * Antigravity (the Gemini-based IDE) sends requests in native Gemini
  * GenerateContent format (`contents`, `systemInstruction`, `generationConfig`,
- * `thinkingConfig`, …). The OmniRoute router endpoint `/v1/chat/completions`
+ * `thinkingConfig`, …). The BlackRiver Gateway router endpoint `/v1/chat/completions`
  * expects OpenAI Chat Completions format, so the raw Gemini body must be
  * converted before forwarding — otherwise the unknown fields are either
  * ignored or cause upstream providers to return a 400 "invalid argument"
@@ -13,7 +13,7 @@
  * Pipeline:
  *   - parse the incoming Gemini JSON body,
  *   - convert it to an OpenAI chat.completions body (model = mapped model),
- *   - forward to `/v1/chat/completions` on the OmniRoute router,
+ *   - forward to `/v1/chat/completions` on the BlackRiver Gateway router,
  *   - pipe the SSE response back to the IDE.
  *
  * Non-regressive: any change here must keep the Antigravity flow working as
@@ -101,7 +101,7 @@ function joinPartsText(parts: GeminiPart[] | undefined): string {
  * chat.completions body.
  *
  * @param geminiBody parsed Gemini request
- * @param model      resolved OmniRoute model string
+ * @param model      resolved BlackRiver Gateway model string
  * @param stream     whether the original request was streaming
  */
 export function convertGeminiToOpenAI(
@@ -167,7 +167,7 @@ export class AntigravityHandler extends MitmHandlerBase {
 
       if (!upstream.ok) {
         const errText = await upstream.text().catch(() => "");
-        throw new Error(`OmniRoute ${upstream.status}: ${errText}`);
+        throw new Error(`BlackRiver Gateway ${upstream.status}: ${errText}`);
       }
 
       let collected = "";

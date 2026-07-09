@@ -15,17 +15,17 @@ type ExecFileLike = (
 type ExistsLike = (target: string) => boolean;
 
 /**
- * Resolve the real install directory of the globally-installed `omniroute` package — the directory
+ * Resolve the real install directory of the globally-installed `BlackRiver Gateway` package — the directory
  * that owns `node_modules/better-sqlite3` and so is the correct cwd for `npm rebuild`.
  *
- * Replaces the hardcoded `${globalRoot}/omniroute/app` assumption (Bug 3, security-report v3.8.15):
- * the global package root is `${npm root -g}/omniroute`, not `/omniroute/app`. We probe the real
+ * Replaces the hardcoded `${globalRoot}/BlackRiver Gateway/app` assumption (Bug 3, security-report v3.8.15):
+ * the global package root is `${npm root -g}/BlackRiver Gateway`, not `/BlackRiver Gateway/app`. We probe the real
  * layout (current root first, then the legacy `app/` sub-dir) and fall back to the package root.
  *
  * `execImpl`/`fsExists` are injectable so the resolution logic is unit-testable without a real
  * global install.
  */
-export async function resolveGlobalOmniroutePath(
+export async function resolveGlobalBlackRiver GatewayPath(
   execImpl: ExecFileLike = execFileAsync,
   fsExists: ExistsLike = existsSync
 ): Promise<string> {
@@ -35,7 +35,7 @@ export async function resolveGlobalOmniroutePath(
   });
   const globalRoot = String(result.stdout).trim();
 
-  const packageRoot = path.join(globalRoot, "omniroute");
+  const packageRoot = path.join(globalRoot, "BlackRiver Gateway");
   // [current layout, legacy layout] — first whose package.json exists wins.
   const candidates = [packageRoot, path.join(packageRoot, "app")];
 

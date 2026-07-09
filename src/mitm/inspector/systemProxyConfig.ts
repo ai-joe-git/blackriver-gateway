@@ -16,7 +16,7 @@
 
 import { execFile, type ExecFileOptions } from "node:child_process";
 import os from "node:os";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
 
 export type Platform = "linux" | "macos" | "windows";
 
@@ -278,7 +278,7 @@ async function windowsRevert(_state: WindowsPreviousState): Promise<void> {
 // ────────────────────────────────────────────────────────────────────────────
 
 /**
- * Apply OmniRoute as the system-wide HTTP/HTTPS proxy at `127.0.0.1:<port>`.
+ * Apply BlackRiver Gateway as the system-wide HTTP/HTTPS proxy at `127.0.0.1:<port>`.
  * Captures and returns the prior configuration so callers can revert later.
  *
  * Throws a sanitized `Error` if the underlying command fails (no stack/path

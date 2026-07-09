@@ -1,4 +1,4 @@
-import { handleImageGeneration } from "@omniroute/open-sse/handlers/imageGeneration.ts";
+import { handleImageGeneration } from "@BlackRiver Gateway/open-sse/handlers/imageGeneration.ts";
 import { withInjectionGuard } from "@/middleware/promptInjectionGuard";
 import {
   getProviderCredentials,
@@ -10,9 +10,9 @@ import {
   parseImageModel,
   getImageProvider,
   getImageModelEntry,
-} from "@omniroute/open-sse/config/imageRegistry.ts";
-import { errorResponse, unavailableResponse } from "@omniroute/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
+} from "@BlackRiver Gateway/open-sse/config/imageRegistry.ts";
+import { errorResponse, unavailableResponse } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@BlackRiver Gateway/open-sse/config/constants.ts";
 import * as log from "@/sse/utils/logger";
 import { toJsonErrorPayload } from "@/shared/utils/upstreamError";
 import { enforceApiKeyPolicy } from "@/shared/utils/apiKeyPolicy";
@@ -21,8 +21,8 @@ import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 
 import { getAllCustomModels, resolveProxyForConnection } from "@/lib/localDb";
 import { resolveImageRouteModel } from "@/lib/images/imageRouteModel";
-import { runWithProxyContext } from "@omniroute/open-sse/utils/proxyFetch.ts";
-import { attachOmniRouteMetaHeaders } from "@/domain/omnirouteResponseMeta";
+import { runWithProxyContext } from "@BlackRiver Gateway/open-sse/utils/proxyFetch.ts";
+import { attachBlackRiver GatewayMetaHeaders } from "@/domain/BlackRiver GatewayResponseMeta";
 import { calculateModalCost } from "@/lib/usage/costCalculator";
 import { generateRequestId } from "@/shared/utils/requestId";
 import { getSpecialtyModelsResponse } from "@/app/api/v1/_shared/specialtyCatalog";
@@ -241,7 +241,7 @@ async function postHandler(request, context) {
     );
     const costUsd = await calculateModalCost("image", provider, body.model, { n });
     const headers = new Headers({ "Content-Type": "application/json" });
-    attachOmniRouteMetaHeaders(headers, {
+    attachBlackRiver GatewayMetaHeaders(headers, {
       provider,
       model: body.model,
       costUsd,

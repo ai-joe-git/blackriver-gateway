@@ -1,7 +1,7 @@
 import { getDbInstance } from "./core";
 import type { TierConfig } from "../../../open-sse/services/tierTypes";
 import { validateTierConfig, DEFAULT_TIER_CONFIG } from "../../../open-sse/services/tierConfig";
-import { defaultLogger as log } from "@omniroute/open-sse/utils/logger";
+import { defaultLogger as log } from "@BlackRiver Gateway/open-sse/utils/logger";
 
 const TABLE = "tier_config";
 const CORRUPTED_VALUE_PREVIEW_LEN = 200;

@@ -11,7 +11,7 @@ import { installCertResult, checkCertInstalled } from "@/mitm/cert/install";
 import { generateCert } from "@/mitm/cert/generate";
 import { resolveMitmDataDir } from "@/mitm/dataDir";
 import path from "path";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
 import { createErrorResponse } from "@/lib/api/errorResponse";
 
 export async function POST(request: Request): Promise<Response> {

@@ -1,5 +1,5 @@
 import { getProxyLogs, clearProxyLogs } from "@/lib/proxyLogger";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
 
 function serverErrorResponse(error: unknown): Response {
   return Response.json(

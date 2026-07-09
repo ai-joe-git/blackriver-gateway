@@ -32,11 +32,11 @@ export async function generateHermesConfig(options: {
   const config = {
     model: {
       default: model,
-      provider: "omniroute",
+      provider: "BlackRiver Gateway",
       base_url: `${base}/v1`,
     },
     providers: {
-      omniroute: {
+      BlackRiver Gateway: {
         base_url: `${base}/v1`,
         api_key: options.apiKey,
       },

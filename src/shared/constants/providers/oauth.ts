@@ -111,7 +111,7 @@ export const OAUTH_PROVIDERS = {
     textIcon: "GL",
     website: "https://docs.gitlab.com/user/duo_agent_platform/code_suggestions/",
     authHint:
-      "OAuth application with ai_features + read_user scopes. Configure GITLAB_DUO_OAUTH_CLIENT_ID and optionally GITLAB_DUO_OAUTH_CLIENT_SECRET on this OmniRoute instance.",
+      "OAuth application with ai_features + read_user scopes. Configure GITLAB_DUO_OAUTH_CLIENT_ID and optionally GITLAB_DUO_OAUTH_CLIENT_SECRET on this BlackRiver Gateway instance.",
   },
   cursor: {
     id: "cursor",
@@ -144,7 +144,7 @@ export const OAUTH_PROVIDERS = {
     subscriptionRisk: true,
     riskNoticeVariant: "oauth",
     authHint:
-      "Sign in with your Zed account (native-app sign-in). OmniRoute generates a one-time RSA keypair and opens zed.dev to authorize it — on a remote/headless install, copy the resulting 127.0.0.1 callback URL from your browser's address bar and paste it back here. Distinct from the 'Zed IDE' credential-import entry above: this proxies chat completions through Zed's own hosted model aggregator (cloud.zed.dev), fronting Anthropic/OpenAI/Google/xAI models under your Zed plan.",
+      "Sign in with your Zed account (native-app sign-in). BlackRiver Gateway generates a one-time RSA keypair and opens zed.dev to authorize it — on a remote/headless install, copy the resulting 127.0.0.1 callback URL from your browser's address bar and paste it back here. Distinct from the 'Zed IDE' credential-import entry above: this proxies chat completions through Zed's own hosted model aggregator (cloud.zed.dev), fronting Anthropic/OpenAI/Google/xAI models under your Zed plan.",
   },
   trae: {
     id: "trae",

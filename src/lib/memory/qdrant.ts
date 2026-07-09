@@ -92,7 +92,7 @@ export function normalizeQdrantConfig(settings: Record<string, unknown>): Qdrant
   const collection =
     (typeof settings.qdrantCollection === "string" && settings.qdrantCollection.trim().length > 0
       ? settings.qdrantCollection.trim()
-      : null) ?? envCollection ?? "omniroute_memory";
+      : null) ?? envCollection ?? "BlackRiver Gateway_memory";
   const embeddingModel =
     (typeof settings.qdrantEmbeddingModel === "string" &&
     settings.qdrantEmbeddingModel.trim().length > 0
@@ -295,7 +295,7 @@ export async function upsertSemanticMemoryPoint(input: {
       : null;
 
     const payload = {
-      kind: "omniroute_memory",
+      kind: "BlackRiver Gateway_memory",
       memoryId: input.id,
       apiKeyId: input.apiKeyId || "",
       sessionId: input.sessionId || "",
@@ -369,7 +369,7 @@ export async function searchSemanticMemory(
           ...(searchParams ? { params: searchParams } : {}),
           filter: {
             must: [
-              { key: "kind", match: { value: "omniroute_memory" } },
+              { key: "kind", match: { value: "BlackRiver Gateway_memory" } },
               ...(scope?.apiKeyId ? [{ key: "apiKeyId", match: { value: scope.apiKeyId } }] : []),
               ...(scope?.sessionId
                 ? [{ key: "sessionId", match: { value: String(scope.sessionId) } }]
@@ -454,7 +454,7 @@ export async function cleanupSemanticMemoryPoints(input: {
     const cutoffUnix = nowUnix - retentionDays * 24 * 60 * 60;
 
     const filter: Record<string, unknown> = {
-      must: [{ key: "kind", match: { value: "omniroute_memory" } }],
+      must: [{ key: "kind", match: { value: "BlackRiver Gateway_memory" } }],
       should: [
         { key: "expiresAtUnix", range: { lt: nowUnix } },
         { key: "createdAtUnix", range: { lt: cutoffUnix } },

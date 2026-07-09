@@ -13,8 +13,8 @@
  * entering and leaving by.
  */
 import { request as undiciRequest } from "undici";
-import { createProxyDispatcher, proxyConfigToUrl } from "@omniroute/open-sse/utils/proxyDispatcher.ts";
-import { rotationGroupFor } from "@omniroute/open-sse/services/refreshSerializer.ts";
+import { createProxyDispatcher, proxyConfigToUrl } from "@BlackRiver Gateway/open-sse/utils/proxyDispatcher.ts";
+import { rotationGroupFor } from "@BlackRiver Gateway/open-sse/services/refreshSerializer.ts";
 
 const EGRESS_ECHO_URL = "https://api64.ipify.org?format=json";
 const EGRESS_PROBE_TIMEOUT_MS = 6000;

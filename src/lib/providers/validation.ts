@@ -1,6 +1,6 @@
-import { getEmbeddingProvider } from "@omniroute/open-sse/config/embeddingRegistry.ts";
-import { getRerankProvider } from "@omniroute/open-sse/config/rerankRegistry.ts";
-import { getRegistryEntry } from "@omniroute/open-sse/config/providerRegistry.ts";
+import { getEmbeddingProvider } from "@BlackRiver Gateway/open-sse/config/embeddingRegistry.ts";
+import { getRerankProvider } from "@BlackRiver Gateway/open-sse/config/rerankRegistry.ts";
+import { getRegistryEntry } from "@BlackRiver Gateway/open-sse/config/providerRegistry.ts";
 import {
   isClaudeCodeCompatibleProvider,
   isAnthropicCompatibleProvider,
@@ -14,7 +14,7 @@ import { SAFE_OUTBOUND_FETCH_PRESETS, safeOutboundFetch } from "@/shared/network
 import { getProviderOutboundGuard } from "@/shared/network/outboundUrlGuard";
 import { resolveNvidiaValidationModel } from "@/lib/providers/nvidiaValidationModel";
 import { MODAL_DEFAULT_VALIDATION_MODEL_ID } from "@/shared/constants/modal";
-import { validateQoderCliPat } from "@omniroute/open-sse/services/qoderCli.ts";
+import { validateQoderCliPat } from "@BlackRiver Gateway/open-sse/services/qoderCli.ts";
 import { validateImageProviderApiKey } from "@/lib/providers/imageValidation";
 
 import {
@@ -303,7 +303,7 @@ export async function validateProviderApiKey({ provider, apiKey, providerSpecifi
     // `auggie` binary is installed and runnable on this machine.
     auggie: async () => {
       const { checkAuggieCliVersion } = await import(
-        "@omniroute/open-sse/executors/auggie.ts"
+        "@BlackRiver Gateway/open-sse/executors/auggie.ts"
       );
       const result = await checkAuggieCliVersion();
       if (!result.ok) {
@@ -460,7 +460,7 @@ export async function validateProviderApiKey({ provider, apiKey, providerSpecifi
     vertex: async ({ apiKey }: any) => {
       try {
         const { parseSAFromApiKey, getAccessToken, isExpressApiKey } =
-          await import("@omniroute/open-sse/executors/vertex.ts");
+          await import("@BlackRiver Gateway/open-sse/executors/vertex.ts");
         // Express-mode API keys are opaque strings sent directly as the ?key= query param — there is
         // no JWT to mint, so accept any non-empty Express key (the live chat/media call validates it).
         if (isExpressApiKey(apiKey)) {
@@ -477,7 +477,7 @@ export async function validateProviderApiKey({ provider, apiKey, providerSpecifi
     "vertex-partner": async ({ apiKey }: any) => {
       try {
         const { parseSAFromApiKey, getAccessToken, isExpressApiKey } =
-          await import("@omniroute/open-sse/executors/vertex.ts");
+          await import("@BlackRiver Gateway/open-sse/executors/vertex.ts");
         if (isExpressApiKey(apiKey)) {
           return { valid: true, error: null };
         }

@@ -1,22 +1,22 @@
 // Allow large audio/video file uploads — 5min for processing large files (up to 2GB)
 export const maxDuration = 300;
-import { handleAudioTranslation } from "@omniroute/open-sse/handlers/audioTranslation.ts";
+import { handleAudioTranslation } from "@BlackRiver Gateway/open-sse/handlers/audioTranslation.ts";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";
 import {
   parseTranslationModel,
   getTranslationProvider,
   buildDynamicAudioProvider,
   type ProviderNodeRow,
-} from "@omniroute/open-sse/config/audioRegistry.ts";
-import { errorResponse } from "@omniroute/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
+} from "@BlackRiver Gateway/open-sse/config/audioRegistry.ts";
+import { errorResponse } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@BlackRiver Gateway/open-sse/config/constants.ts";
 import { enforceApiKeyPolicy } from "@/shared/utils/apiKeyPolicy";
 import { getProviderNodes } from "@/lib/localDb";
 import {
   isAllRateLimitedCredentials,
   rateLimitedProviderResponse,
 } from "@/app/api/v1/_shared/rateLimit";
-import { attachOmniRouteMetaToResponse } from "@/domain/omnirouteResponseMeta";
+import { attachBlackRiver GatewayMetaToResponse } from "@/domain/BlackRiver GatewayResponseMeta";
 import { generateRequestId } from "@/shared/utils/requestId";
 
 /**
@@ -117,7 +117,7 @@ export async function POST(request) {
     await clearRecoveredProviderState(credentials);
     // No text body / playback duration available from the multipart upload, so
     // per-second pricing cannot be applied → cost 0 (ADD-only headers, body intact).
-    response = attachOmniRouteMetaToResponse(response, {
+    response = attachBlackRiver GatewayMetaToResponse(response, {
       provider,
       model: resolvedModel,
       costUsd: 0,

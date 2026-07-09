@@ -6,7 +6,7 @@
  */
 
 import { getProviderConnections } from "@/lib/localDb";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error.ts";
 
 export async function GET() {
   try {

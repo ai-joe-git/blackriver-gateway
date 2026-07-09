@@ -1,4 +1,4 @@
-import type { CompressionStats } from "@omniroute/open-sse/services/compression/types";
+import type { CompressionStats } from "@BlackRiver Gateway/open-sse/services/compression/types";
 
 export interface CompressionAnnotationProps {
   stats: CompressionStats;

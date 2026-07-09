@@ -19,7 +19,7 @@ export function isRoot(): boolean {
 /**
  * Probe whether `sudo` is discoverable on PATH.
  *
- * Slim Docker images (e.g. `node:24-trixie-slim` used by OmniRoute's runtime
+ * Slim Docker images (e.g. `node:24-trixie-slim` used by BlackRiver Gateway's runtime
  * stage) do not ship `sudo`. When the container runs as a non-root user
  * (`USER node`, UID 1000), `spawn("sudo", ...)` fails with ENOENT and breaks
  * any MITM operation triggered from inside the container. `execFileWithPassword`
@@ -60,7 +60,7 @@ export function execFileText(command: string, args: string[]): Promise<string> {
 }
 
 /**
- * Truthy-env check for `OMNIROUTE_NO_SUDO`. Inlined (not imported from
+ * Truthy-env check for `BlackRiver Gateway_NO_SUDO`. Inlined (not imported from
  * `src/lib/db/apiKeys/modelPermissions.ts`) because that module pulls in the DB
  * read-cache graph and importing it here — into a low-level MITM primitive that
  * is loaded during cert bootstrap — would create a module cycle. The same tiny
@@ -69,7 +69,7 @@ export function execFileText(command: string, args: string[]): Promise<string> {
  * (`1|true|yes|on`, case-insensitive, trimmed).
  */
 export function isNoSudoEnv(): boolean {
-  const value = process.env.OMNIROUTE_NO_SUDO;
+  const value = process.env.BlackRiver Gateway_NO_SUDO;
   return typeof value === "string" && /^(1|true|yes|on)$/i.test(value.trim());
 }
 
@@ -85,11 +85,11 @@ export interface ResolvedSpawn {
  * the resulting argv (and whether a password is written to stdin) WITHOUT
  * spawning a real `sudo`. `root`/`sudoAvailable` default to the live probes and
  * can be injected for deterministic tests; `noSudo` defaults to the
- * `OMNIROUTE_NO_SUDO` env flag.
+ * `BlackRiver Gateway_NO_SUDO` env flag.
  *
  * Strips the leading `sudo -S` (running the underlying command directly, same
  * user, no elevation) when running as root, when `sudo` is unavailable, OR when
- * the operator opts into root-less mode via `OMNIROUTE_NO_SUDO` (#6122). No
+ * the operator opts into root-less mode via `BlackRiver Gateway_NO_SUDO` (#6122). No
  * runtime value is ever interpolated into a shell — the argv array is preserved
  * and only the leading `sudo`/`-S` tokens are dropped (Hard Rule #13).
  */
@@ -125,7 +125,7 @@ export function execFileWithPassword(
 ): Promise<string> {
   // When running as root, when `sudo` is not installed on the host (slim
   // Docker images / containerized non-root runtime), OR when the operator sets
-  // `OMNIROUTE_NO_SUDO` (root-less / user-namespace deployments — #6122), skip
+  // `BlackRiver Gateway_NO_SUDO` (root-less / user-namespace deployments — #6122), skip
   // `sudo -S` and run the underlying command directly — same user, no
   // elevation. This lets MITM operations triggered from inside `node:*-slim`
   // containers succeed for any command that does not actually require root
@@ -239,8 +239,8 @@ export function buildElevatedScriptWrapper(scriptPath: string): string {
 //     local dashboard at /dashboard/cli-tools/mitm.
 // See docs/security/SOCKET_DEV_FINDINGS.md §3 for the full attestation.
 export async function runElevatedPowerShell(script: string): Promise<string> {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-elevate-"));
-  const scriptName = `omniroute-elevate-${crypto.randomUUID()}.ps1`;
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "BlackRiver Gateway-elevate-"));
+  const scriptName = `BlackRiver Gateway-elevate-${crypto.randomUUID()}.ps1`;
   const scriptPath = path.join(tempDir, scriptName);
   fs.writeFileSync(scriptPath, script, { encoding: "utf8", mode: 0o600 });
   try {
@@ -264,8 +264,8 @@ export async function _runElevatedPowerShellForTest(
   script: string,
   runner: (wrapper: string, scriptPath: string) => Promise<string>
 ): Promise<string> {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-elevate-"));
-  const scriptName = `omniroute-elevate-${crypto.randomUUID()}.ps1`;
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "BlackRiver Gateway-elevate-"));
+  const scriptName = `BlackRiver Gateway-elevate-${crypto.randomUUID()}.ps1`;
   const scriptPath = path.join(tempDir, scriptName);
   fs.writeFileSync(scriptPath, script, { encoding: "utf8", mode: 0o600 });
   try {

@@ -407,7 +407,7 @@ export default function ApiTab(_props: ApiTabProps) {
         }
         const fetchHeaders: Record<string, string> = {};
         if (selectedConnection) {
-          fetchHeaders["X-OmniRoute-Connection"] = selectedConnection;
+          fetchHeaders["X-BlackRiver Gateway-Connection"] = selectedConnection;
         }
         res = await fetch(`/api${path}`, {
           method: "POST",
@@ -422,7 +422,7 @@ export default function ApiTab(_props: ApiTabProps) {
         }
         const fetchHeaders: Record<string, string> = { "Content-Type": "application/json" };
         if (selectedConnection) {
-          fetchHeaders["X-OmniRoute-Connection"] = selectedConnection;
+          fetchHeaders["X-BlackRiver Gateway-Connection"] = selectedConnection;
         }
         res = await fetch(`/api${path}`, {
           method: "POST",

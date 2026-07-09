@@ -144,7 +144,7 @@ describe("ApiEndpointsTab", () => {
       }
 
       return jsonResponse({
-        info: { title: "OmniRoute API", version: "3.7.6" },
+        info: { title: "BlackRiver Gateway API", version: "3.7.6" },
         servers: [],
         tags: [{ name: "Chat" }],
         endpoints: [
@@ -167,7 +167,7 @@ describe("ApiEndpointsTab", () => {
     renderApiEndpointsTab();
 
     await waitForText("VS Code Token Alias");
-    await waitForText("OmniRoute API");
+    await waitForText("BlackRiver Gateway API");
     expect(document.body.textContent).toContain("1 endpoints across 1 categories");
     expect(document.body.textContent).toContain("/api/v1/vscode/sk-live-123/models");
     expect(document.body.textContent).toContain("/api/v1/chat/completions");
@@ -180,7 +180,7 @@ describe("ApiEndpointsTab", () => {
       }
 
       return jsonResponse({
-        info: { title: "OmniRoute API", version: "3.7.6" },
+        info: { title: "BlackRiver Gateway API", version: "3.7.6" },
         servers: [],
         tags: [{ name: "Chat" }],
         endpoints: [
@@ -202,7 +202,7 @@ describe("ApiEndpointsTab", () => {
 
     renderApiEndpointsTab();
 
-    await waitForText("OmniRoute API");
+    await waitForText("BlackRiver Gateway API");
 
     // Expand the endpoint to reveal the curl example
     const endpointRow = Array.from(document.body.querySelectorAll("code")).find((node) =>

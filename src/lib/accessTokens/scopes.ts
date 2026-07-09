@@ -1,8 +1,8 @@
 /**
  * CLI access-token scopes — the 3-level hierarchy used by remote mode.
  *
- * These tokens authorize the `omniroute` CLI (and dashboard) to run *management*
- * commands against a (possibly remote) OmniRoute server. They are distinct from
+ * These tokens authorize the `BlackRiver Gateway` CLI (and dashboard) to run *management*
+ * commands against a (possibly remote) BlackRiver Gateway server. They are distinct from
  * inference API keys (`api_keys`), which authorize `/v1/chat/completions` traffic.
  *
  * Hierarchy (admin ⊃ write ⊃ read):

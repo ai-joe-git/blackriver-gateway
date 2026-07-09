@@ -109,7 +109,7 @@ function buildApiBody(skill: AgentSkill, sources: BuildSources): string {
       const curlMethod = op.method === "GET" ? "" : `-X ${op.method} `;
       lines.push("```bash");
       lines.push(`curl ${curlMethod}https://localhost:20128${op.path} \\`);
-      lines.push('  -H "Authorization: Bearer $OMNIROUTE_TOKEN"');
+      lines.push('  -H "Authorization: Bearer $BlackRiver Gateway_TOKEN"');
       if (["POST", "PUT", "PATCH"].includes(op.method)) {
         lines.push('  -H "Content-Type: application/json" \\');
         lines.push("  -d '{}'");
@@ -141,8 +141,8 @@ function buildCliBody(skill: AgentSkill, sources: BuildSources): string {
 
   lines.push("## Quick install\n");
   lines.push("```bash");
-  lines.push("npm install -g omniroute   # or: npx omniroute");
-  lines.push("omniroute --version");
+  lines.push("npm install -g BlackRiver Gateway   # or: npx BlackRiver Gateway");
+  lines.push("BlackRiver Gateway --version");
   lines.push("```");
   lines.push("");
 
@@ -169,7 +169,7 @@ function buildCliBody(skill: AgentSkill, sources: BuildSources): string {
 
       lines.push("**Example:**\n");
       lines.push("```bash");
-      lines.push(`omniroute ${cmd.name}`);
+      lines.push(`BlackRiver Gateway ${cmd.name}`);
       lines.push("```");
       lines.push("");
     }

@@ -6,7 +6,7 @@ import {
   BIFROST_DEFAULT_PORT,
 } from "@/lib/services/installers/bifrost";
 import { createErrorResponse } from "@/lib/api/errorResponse";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
 
 const TOOL = "bifrost";
 

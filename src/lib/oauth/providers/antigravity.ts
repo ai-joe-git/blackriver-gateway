@@ -3,8 +3,8 @@ import {
   antigravityNativeOAuthUserAgent,
   getAntigravityHeaders,
   getAntigravityLoadCodeAssistMetadata,
-} from "@omniroute/open-sse/services/antigravityHeaders.ts";
-import { extractCodeAssistOnboardTierId } from "@omniroute/open-sse/services/codeAssistSubscription.ts";
+} from "@BlackRiver Gateway/open-sse/services/antigravityHeaders.ts";
+import { extractCodeAssistOnboardTierId } from "@BlackRiver Gateway/open-sse/services/codeAssistSubscription.ts";
 
 // Bound every Antigravity post-exchange call. Without this an unreachable/slow
 // upstream made the `/exchange` request (and therefore the whole OAuth login)

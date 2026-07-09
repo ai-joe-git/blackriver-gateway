@@ -18,7 +18,7 @@ import {
 } from "@/lib/system/autoUpdate";
 import { NEWS_JSON_URL, parseActiveNewsPayload } from "@/shared/utils/releaseNotes";
 import { isNewer, resolveLatestVersion } from "@/lib/system/versionCheck";
-import { resolveGlobalOmniroutePath } from "@/lib/system/globalPackagePath";
+import { resolveGlobalBlackRiver GatewayPath } from "@/lib/system/globalPackagePath";
 // #5542 — On Windows npm is `npm.cmd`; Node ≥24 refuses to execFile a `.cmd` without
 // a shell (nodejs/node#52554 → "spawn npm ENOENT"). buildNpmExecOptions enables the
 // shell on win32 only; SERVICE_VERSION_PATTERN keeps the shell-joined version safe.
@@ -242,7 +242,7 @@ export async function POST(req: NextRequest) {
 
           send({ step: "restart", status: "running", message: "Restarting service..." });
           try {
-            await execFileAsync("pm2", ["restart", "omniroute", "--update-env"], {
+            await execFileAsync("pm2", ["restart", "BlackRiver Gateway", "--update-env"], {
               timeout: 30_000,
               cwd: PROJECT_ROOT,
             });
@@ -300,13 +300,13 @@ export async function POST(req: NextRequest) {
           controller.close();
           return;
         }
-        send({ step: "install", status: "running", message: `Installing omniroute@${latest}...` });
+        send({ step: "install", status: "running", message: `Installing BlackRiver Gateway@${latest}...` });
           await execFileAsync(
             "npm",
-            ["install", "-g", `omniroute@${latest}`, "--ignore-scripts", "--legacy-peer-deps"],
+            ["install", "-g", `BlackRiver Gateway@${latest}`, "--ignore-scripts", "--legacy-peer-deps"],
             buildNpmExecOptions(process.platform, { cwd: PROJECT_ROOT, timeoutMs: 300_000 })
           );
-        send({ step: "install", status: "done", message: `Installed omniroute@${latest}` });
+        send({ step: "install", status: "done", message: `Installed BlackRiver Gateway@${latest}` });
 
         // Step 2: Rebuild native modules (critical for better-sqlite3)
         send({
@@ -314,7 +314,7 @@ export async function POST(req: NextRequest) {
           status: "running",
           message: "Rebuilding native modules (better-sqlite3)...",
         });
-        const omniPath = await resolveGlobalOmniroutePath();
+        const omniPath = await resolveGlobalBlackRiver GatewayPath();
         await execFileAsync(
           "npm",
           ["rebuild", "better-sqlite3"],
@@ -325,7 +325,7 @@ export async function POST(req: NextRequest) {
         // Step 3: Restart PM2
         send({ step: "restart", status: "running", message: "Restarting service via PM2..." });
           try {
-            await execFileAsync("pm2", ["restart", "omniroute", "--update-env"], {
+            await execFileAsync("pm2", ["restart", "BlackRiver Gateway", "--update-env"], {
               timeout: 30000,
               cwd: PROJECT_ROOT,
             });

@@ -36,7 +36,7 @@ export interface DetectedTool {
     {
       model: string;
       provider?: string;
-      usingOmniRoute: boolean;
+      usingBlackRiver Gateway: boolean;
     }
   >;
 }
@@ -75,7 +75,7 @@ function isConfigured(content: string, baseUrl: string): boolean {
   return (
     content.includes(normalized) ||
     content.includes("localhost:20128") ||
-    content.includes("OMNIROUTE_BASE_URL")
+    content.includes("BlackRiver Gateway_BASE_URL")
   );
 }
 
@@ -136,14 +136,14 @@ export async function detectTool(id: string): Promise<DetectedTool | null> {
 
       Object.entries(roles).forEach(([role, info]) => {
         const usingOmni =
-          info?.provider === "omniroute" ||
+          info?.provider === "BlackRiver Gateway" ||
           (info?.base_url || "").includes("20128") ||
           (info?.base_url || "").includes("localhost:20128");
 
         richRoles[role] = {
           model: info.model,
           provider: info.provider,
-          usingOmniRoute: usingOmni,
+          usingBlackRiver Gateway: usingOmni,
         };
       });
 

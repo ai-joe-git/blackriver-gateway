@@ -1,5 +1,5 @@
 /**
- * OmniRoute Core Types
+ * BlackRiver Gateway Core Types
  *
  * Central re-export for all domain types.
  * Import from "@/types" in any file.

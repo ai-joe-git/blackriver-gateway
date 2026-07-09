@@ -1,11 +1,11 @@
 import { z } from "zod";
 
 export const NEWS_JSON_URL =
-  "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/news.json";
+  "https://raw.githubusercontent.com/diegosouzapw/BlackRiver Gateway/main/news.json";
 export const CHANGELOG_RAW_URL =
-  "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/CHANGELOG.md";
+  "https://raw.githubusercontent.com/diegosouzapw/BlackRiver Gateway/main/CHANGELOG.md";
 export const CHANGELOG_GITHUB_URL =
-  "https://github.com/diegosouzapw/OmniRoute/blob/main/CHANGELOG.md";
+  "https://github.com/diegosouzapw/BlackRiver Gateway/blob/main/CHANGELOG.md";
 
 const activeNewsSchema = z.object({
   active: z.literal(true),

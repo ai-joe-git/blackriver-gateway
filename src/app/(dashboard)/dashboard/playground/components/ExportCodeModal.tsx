@@ -21,7 +21,7 @@ const LANGUAGE_TABS: Array<{ id: ExportLanguage; label: string }> = [
 /**
  * ExportCodeModal — shows curl / Python / TypeScript snippets for the current playground state.
  *
- * Security: always uses API_KEY_PLACEHOLDER ("$OMNIROUTE_API_KEY") — never a real key (D11 / Hard Rule #1).
+ * Security: always uses API_KEY_PLACEHOLDER ("$BlackRiver Gateway_API_KEY") — never a real key (D11 / Hard Rule #1).
  */
 export default function ExportCodeModal({ state, onClose }: ExportCodeModalProps) {
   const t = useTranslations("playground");

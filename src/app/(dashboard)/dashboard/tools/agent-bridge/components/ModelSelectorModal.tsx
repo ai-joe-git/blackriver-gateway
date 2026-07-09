@@ -16,7 +16,7 @@ interface ModelSelectorModalProps {
 }
 
 /**
- * Modal for picking an OmniRoute target model for model-mapping.
+ * Modal for picking an BlackRiver Gateway target model for model-mapping.
  */
 export function ModelSelectorModal({
   open,

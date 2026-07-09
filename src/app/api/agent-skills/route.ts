@@ -11,7 +11,7 @@
  */
 import { NextResponse } from "next/server";
 
-import { buildErrorBody } from "@omniroute/open-sse/utils/error.ts";
+import { buildErrorBody } from "@BlackRiver Gateway/open-sse/utils/error.ts";
 import { ListQuerySchema } from "@/lib/agentSkills/schemas";
 import { filterCatalog, computeCoverage } from "@/lib/agentSkills/catalog";
 

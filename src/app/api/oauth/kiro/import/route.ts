@@ -6,8 +6,8 @@ import { syncToCloud } from "@/lib/cloudSync";
 import { kiroImportSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { isAuthRequired, isAuthenticated } from "@/shared/utils/apiAuth";
-import { runWithProxyContext } from "@omniroute/open-sse/utils/proxyFetch.ts";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { runWithProxyContext } from "@BlackRiver Gateway/open-sse/utils/proxyFetch.ts";
+import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
 
 /**
  * Build the user-facing error message for a failed Kiro/Amazon-Q token import.

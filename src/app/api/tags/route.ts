@@ -1,5 +1,5 @@
 import { CORS_HEADERS } from "@/shared/utils/cors";
-import { ollamaModels } from "@omniroute/open-sse/config/ollamaModels.ts";
+import { ollamaModels } from "@BlackRiver Gateway/open-sse/config/ollamaModels.ts";
 
 export async function OPTIONS() {
   return new Response(null, { headers: CORS_HEADERS });

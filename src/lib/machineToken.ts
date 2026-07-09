@@ -9,10 +9,10 @@ try {
   machineIdSync = () => "";
 }
 
-const BUILTIN_DEFAULT_SALT = "omniroute-cli-auth-v1";
+const BUILTIN_DEFAULT_SALT = "BlackRiver Gateway-cli-auth-v1";
 
 function getActiveSalt(): string {
-  return process.env.OMNIROUTE_CLI_SALT || BUILTIN_DEFAULT_SALT;
+  return process.env.BlackRiver Gateway_CLI_SALT || BUILTIN_DEFAULT_SALT;
 }
 
 function deriveToken(rawId: string, salt: string): string {

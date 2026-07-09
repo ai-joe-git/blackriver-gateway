@@ -126,7 +126,7 @@ export default function AccessTokensTab() {
           <p className="mt-1 text-sm text-text-muted">
             {L(
               "accessTokensDescription",
-              "Scoped tokens that let the omniroute CLI manage this server remotely. Distinct from inference API keys. The secret is shown once."
+              "Scoped tokens that let the BlackRiver Gateway CLI manage this server remotely. Distinct from inference API keys. The secret is shown once."
             )}
           </p>
         </div>

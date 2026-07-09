@@ -13,7 +13,7 @@ export default function VercelRelayModal({ isOpen, onClose, onDeployed }: Vercel
   const t = useTranslations("settings");
   const [token, setToken] = useState("");
   const [projectName, setProjectName] = useState(
-    process.env.NEXT_PUBLIC_VERCEL_RELAY_DEFAULT_PROJECT || "omniroute-relay"
+    process.env.NEXT_PUBLIC_VERCEL_RELAY_DEFAULT_PROJECT || "BlackRiver Gateway-relay"
   );
   const [deploying, setDeploying] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -102,7 +102,7 @@ export default function VercelRelayModal({ isOpen, onClose, onDeployed }: Vercel
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
               className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus:border-primary"
-              placeholder="omniroute-relay"
+              placeholder="BlackRiver Gateway-relay"
             />
           </div>
         </div>

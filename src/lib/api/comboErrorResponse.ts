@@ -7,7 +7,7 @@
  * optional `details` payload, and the current `requestId` for log
  * correlation. The prior shape returned `{ error: <string|object> }` with
  * no `code` field, which forced clients to string-match English error
- * messages. See `plans/2026-06-23-omniroute-v3.8.34-deep-audit.md` (Bug #3).
+ * messages. See `plans/2026-06-23-BlackRiver Gateway-v3.8.34-deep-audit.md` (Bug #3).
  *
  * Usage:
  *   return comboErrorResponse("COMBO_002", 400, { issues: validation.issues });

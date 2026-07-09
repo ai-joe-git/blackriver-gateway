@@ -9,7 +9,7 @@ import { validateBrowserMutationOrigin } from "../origin/publicOrigin";
 import { classifyRoute } from "./classify";
 import { validateDashboardCsrfToken } from "./csrf";
 import { classifyStampedPeerLocality } from "./peerStamp";
-import { checkRequestIP } from "@omniroute/open-sse/services/ipFilter.ts";
+import { checkRequestIP } from "@BlackRiver Gateway/open-sse/services/ipFilter.ts";
 import { clientApiPolicy } from "./policies/clientApi";
 import { managementPolicy } from "./policies/management";
 import { publicPolicy } from "./policies/public";
@@ -178,7 +178,7 @@ function invalidOriginResponse(requestId: string): NextResponse {
         code: "INVALID_ORIGIN",
         message:
           "Invalid request origin. Same-origin dashboard writes must include a valid dashboard CSRF token. " +
-          "Refresh the dashboard and retry, or set OMNIROUTE_PUBLIC_BASE_URL for non-dashboard browser integrations.",
+          "Refresh the dashboard and retry, or set BlackRiver Gateway_PUBLIC_BASE_URL for non-dashboard browser integrations.",
         correlation_id: requestId,
       },
     },
@@ -291,7 +291,7 @@ export async function runAuthzPipeline(
   const peerLocality = classifyStampedPeerLocality(
     request.headers.get(PEER_IP_HEADER),
     request.headers.get(VIA_PROXY_HEADER),
-    process.env.OMNIROUTE_PEER_STAMP_TOKEN
+    process.env.BlackRiver Gateway_PEER_STAMP_TOKEN
   );
   requestHeaders.set(AUTHZ_HEADER_PEER_LOCALITY, peerLocality);
 

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import type { QuotaPool, PoolAllocation, Policy } from "@/lib/quota/dimensions";
 
-const LS_KEY = "omniroute:quota-share:pools";
+const LS_KEY = "BlackRiver Gateway:quota-share:pools";
 
 // Shape of a legacy localStorage pool (QuotaSharePageClient.tsx old format)
 interface LsPool {
