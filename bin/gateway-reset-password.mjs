@@ -4,15 +4,15 @@
  * Password Reset CLI — T-38
  *
  * BlackRiver Gateway — distributed as `blackriver-gateway` by BlackRiver AI.
- * The `omniroute` binary name is kept as a compatibility shim.
+ * The `blackriver-gateway` binary name is kept as a compatibility shim.
  *
  * Usage:
  *   node bin/reset-password.mjs
  *   blackriver-gateway reset-password
  *
  * Non-interactive / scripted usage (piped stdin, e.g. CI or Docker):
- *   printf 'NewPass123\nNewPass123\n' | omniroute reset-password
- *   printf 'NewPass123' | omniroute reset-password --password-stdin
+ *   printf 'NewPass123\nNewPass123\n' | blackriver-gateway reset-password
+ *   printf 'NewPass123' | blackriver-gateway reset-password --password-stdin
  *
  * Resets the admin password for OmniRoute.
  * Prompts for a new password (interactive TTY) or reads it from stdin
@@ -124,8 +124,8 @@ async function main() {
 
 main()
   .then(() => {
-    // Explicit exit(0) so a caller that imports this module (bin/omniroute.mjs
-    // routes `omniroute reset-password` here) terminates cleanly instead of
+    // Explicit exit(0) so a caller that imports this module (bin/blackriver-gateway.mjs
+    // routes `blackriver-gateway reset-password` here) terminates cleanly instead of
     // hanging / exiting with code 13 on an unsettled wrapper await. On POSIX,
     // console.log to a pipe is synchronous, so the success line is already
     // flushed by the time we exit.
