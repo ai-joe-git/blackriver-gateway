@@ -26,138 +26,129 @@
   --fd-sidebar-width: 220px;
 }
 
-/* OpenClaw × ClawHub Color Palette */
+/* BlackRiver AI Color Palette */
 :root {
   --desktop-safe-top: 0px;
   --desktop-safe-bottom: 0px;
-  color-scheme: light;
+  color-scheme: dark;
 
-  /* Primary - Coral Red (OpenClaw) */
-  --color-primary: #e54d5e;
-  --color-primary-hover: #c93d4e;
+  /* Primary - BlackRiver Blue */
+  --color-primary: #8DB4FF;
+  --color-primary-hover: #7BA7FF;
 
-  /* Accent - Indigo/Violet (buttons, links, gradients) */
-  --color-accent: #6366f1;
-  --color-accent-hover: #8b5cf6;
-  --color-accent-light: #a855f7;
+  /* Accent - BlackRiver Mint / Violet */
+  --color-accent: #58E6B1;
+  --color-accent-hover: #8DF1FF;
+  --color-accent-light: #B8A2FF;
 
   /* Semantic */
   --color-error: #ef4444;
   --color-success: #22c55e;
-  --color-warning: #f59e0b;
+  --color-warning: #FFD166;
 
   /* Traffic lights */
   --color-traffic-red: #ff5f56;
   --color-traffic-yellow: #ffbd2e;
   --color-traffic-green: #27c93f;
 
-  /* Light theme */
-  --color-bg: #f9f9fb;
-  --color-bg-alt: #f0f0f5;
-  --color-bg-primary: #f9f9fb;
-  --color-bg-subtle: #f0f0f5;
-  --color-surface: #ffffff;
-  --color-card: #ffffff;
-  --color-sidebar: #f5f5fa;
-  --color-border: rgba(0, 0, 0, 0.08);
-  --color-text-main: #1a1a2e;
-  --color-text-primary: #1a1a2e;
-  --color-text-muted: #71717a;
+  /* Dark theme (default — BlackRiver AI is dark-only) */
+  --color-bg: #020306;
+  --color-bg-alt: #06080D;
+  --color-bg-primary: #020306;
+  --color-bg-subtle: #06080D;
+  --color-surface: #0B0F16;
+  --color-card: #0B0F16;
+  --color-sidebar: #06080D;
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-text-main: #F7F9FC;
+  --color-text-primary: #F7F9FC;
+  --color-text-muted: #98A2B3;
 
-  /* Fumadocs light theme */
-  --color-fd-background: #f9f9fb;
-  --color-fd-foreground: #1a1a2e;
-  --color-fd-muted: #f0f0f5;
-  --color-fd-muted-foreground: #71717a;
-  --color-fd-popover: #ffffff;
-  --color-fd-popover-foreground: #1a1a2e;
-  --color-fd-card: #ffffff;
-  --color-fd-card-foreground: #1a1a2e;
-  --color-fd-border: rgba(0, 0, 0, 0.08);
-  --color-fd-primary: #e54d5e;
-  --color-fd-primary-foreground: #ffffff;
-  --color-fd-secondary: #f0f0f5;
-  --color-fd-secondary-foreground: #1a1a2e;
-  --color-fd-accent: rgba(229, 77, 94, 0.08);
-  --color-fd-accent-foreground: #1a1a2e;
-  --color-fd-ring: #e54d5e;
+  /* Fumadocs dark theme */
+  --color-fd-background: #020306;
+  --color-fd-foreground: #F7F9FC;
+  --color-fd-muted: #06080D;
+  --color-fd-muted-foreground: #98A2B3;
+  --color-fd-popover: #0B0F16;
+  --color-fd-popover-foreground: #F7F9FC;
+  --color-fd-card: #0B0F16;
+  --color-fd-card-foreground: #F7F9FC;
+  --color-fd-border: rgba(255, 255, 255, 0.10);
+  --color-fd-primary: #8DB4FF;
+  --color-fd-primary-foreground: #020306;
+  --color-fd-secondary: #06080D;
+  --color-fd-secondary-foreground: #F7F9FC;
+  --color-fd-accent: rgba(141, 180, 255, 0.12);
+  --color-fd-accent-foreground: #F7F9FC;
+  --color-fd-ring: #8DB4FF;
 
   /* Shadows */
-  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.015);
-  --shadow-warm: 0 2px 12px -2px rgba(229, 77, 94, 0.12);
-  --shadow-elevated: 0 12px 28px -4px rgba(20, 20, 40, 0.06);
+  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-warm: 0 2px 12px -2px rgba(141, 180, 255, 0.15);
+  --shadow-elevated: 0 12px 28px -4px rgba(0, 0, 0, 0.3);
 
-  /* Graph-paper wallpaper grid — shared visual identity with the marketing site
-     (_mono_repo/omnirouteSite/css). Light theme values. Rendered by body::before.
-     Opacity tuned up from the site's 0.045 so the wallpaper is actually visible on
-     the dense dashboard (cards/chrome cover most of the viewport). */
-  --grid-line: rgba(0, 0, 0, 0.07);
-  --grid-size: 32px;
-  --section-alt: rgba(0, 0, 0, 0.022);
-
-  /* Identity tokens mirrored from the site. Definitions only in this phase —
-     components are repointed to them in a later phase. */
-  --surface-2: #f5f5fa;
+  /* Graph-paper wallpaper grid — BlackRiver AI identity */
+  --grid-line: rgba(255, 255, 255, 0.045);
+  --grid-size: 96px;
+  --section-alt: rgba(255, 255, 255, 0.018);
+  --surface-2: #101722;
   --radius: 14px;
   --radius-control: 9px;
-  --grad-brand: linear-gradient(135deg, var(--color-primary), var(--color-accent-light));
+  --grad-brand: linear-gradient(135deg, #8DB4FF, #58E6B1);
 
-  /* Data-table surfaces — theme-aware. The DARK values (in .dark below) exactly mirror
-     the previous hardcoded rgba in DataTable.tsx so dark stays byte-identical; these
-     light values are the fix (the old code was always-dark via dead var fallbacks). */
-  --table-header-bg: rgba(249, 249, 251, 0.95);
-  --table-row-zebra: rgba(0, 0, 0, 0.02);
-  --table-row-hover: rgba(0, 0, 0, 0.04);
-  --table-cell-border: rgba(0, 0, 0, 0.04);
-  /* Selected row — an accent tint that reads on both themes (inherited by .dark). */
-  --table-row-selected: rgba(99, 102, 241, 0.1);
+  /* Data-table surfaces */
+  --table-header-bg: rgba(2, 3, 6, 0.95);
+  --table-row-zebra: rgba(255, 255, 255, 0.02);
+  --table-row-hover: rgba(255, 255, 255, 0.04);
+  --table-cell-border: rgba(255, 255, 255, 0.04);
+  --table-row-selected: rgba(141, 180, 255, 0.1);
 }
 
 .dark {
-  /* Dark theme (ClawHub deep) */
+  /* Dark theme (BlackRiver AI — dark-only, same as :root) */
   color-scheme: dark;
-  --color-bg: #0b0e14;
-  --color-bg-alt: #111520;
-  --color-bg-primary: #0b0e14;
-  --color-bg-subtle: #111520;
-  --color-surface: #161b22;
-  --color-card: #161b22;
-  --color-sidebar: #10141e;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-text-main: #e6e6ef;
-  --color-text-primary: #e6e6ef;
-  --color-text-muted: #a1a1aa;
+  --color-bg: #020306;
+  --color-bg-alt: #06080D;
+  --color-bg-primary: #020306;
+  --color-bg-subtle: #06080D;
+  --color-surface: #0B0F16;
+  --color-card: #0B0F16;
+  --color-sidebar: #06080D;
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-text-main: #F7F9FC;
+  --color-text-primary: #F7F9FC;
+  --color-text-muted: #98A2B3;
 
   /* Fumadocs theme mapping */
-  --color-fd-background: #0b0e14;
-  --color-fd-foreground: #e6e6ef;
-  --color-fd-muted: #111520;
-  --color-fd-muted-foreground: #a1a1aa;
-  --color-fd-popover: #161b22;
-  --color-fd-popover-foreground: #e6e6ef;
-  --color-fd-card: #161b22;
-  --color-fd-card-foreground: #e6e6ef;
-  --color-fd-border: rgba(255, 255, 255, 0.08);
-  --color-fd-primary: #e54d5e;
-  --color-fd-primary-foreground: #ffffff;
-  --color-fd-secondary: #111520;
-  --color-fd-secondary-foreground: #e6e6ef;
-  --color-fd-accent: rgba(229, 77, 94, 0.12);
-  --color-fd-accent-foreground: #e6e6ef;
-  --color-fd-ring: #e54d5e;
+  --color-fd-background: #020306;
+  --color-fd-foreground: #F7F9FC;
+  --color-fd-muted: #06080D;
+  --color-fd-muted-foreground: #98A2B3;
+  --color-fd-popover: #0B0F16;
+  --color-fd-popover-foreground: #F7F9FC;
+  --color-fd-card: #0B0F16;
+  --color-fd-card-foreground: #F7F9FC;
+  --color-fd-border: rgba(255, 255, 255, 0.10);
+  --color-fd-primary: #8DB4FF;
+  --color-fd-primary-foreground: #020306;
+  --color-fd-secondary: #06080D;
+  --color-fd-secondary-foreground: #F7F9FC;
+  --color-fd-accent: rgba(141, 180, 255, 0.12);
+  --color-fd-accent-foreground: #F7F9FC;
+  --color-fd-ring: #8DB4FF;
 
   /* Dark shadows */
   --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
-  --shadow-warm: 0 2px 12px -2px rgba(229, 77, 94, 0.15);
+  --shadow-warm: 0 2px 12px -2px rgba(141, 180, 255, 0.15);
   --shadow-elevated: 0 12px 28px -4px rgba(0, 0, 0, 0.3);
 
-  /* Graph-paper wallpaper grid — dark theme values (tuned up from 0.035 for visibility). */
-  --grid-line: rgba(255, 255, 255, 0.06);
+  /* Graph-paper wallpaper grid */
+  --grid-line: rgba(255, 255, 255, 0.045);
   --section-alt: rgba(255, 255, 255, 0.018);
-  --surface-2: #1c2230;
+  --surface-2: #101722;
 
-  /* Data-table surfaces — dark = the exact old hardcoded values (byte-identical). */
-  --table-header-bg: rgba(15, 15, 25, 0.95);
+  /* Data-table surfaces */
+  --table-header-bg: rgba(2, 3, 6, 0.95);
   --table-row-zebra: rgba(255, 255, 255, 0.02);
   --table-row-hover: rgba(255, 255, 255, 0.04);
   --table-cell-border: rgba(255, 255, 255, 0.04);
@@ -191,27 +182,27 @@
   --color-text-muted: var(--color-text-muted);
 
   /* Static colors (for explicit light/dark usage) */
-  --color-bg-light: #f9f9fb;
-  --color-bg-dark: #0b0e14;
-  --color-surface-light: #ffffff;
-  --color-surface-dark: #161b22;
-  --color-sidebar-light: #ededf2;
-  --color-sidebar-dark: #111520;
-  --color-border-light: #e2e2ea;
-  --color-border-dark: #2d333b;
-  --color-text-main-light: #1a1a2e;
-  --color-text-main-dark: #e6e6ef;
-  --color-text-muted-light: #71717a;
-  --color-text-muted-dark: #a1a1aa;
+  --color-bg-light: #020306;
+  --color-bg-dark: #020306;
+  --color-surface-light: #0B0F16;
+  --color-surface-dark: #0B0F16;
+  --color-sidebar-light: #06080D;
+  --color-sidebar-dark: #06080D;
+  --color-border-light: rgba(255, 255, 255, 0.10);
+  --color-border-dark: rgba(255, 255, 255, 0.10);
+  --color-text-main-light: #F7F9FC;
+  --color-text-main-dark: #F7F9FC;
+  --color-text-muted-light: #98A2B3;
+  --color-text-muted-dark: #98A2B3;
 
   /* Shadows */
   --shadow-soft: var(--shadow-soft);
   --shadow-warm: var(--shadow-warm);
   --shadow-elevated: var(--shadow-elevated);
 
-  /* Font - macOS system fonts */
+  /* Font - Inter (BlackRiver AI brand font) */
   --font-sans:
-    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   /* Monospace stack (parity with the site) — code blocks, IDs, endpoints, terminals */
   --font-mono: ui-monospace, "JetBrains Mono", "Fira Code", "SF Mono", monospace;
 
@@ -278,11 +269,11 @@ body.electron-macos {
   --desktop-safe-bottom: 8px;
 }
 
-/* Selection — with fallback for browsers that don't support color-mix() */
+/* Selection — BlackRiver AI blue */
 ::selection {
-  background-color: rgba(229, 77, 94, 0.22);
+  background-color: rgba(141, 180, 255, 0.22);
   background-color: color-mix(in srgb, var(--color-primary) 22%, transparent);
-  color: var(--color-primary);
+  color: #F7F9FC;
 }
 
 /* Global custom scrollbar — thin, minimal, theme-aware */
@@ -335,11 +326,11 @@ body.electron-macos {
 
 /* Hero gradient */
 .bg-hero-gradient {
-  background: linear-gradient(180deg, #f0f0f5 0%, #f9f9fb 100%);
+  background: linear-gradient(180deg, #06080D 0%, #020306 100%);
 }
 
 .dark .bg-hero-gradient {
-  background: linear-gradient(180deg, #111520 0%, #0b0e14 100%);
+  background: linear-gradient(180deg, #06080D 0%, #020306 100%);
 }
 
 /* Material Symbols */
@@ -412,15 +403,15 @@ button .material-symbols-outlined,
   0%,
   100% {
     box-shadow:
-      0 0 5px rgba(229, 77, 94, 0.3),
-      0 0 10px rgba(229, 77, 94, 0.2);
-    border-color: rgba(229, 77, 94, 0.5);
+      0 0 5px rgba(141, 180, 255, 0.3),
+      0 0 10px rgba(141, 180, 255, 0.2);
+    border-color: rgba(141, 180, 255, 0.5);
   }
   50% {
     box-shadow:
-      0 0 10px rgba(229, 77, 94, 0.5),
-      0 0 20px rgba(229, 77, 94, 0.3);
-    border-color: rgba(229, 77, 94, 0.8);
+      0 0 10px rgba(141, 180, 255, 0.5),
+      0 0 20px rgba(141, 180, 255, 0.3);
+    border-color: rgba(141, 180, 255, 0.8);
   }
 }
 
@@ -432,11 +423,11 @@ button .material-symbols-outlined,
 .bg-vibrancy {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(2, 3, 6, 0.72);
 }
 
 .dark .bg-vibrancy {
-  background: rgba(16, 20, 30, 0.72);
+  background: rgba(2, 3, 6, 0.72);
 }
 
 /* macOS Traffic Lights */

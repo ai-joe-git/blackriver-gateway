@@ -19,8 +19,8 @@ const useThemeStore = create<ThemeState>()(
   persist(
     (set, get) => ({
       theme: THEME_CONFIG.defaultTheme,
-      colorTheme: "coral",
-      customColor: "#3b82f6",
+      colorTheme: "blue",
+      customColor: "#8DB4FF",
 
       setTheme: (theme) => {
         set({ theme });
@@ -58,13 +58,13 @@ const useThemeStore = create<ThemeState>()(
 );
 
 export const COLOR_THEMES: Record<string, string> = {
+  blue: "#8DB4FF",
   coral: "#e54d5e",
-  blue: "#3b82f6",
   red: "#ef4444",
-  green: "#22c55e",
-  violet: "#8b5cf6",
-  orange: "#f97316",
-  cyan: "#06b6d4",
+  mint: "#58E6B1",
+  violet: "#B8A2FF",
+  amber: "#FFD166",
+  cyan: "#8DF1FF",
 };
 
 // Apply light/dark theme to document
