@@ -12,7 +12,7 @@ export function createProgram() {
   const program = new Command();
 
   program
-    .name("omniroute")
+    .name("blackriver-gateway")
     .description(t("program.description"))
     .version(pkg.version, "-v, --version", t("program.version"))
     .addOption(

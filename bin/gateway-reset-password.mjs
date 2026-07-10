@@ -86,7 +86,7 @@ async function collectPassword() {
   }
 }
 
-console.log("\n🔑 OmniRoute — Password Reset\n");
+console.log("\n🔑 BlackRiver Gateway — Password Reset\n");
 
 async function main() {
   // Check if database exists

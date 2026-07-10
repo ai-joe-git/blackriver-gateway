@@ -75,15 +75,17 @@ export async function runServe(opts = {}) {
   const dashboardPort = parsePort(process.env.DASHBOARD_PORT ?? String(port), port);
   const noOpen = opts.open === false;
 
-  console.log(`
-\x1b[36m   ____                  _ ____              _
-   / __ \\                (_) __ \\            | |
-  | |  | |_ __ ___  _ __ _| |__) |___  _   _| |_ ___
-  | |  | | '_ \` _ \\| '_ \\ |  _  // _ \\| | | | __/ _ \\
-  | |__| | | | | | | | | | | | \\ \\ (_) | |_| | ||  __/
-   \\____/|_| |_| |_|_| |_|_|_|  \\_\\___/ \\__,_|\\__\\___|
+console.log(`
+\x1b[36m   ____  _            _    _    ____           _____
+   |  _ \\| |          | |  (_)  |  _ \\    /\\   |_   _|
+   | |_) | | __ _  ___| | ___  _ | |_) |  /  \\    | |
+   |  _ <| |/ _\` |/ __| |/ / | ||  _ <  / /\\ \\   | |
+   | |_) | | (_| | (__|   <| | || |_) |/ ____ \\ _| |_
+   |____/|_|\\__,_|\\___|_|\\_\\_| ||____/_/    \\_\\_____|
+                             _/ |
+                            |__/
 \x1b[0m`);
-  console.log(`\x1b[2m  v${_pkg.version}\x1b[0m\n`);
+  console.log(`\x1b[2m  BlackRiver AI Gateway  v${_pkg.version}\x1b[0m\n`);
 
   const nodeSupport = getNodeRuntimeSupport();
   if (!nodeSupport.nodeCompatible) {
@@ -94,7 +96,7 @@ export async function runServe(opts = {}) {
      Supported secure runtimes: ${nodeSupport.supportedDisplay}
      Recommended: use Node.js ${nodeSupport.recommendedVersion} or newer on the 22.x LTS line.
      Workaround:  npm rebuild better-sqlite3
-     Or run:      omniroute runtime repair  (rebuilds into a user-writable runtime; works without a C++ toolchain)\x1b[0m
+     Or run:      blackriver-gateway runtime repair  (rebuilds into a user-writable runtime; works without a C++ toolchain)\x1b[0m
 `);
   }
 
@@ -110,18 +112,18 @@ export async function runServe(opts = {}) {
     const isNvm = nodeExec.includes(".nvm") || nodeExec.includes("nvm");
     if (isMise) {
       console.error(
-        "  \x1b[33m⚠ mise detected:\x1b[0m If you installed via `npm install -g omniroute`,"
+        "  \x1b[33m⚠ mise detected:\x1b[0m If you installed via `npm install -g blackriver-gateway`,"
       );
-      console.error("    try: \x1b[36mnpx omniroute@latest\x1b[0m  (downloads a fresh copy)");
-      console.error("    or:  \x1b[36mmise exec -- npx omniroute\x1b[0m");
+      console.error("    try: \x1b[36mnpx blackriver-gateway@latest\x1b[0m  (downloads a fresh copy)");
+      console.error("    or:  \x1b[36mmise exec -- npx blackriver-gateway\x1b[0m");
     } else if (isNvm) {
       console.error(
         "  \x1b[33m⚠ nvm detected:\x1b[0m Try reinstalling after loading the correct Node version:"
       );
-      console.error("    \x1b[36mnvm use --lts && npm install -g omniroute\x1b[0m");
+      console.error("    \x1b[36mnvm use --lts && npm install -g blackriver-gateway\x1b[0m");
     } else {
-      console.error("  Try: \x1b[36mnpm install -g omniroute\x1b[0m  (reinstall)");
-      console.error("  Or:  \x1b[36mnpx omniroute@latest\x1b[0m");
+      console.error("  Try: \x1b[36mnpm install -g blackriver-gateway\x1b[0m  (reinstall)");
+      console.error("  Or:  \x1b[36mnpx blackriver-gateway@latest\x1b[0m");
     }
     process.exit(1);
   }
@@ -238,7 +240,7 @@ function runDaemon(serverJs, env, memoryLimit, dashboardPort, apiPort) {
   });
   writePidFile("server", server.pid);
   server.unref();
-  console.log(`\x1b[32m✔ OmniRoute started in background (PID: ${server.pid})\x1b[0m`);
+  console.log(`\x1b[32m✔ BlackRiver Gateway started in background (PID: ${server.pid})\x1b[0m`);
   console.log(`  \x1b[1mDashboard:\x1b[0m  ${urlScheme}://localhost:${dashboardPort}`);
   console.log(`  \x1b[1mAPI Base:\x1b[0m   ${urlScheme}://localhost:${apiPort}/v1`);
 }
@@ -283,7 +285,7 @@ function runWithoutRecovery(serverJs, env, memoryLimit, dashboardPort, apiPort, 
   });
 
   const shutdown = () => {
-    console.log("\n\x1b[33m⏹ Shutting down OmniRoute...\x1b[0m");
+    console.log("\n\x1b[33m⏹ Shutting down BlackRiver Gateway...\x1b[0m");
     cleanupPidFile("server");
     server.kill("SIGTERM");
     setTimeout(() => {
@@ -404,7 +406,7 @@ async function onReady(dashboardPort, apiPort, noOpen, startedAt) {
       : "0.0";
 
   console.log(`
-  \x1b[32m✔ OmniRoute is running!\x1b[0m \x1b[2m(started in ${elapsed}s)\x1b[0m
+  \x1b[32m✔ BlackRiver Gateway is running!\x1b[0m \x1b[2m(started in ${elapsed}s)\x1b[0m
 
   \x1b[1m  Dashboard:\x1b[0m  ${dashboardUrl}
   \x1b[1m  API Base:\x1b[0m   ${apiUrl}/v1

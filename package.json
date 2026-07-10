@@ -1,6 +1,6 @@
 {
   "name": "blackriver-gateway",
-  "version": "3.8.49",
+  "version": "3.8.50",
   "description": "BlackRiver Gateway — AI routing infrastructure by BlackRiver AI. 237 providers, one endpoint, auto-fallback, RTK+Caveman compression, MCP/A2A, desktop, PWA, and OpenAI-compatible APIs.",
   "type": "module",
   "bin": {
@@ -10,6 +10,13 @@
   "files": [
     "bin/",
     "dist/",
+    "dist/server.js",
+    "dist/server-ws.mjs",
+    "dist/http-method-guard.cjs",
+    "dist/peer-stamp.mjs",
+    "dist/tls-options.mjs",
+    "dist/webdav-handler.mjs",
+    "dist/responses-ws-proxy.mjs",
     "@omniroute/",
     "open-sse/",
     "src/domain/",
