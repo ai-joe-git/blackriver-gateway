@@ -1,6 +1,6 @@
 {
   "name": "blackriver-gateway",
-  "version": "3.8.50",
+  "version": "3.8.51",
   "description": "BlackRiver Gateway — AI routing infrastructure by BlackRiver AI. 237 providers, one endpoint, auto-fallback, RTK+Caveman compression, MCP/A2A, desktop, PWA, and OpenAI-compatible APIs.",
   "type": "module",
   "bin": {
