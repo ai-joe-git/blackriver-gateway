@@ -18,7 +18,7 @@ const logToFile = getAppLogToFile();
 const logFilePath = resolve(getAppLogFilePath());
 
 declare global {
-  var __BlackRiver GatewayConsoleInterceptorInit: boolean | undefined;
+  var __OmniRouteConsoleInterceptorInit: boolean | undefined;
 }
 
 /**
@@ -99,7 +99,7 @@ function shouldIgnoreConsoleWriteError(error: unknown): boolean {
  * Safe to call multiple times — only initializes once.
  */
 export function initConsoleInterceptor(): void {
-  if (!logToFile || globalThis.__BlackRiver GatewayConsoleInterceptorInit) return;
+  if (!logToFile || globalThis.__OmniRouteConsoleInterceptorInit) return;
 
   try {
     ensureDir();
@@ -108,7 +108,7 @@ export function initConsoleInterceptor(): void {
     return;
   }
 
-  globalThis.__BlackRiver GatewayConsoleInterceptorInit = true;
+  globalThis.__OmniRouteConsoleInterceptorInit = true;
 
   // Save original methods
   const originalMethods = {

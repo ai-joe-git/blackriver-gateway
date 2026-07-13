@@ -26,7 +26,7 @@ export async function collectCliToolChecks(): Promise<DoctorCheckResult[]> {
       return {
         name: `CLI: ${tool.name}`,
         status: "warn" as const,
-        message: `${tool.name} not configured for BlackRiver Gateway`,
+        message: `${tool.name} not configured for OmniRoute`,
         details: { id: tool.id, configured: false },
       };
     }

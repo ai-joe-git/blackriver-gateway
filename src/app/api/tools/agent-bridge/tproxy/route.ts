@@ -19,7 +19,7 @@ import {
   getCaptureStatus,
 } from "@/mitm/tproxy/captureManager";
 import { installTproxyCa, uninstallTproxyCa } from "@/mitm/tproxy/caTrust";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 import { createErrorResponse } from "@/lib/api/errorResponse";
 
 // Exported for unit testing. Next.js only treats GET/POST/DELETE as route

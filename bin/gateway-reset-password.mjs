@@ -3,7 +3,7 @@
 /**
  * Password Reset CLI — T-38
  *
- * BlackRiver Gateway — distributed as `blackriver-gateway` by BlackRiver AI.
+ * OmniRoute — distributed as `blackriver-gateway` by BlackRiver AI.
  * The `blackriver-gateway` binary name is kept as a compatibility shim.
  *
  * Usage:
@@ -86,7 +86,7 @@ async function collectPassword() {
   }
 }
 
-console.log("\n🔑 BlackRiver Gateway — Password Reset\n");
+console.log("\n🔑 OmniRoute — Password Reset\n");
 
 async function main() {
   // Check if database exists

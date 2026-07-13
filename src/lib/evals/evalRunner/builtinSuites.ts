@@ -12,7 +12,7 @@
 
 export const goldenSet = {
   id: "golden-set",
-  name: "BlackRiver Gateway Golden Set",
+  name: "OmniRoute Golden Set",
   description: "Baseline evaluation cases for LLM response quality across multiple models",
   cases: [
     {

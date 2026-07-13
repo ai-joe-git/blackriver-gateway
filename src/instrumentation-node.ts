@@ -21,7 +21,7 @@ function toHex(bytes: Uint8Array): string {
 }
 
 /**
- * Rename a Node process title so BlackRiver Gateway is identifiable in `ps`/`htop`
+ * Rename a Node process title so OmniRoute is identifiable in `ps`/`htop`
  * instead of the generic Next.js standalone server name.
  *
  * Only rewrites titles that start with "next-server", preserving any
@@ -32,11 +32,11 @@ function toHex(bytes: Uint8Array): string {
 export function renameProcessTitle(currentTitle: string): string {
   if (!currentTitle) return currentTitle;
   if (!currentTitle.startsWith("next-server")) return currentTitle;
-  return `BlackRiver Gateway${currentTitle.slice("next-server".length)}`;
+  return `OmniRoute${currentTitle.slice("next-server".length)}`;
 }
 
 function isBackgroundServicesDisabled(): boolean {
-  const raw = process.env.BlackRiver Gateway_DISABLE_BACKGROUND_SERVICES;
+  const raw = process.env.OMNIROUTE_DISABLE_BACKGROUND_SERVICES;
   if (!raw) return false;
   return new Set(["1", "true", "yes", "on"]).has(raw.trim().toLowerCase());
 }
@@ -84,12 +84,12 @@ async function ensureSecrets(): Promise<void> {
 }
 
 export async function registerNodejs(): Promise<void> {
-  // Rename the process title so BlackRiver Gateway is identifiable in ps/htop instead
+  // Rename the process title so OmniRoute is identifiable in ps/htop instead
   // of the generic "next-server" standalone server name.
   process.title = renameProcessTitle(process.title);
 
   // Initialize proxy fetch patch FIRST (before any HTTP requests)
-  await import("@BlackRiver Gateway/open-sse/index.ts");
+  await import("@omniroute/open-sse/index.ts");
   console.log("[STARTUP] Global fetch proxy patch initialized");
 
   await ensureSecrets();
@@ -107,7 +107,7 @@ export async function registerNodejs(): Promise<void> {
   // that cause every connection to be skipped by getProviderCredentials(), making
   // all subsequent requests time out at Bottleneck's maxWaitMs (120 s default).
   // Terminal states (banned / expired / credits_exhausted) are intentionally kept.
-  // See: https://github.com/diegosouzapw/BlackRiver Gateway/issues/3625 (Part A)
+  // See: https://github.com/diegosouzapw/OmniRoute/issues/3625 (Part A)
   try {
     const { clearStaleCrashCooldowns } = await import("@/lib/db/providers");
     const { cleared } = clearStaleCrashCooldowns();
@@ -171,7 +171,7 @@ export async function registerNodejs(): Promise<void> {
     console.log(
       `[STARTUP] Cloud/model sync background bootstrap ${cloudSyncInitialized ? "initialized" : "skipped"}`
     );
-    const { initBatchProcessor } = await import("@BlackRiver Gateway/open-sse/services/batchProcessor");
+    const { initBatchProcessor } = await import("@omniroute/open-sse/services/batchProcessor");
     initBatchProcessor();
     console.log("[STARTUP] Batch processor started");
   }
@@ -205,7 +205,7 @@ export async function registerNodejs(): Promise<void> {
     // Restore Global System Prompt into in-memory config (#2468/#2470)
     if (settings.systemPrompt) {
       const { setSystemPromptConfig } =
-        await import("@BlackRiver Gateway/open-sse/services/systemPrompt.ts");
+        await import("@omniroute/open-sse/services/systemPrompt.ts");
       setSystemPromptConfig(settings.systemPrompt);
       console.log("[STARTUP] Global System Prompt restored from settings");
     }
@@ -216,7 +216,7 @@ export async function registerNodejs(): Promise<void> {
     // the passthrough default on every restart. Previously this was only wired into
     // the unused `server-init.ts`, so it never ran in production.
     const { hydrateThinkingBudgetConfig } = await import(
-      "@BlackRiver Gateway/open-sse/services/thinkingBudget.ts"
+      "@omniroute/open-sse/services/thinkingBudget.ts"
     );
     if (hydrateThinkingBudgetConfig(settings)) {
       console.log("[STARTUP] Thinking-Budget config restored from settings");
@@ -303,7 +303,7 @@ export async function registerNodejs(): Promise<void> {
     }
 
     try {
-      const { autoRefreshDaemon } = await import("@BlackRiver Gateway/open-sse/services/autoRefreshDaemon");
+      const { autoRefreshDaemon } = await import("@omniroute/open-sse/services/autoRefreshDaemon");
       autoRefreshDaemon.start();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
@@ -382,10 +382,10 @@ export async function registerNodejs(): Promise<void> {
 
     // Real-time dashboard WebSocket daemon (port 20129): powers Combo Studio Live,
     // the Home live-pulse, and Live Compression. liveServer.ts auto-starts the
-    // daemon on import (gated by BlackRiver Gateway_ENABLE_LIVE_WS, default ON) — but NOTHING
+    // daemon on import (gated by OMNIROUTE_ENABLE_LIVE_WS, default ON) — but NOTHING
     // imported it in the packaged standalone/PM2 runtime. Only the unused
     // `server-init.ts` and a dev-only helper script (`scripts/start-ws-server.mjs`)
-    // ever pulled it into a module graph, so in the published `BlackRiver Gateway` bin the
+    // ever pulled it into a module graph, so in the published `OmniRoute` bin the
     // daemon never bound its port and every live dashboard reported "Live disabled —
     // WebSocket disconnected". Importing it here (the instrumentation hook that DOES
     // run in standalone) fires that flag-gated auto-start. Side-effect import + the

@@ -9,13 +9,13 @@ import {
   SEARCH_CREDENTIAL_FALLBACKS,
   SEARCH_PROVIDERS,
   type SearchProviderConfig,
-} from "@BlackRiver Gateway/open-sse/config/searchRegistry.ts";
-import { handleSearch, type SearchResponse } from "@BlackRiver Gateway/open-sse/handlers/search.ts";
+} from "@omniroute/open-sse/config/searchRegistry.ts";
+import { handleSearch, type SearchResponse } from "@omniroute/open-sse/handlers/search.ts";
 import {
   computeCacheKey,
   getOrCoalesce,
   SEARCH_CACHE_DEFAULT_TTL_MS,
-} from "@BlackRiver Gateway/open-sse/services/searchCache.ts";
+} from "@omniroute/open-sse/services/searchCache.ts";
 
 type SearchLogger = typeof defaultLog;
 

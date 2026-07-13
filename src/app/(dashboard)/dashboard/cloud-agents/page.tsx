@@ -138,7 +138,7 @@ export default function CloudAgentsPage() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("BlackRiver Gateway-cloud-agents-settings");
+      const stored = localStorage.getItem("OmniRoute-cloud-agents-settings");
       if (stored) setSettings(JSON.parse(stored));
     } catch {
       // ignore
@@ -149,7 +149,7 @@ export default function CloudAgentsPage() {
     const next = { ...settings, [key]: value };
     setSettings(next);
     try {
-      localStorage.setItem("BlackRiver Gateway-cloud-agents-settings", JSON.stringify(next));
+      localStorage.setItem("OmniRoute-cloud-agents-settings", JSON.stringify(next));
     } catch {
       // ignore
     }
@@ -469,7 +469,7 @@ export default function CloudAgentsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
                   label={t("repositoryName")}
-                  placeholder="BlackRiver Gateway"
+                  placeholder="OmniRoute"
                   value={newTask.repoName}
                   onChange={(e) => setNewTask({ ...newTask, repoName: e.target.value })}
                   required

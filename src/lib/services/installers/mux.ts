@@ -88,7 +88,7 @@ export async function install(version = "latest"): Promise<InstallResult> {
     fs.writeFileSync(
       hostPkgPath,
       JSON.stringify(
-        { name: "BlackRiver Gateway-mux-host", version: "0.0.0", private: true, dependencies: {} },
+        { name: "OmniRoute-mux-host", version: "0.0.0", private: true, dependencies: {} },
         null,
         2
       ),

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { z } from "zod";
-import { CodexExecutor } from "@BlackRiver Gateway/open-sse/executors/codex.ts";
+import { CodexExecutor } from "@omniroute/open-sse/executors/codex.ts";
 import { getApiKeyMetadata } from "@/lib/db/apiKeys";
 import { authorizeWebSocketHandshake, extractWsTokenFromRequest } from "@/lib/ws/handshake";
 import { getModelInfo } from "@/sse/services/model";
@@ -16,10 +16,10 @@ import {
   getMemorySettings,
   toMemoryRetrievalConfig,
 } from "@/lib/memory/settings";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error.ts";
-import { logger } from "@BlackRiver Gateway/open-sse/utils/logger.ts";
-import { resolveProxy } from "@BlackRiver Gateway/open-sse/utils/networkProxy.ts";
-import { proxyConfigToUrl } from "@BlackRiver Gateway/open-sse/utils/proxyDispatcher.ts";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
+import { logger } from "@omniroute/open-sse/utils/logger.ts";
+import { resolveProxy } from "@omniroute/open-sse/utils/networkProxy.ts";
+import { proxyConfigToUrl } from "@omniroute/open-sse/utils/proxyDispatcher.ts";
 
 const CODEX_RESPONSES_WS_URL = "wss://chatgpt.com/backend-api/codex/responses";
 const executor = new CodexExecutor();
@@ -243,7 +243,7 @@ function getRequestPath(body: JsonRecord): string {
 
   try {
     const requestUrl = toStringOrNull(body.requestUrl) || "/v1/responses";
-    return new URL(requestUrl, "http://BlackRiver Gateway.local").pathname;
+    return new URL(requestUrl, "http://OmniRoute.local").pathname;
   } catch {
     return "/v1/responses";
   }
@@ -260,7 +260,7 @@ async function getApiKeyMetadataFromBody(body: JsonRecord) {
 }
 
 function getBridgeSecret(): string {
-  return process.env.BlackRiver Gateway_WS_BRIDGE_SECRET || "";
+  return process.env.OMNIROUTE_WS_BRIDGE_SECRET || "";
 }
 
 function hashBridgeSecret(value: string): Buffer {
@@ -277,7 +277,7 @@ export function bridgeSecretMatches(expectedSecret: string, receivedSecret: stri
 function getAuthRequest(body: JsonRecord): Request {
   const requestUrl = typeof body.requestUrl === "string" ? body.requestUrl : "/api/v1/responses";
   const headers = isRecord(body.headers) ? body.headers : {};
-  const url = new URL(requestUrl, "http://BlackRiver Gateway.local");
+  const url = new URL(requestUrl, "http://OmniRoute.local");
   const requestHeaders = new Headers();
 
   for (const [key, value] of Object.entries(headers)) {
@@ -341,9 +341,9 @@ async function authenticate(body: JsonRecord) {
 }
 
 async function prepare(body: JsonRecord) {
-  // Global kill-switch (feature flag BlackRiver Gateway_CODEX_WS_ENABLED, default ON).
+  // Global kill-switch (feature flag OMNIROUTE_CODEX_WS_ENABLED, default ON).
   // When disabled, the public Responses-over-WebSocket endpoint is unavailable.
-  if (!isFeatureFlagEnabled("BlackRiver Gateway_CODEX_WS_ENABLED")) {
+  if (!isFeatureFlagEnabled("OMNIROUTE_CODEX_WS_ENABLED")) {
     return jsonError(503, "codex_ws_disabled", "Codex Responses WebSocket transport is disabled");
   }
 
@@ -411,7 +411,7 @@ async function prepare(body: JsonRecord) {
   const headers = normalizeUpstreamHeaders(executor.buildHeaders(refreshedCredentials, true));
 
   // #5611: apply the configured Global/provider proxy to the upstream Codex
-  // Responses WebSocket too. The downstream client→BlackRiver Gateway hop works, but the
+  // Responses WebSocket too. The downstream client→OmniRoute hop works, but the
   // upstream wreq-js.websocket() connect previously ignored the Proxy Registry,
   // so a no-direct-egress container failed with a DNS lookup error.
   let proxy: string | undefined;
@@ -550,7 +550,7 @@ async function persistResponsesWsCallHistory(body: JsonRecord) {
 
 export async function POST(request: Request) {
   const expectedSecret = getBridgeSecret();
-  const receivedSecret = request.headers.get("x-BlackRiver Gateway-ws-bridge-secret") || "";
+  const receivedSecret = request.headers.get("x-OmniRoute-ws-bridge-secret") || "";
   if (!bridgeSecretMatches(expectedSecret, receivedSecret)) {
     return jsonError(403, "internal_bridge_forbidden", "Forbidden");
   }

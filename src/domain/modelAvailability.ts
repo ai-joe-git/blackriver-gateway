@@ -2,7 +2,7 @@ import {
   getAllModelLockouts,
   clearModelLock,
   type ModelLockoutInfo,
-} from "@BlackRiver Gateway/open-sse/services/accountFallback";
+} from "@omniroute/open-sse/services/accountFallback";
 
 export type AvailabilityReportItem = Pick<
   ModelLockoutInfo,

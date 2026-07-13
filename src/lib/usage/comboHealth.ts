@@ -1,8 +1,8 @@
 import { getComboById, getCombos } from "@/lib/db/combos";
 import { getDbInstance } from "@/lib/db/core";
 import { getQuotaSnapshots } from "@/lib/db/quotaSnapshots";
-import { getComboMetrics } from "@BlackRiver Gateway/open-sse/services/comboMetrics.ts";
-import { resolveNestedComboTargets } from "@BlackRiver Gateway/open-sse/services/combo.ts";
+import { getComboMetrics } from "@omniroute/open-sse/services/comboMetrics.ts";
+import { resolveNestedComboTargets } from "@omniroute/open-sse/services/combo.ts";
 import type {
   ComboRecord,
   ComboHealthMetrics,

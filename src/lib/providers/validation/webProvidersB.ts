@@ -130,7 +130,7 @@ export async function validateClaudeWebProvider({ apiKey, providerSpecificData =
     }
 
     const { tlsFetchClaude, TlsClientUnavailableError } =
-      await import("@BlackRiver Gateway/open-sse/services/claudeTlsClient.ts");
+      await import("@omniroute/open-sse/services/claudeTlsClient.ts");
 
     let response: { status: number; text: string | null };
     try {
@@ -249,7 +249,7 @@ export async function validateCopilotWebProvider({ apiKey, providerSpecificData 
     }
 
     // Extract token — may be bare JWT, cookie string with access_token=, or Bearer prefix
-    const { extractAccessToken } = await import("@BlackRiver Gateway/open-sse/executors/copilot-web.ts");
+    const { extractAccessToken } = await import("@omniroute/open-sse/executors/copilot-web.ts");
     const token = extractAccessToken(raw);
     if (!token) {
       return { valid: false, error: "Could not extract access_token from input" };

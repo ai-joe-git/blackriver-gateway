@@ -8,7 +8,7 @@ import {
   removeFromWhitelist,
   tempBanIP,
   removeTempBan,
-} from "@BlackRiver Gateway/open-sse/services/ipFilter.ts";
+} from "@omniroute/open-sse/services/ipFilter.ts";
 import { updateIpFilterSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";

@@ -2,7 +2,7 @@
  * Generic reverse-proxy helper for embedded service UIs.
  *
  * Forwards HTTP traffic to a locally-running embedded service so its web UI
- * can be iframed inside the BlackRiver Gateway dashboard without CORS issues.
+ * can be iframed inside the OmniRoute dashboard without CORS issues.
  *
  * Security:
  *   - Target URL is constructed from the service's registered port — never
@@ -10,7 +10,7 @@
  *   - Routes that use this helper must be classified LOCAL_ONLY in routeGuard.ts;
  *     loopback enforcement blocks all non-loopback access before any handler runs.
  *   - Client cookies and Authorization headers are stripped before forwarding
- *     to prevent credential leakage between BlackRiver Gateway and the embedded service.
+ *     to prevent credential leakage between OmniRoute and the embedded service.
  *   - Upstream set-cookie, x-frame-options, content-security-policy, and
  *     cross-origin-* headers are stripped from responses so the iframe is not
  *     broken by the embedded service's own security policies.
@@ -23,7 +23,7 @@ import { getOrCreateApiKey } from "@/lib/services/apiKey";
 import { rewriteHtml } from "@/lib/services/htmlRewriter";
 import { toUpstreamPath } from "@/lib/services/embedPath";
 import { createErrorResponse } from "@/lib/api/errorResponse";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 
 // ─── constants ────────────────────────────────────────────────────────────────
 
@@ -42,7 +42,7 @@ export const HOP_BY_HOP = new Set([
 
 /**
  * Request headers stripped before forwarding to the embedded service.
- * Prevents BlackRiver Gateway session cookies and Authorization from leaking upstream.
+ * Prevents OmniRoute session cookies and Authorization from leaking upstream.
  */
 export const STRIPPED_REQUEST_HEADERS = new Set(["cookie", "authorization"]);
 
@@ -50,11 +50,11 @@ export const STRIPPED_REQUEST_HEADERS = new Set(["cookie", "authorization"]);
  * Response headers stripped before returning to the browser.
  *
  * - set-cookie: prevents the embedded service from setting cookies in the
- *   BlackRiver Gateway origin, which would conflict with session management.
+ *   OmniRoute origin, which would conflict with session management.
  * - content-security-policy / content-security-policy-report-only: the
- *   embedded service's CSP is irrelevant inside the BlackRiver Gateway iframe.
+ *   embedded service's CSP is irrelevant inside the OmniRoute iframe.
  * - x-frame-options: would block the iframe entirely if set to DENY/SAMEORIGIN
- *   by the embedded service (BlackRiver Gateway controls framing via its own CSP).
+ *   by the embedded service (OmniRoute controls framing via its own CSP).
  * - cross-origin-*: remove COOP/COEP/CORP that could break the framed page.
  */
 export const STRIPPED_RESPONSE_HEADERS = new Set([

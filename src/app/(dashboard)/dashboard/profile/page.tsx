@@ -173,7 +173,7 @@ export default function ProfilePage() {
             <div>
               <p className="text-2xl font-bold">{streak} Day Streak</p>
               <p className="text-sm text-text-muted">
-                Keep using BlackRiver Gateway daily to maintain your streak!
+                Keep using OmniRoute daily to maintain your streak!
               </p>
             </div>
           </div>
@@ -189,7 +189,7 @@ export default function ProfilePage() {
         {allBadges.length === 0 ? (
           <Card>
             <div className="text-center py-12 text-text-muted">
-              No badges available yet. Keep using BlackRiver Gateway to unlock achievements!
+              No badges available yet. Keep using OmniRoute to unlock achievements!
             </div>
           </Card>
         ) : (

@@ -130,7 +130,7 @@ export function CliproxyModelMappingEditor() {
         <div>
           <h3 className="font-medium text-sm">Model Mapping</h3>
           <p className="text-xs text-text-muted">
-            Map BlackRiver Gateway model IDs to CLIProxyAPI model IDs (e.g.{" "}
+            Map OmniRoute model IDs to CLIProxyAPI model IDs (e.g.{" "}
             <code className="font-mono bg-bg-subtle px-1 rounded">
               {'"gpt-4o": "openai-gpt-4o"'}
             </code>

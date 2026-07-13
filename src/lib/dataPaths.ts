@@ -2,7 +2,7 @@ import path from "path";
 import os from "os";
 import fs from "fs";
 
-export const APP_NAME = "BlackRiver Gateway";
+export const APP_NAME = "OmniRoute";
 
 function fallbackHomeDir() {
   const envHome = process.env.HOME || process.env.USERPROFILE;

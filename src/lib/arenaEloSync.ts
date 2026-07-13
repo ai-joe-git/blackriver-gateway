@@ -104,7 +104,7 @@ const ARENA_ELO_API_BASE = "https://api.wulong.dev/arena-ai-leaderboards/v1/lead
 const FETCH_CATEGORIES = ["text", "code"] as const;
 
 /**
- * Maps Arena leaderboard categories to BlackRiver Gateway task-type categories.
+ * Maps Arena leaderboard categories to OmniRoute task-type categories.
  *
  * - "text" leaderboard → default, review, documentation, debugging
  * - "code" leaderboard → coding
@@ -140,9 +140,9 @@ const VENDOR_PREFIXES = [
 ] as const;
 
 /**
- * BlackRiver Gateway model aliases: canonical name → known aliases.
+ * OmniRoute model aliases: canonical name → known aliases.
  * Creates additional DB entries for each alias so that models
- * are findable under any name BlackRiver Gateway uses internally.
+ * are findable under any name OmniRoute uses internally.
  */
 const MODEL_ALIAS_MAP: Record<string, string[]> = {
   "claude-opus-4-6-thinking": ["claude-opus-4", "anthropic/claude-opus-4"],
@@ -291,11 +291,11 @@ function computeConfidence(votes: number): "high" | "medium" | "low" {
  * This ensures scores never reach 0 or 1, leaving room for user overrides.
  * Models with fewer than 100 votes are marked as confidence="low".
  *
- * Leaderboard categories are mapped to BlackRiver Gateway task types:
+ * Leaderboard categories are mapped to OmniRoute task types:
  * - "text" → default, review, documentation, debugging
  * - "code" → coding
  *
- * Known BlackRiver Gateway model aliases are also expanded into additional entries.
+ * Known OmniRoute model aliases are also expanded into additional entries.
  *
  * @param data - Map of leaderboard category → Arena leaderboard data.
  * @returns Array of model intelligence entries ready for DB upsert.

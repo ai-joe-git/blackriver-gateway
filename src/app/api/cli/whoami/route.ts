@@ -8,7 +8,7 @@ import { verifyAccessToken, getAccessToken } from "@/lib/db/accessTokens";
  *
  * Requires a valid management credential (read scope is enough — it's a GET).
  * When the caller used a scoped CLI access token, returns its name/scope/expiry
- * so `BlackRiver Gateway connect --key` / `context current` can confirm what they hold.
+ * so `OmniRoute connect --key` / `context current` can confirm what they hold.
  * Other credentials (dashboard session, manage-scope API key, loopback CLI
  * token) report `viaAccessToken: false`.
  */

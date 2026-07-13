@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CORS_HEADERS, handleCorsOptions } from "@/shared/utils/cors";
-import { buildErrorBody } from "@BlackRiver Gateway/open-sse/utils/error";
+import { buildErrorBody } from "@omniroute/open-sse/utils/error";
 import { listMarketplacePlugins } from "@/lib/plugins/marketplace";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 

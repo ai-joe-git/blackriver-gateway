@@ -1,4 +1,4 @@
-export const ACTIVE_ONLY_STORAGE_KEY = "BlackRiver Gateway-api-manager-active-only";
+export const ACTIVE_ONLY_STORAGE_KEY = "OmniRoute-api-manager-active-only";
 
 interface StorageReader {
   getItem(key: string): string | null;

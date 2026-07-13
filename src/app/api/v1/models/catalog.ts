@@ -10,23 +10,23 @@ import {
   getModelAliases,
 } from "@/lib/localDb";
 import { extractAliasBackedModels } from "./aliasBackedModels";
-import { appendNoThinkingVariants } from "@BlackRiver Gateway/open-sse/utils/noThinkingAlias";
-import { getAllEmbeddingModels } from "@BlackRiver Gateway/open-sse/config/embeddingRegistry";
-import { getAllImageModels } from "@BlackRiver Gateway/open-sse/config/imageRegistry";
-import { getAllRerankModels } from "@BlackRiver Gateway/open-sse/config/rerankRegistry";
-import { getAllAudioModels } from "@BlackRiver Gateway/open-sse/config/audioRegistry";
-import { getAllModerationModels } from "@BlackRiver Gateway/open-sse/config/moderationRegistry";
-import { getAllVideoModels } from "@BlackRiver Gateway/open-sse/config/videoRegistry";
-import { getAllMusicModels } from "@BlackRiver Gateway/open-sse/config/musicRegistry";
-import { REGISTRY } from "@BlackRiver Gateway/open-sse/config/providerRegistry";
-import { CODEX_NATIVE_UNPREFIXED_MODELS } from "@BlackRiver Gateway/open-sse/services/model";
-import { resolveNestedComboTargets } from "@BlackRiver Gateway/open-sse/services/combo";
+import { appendNoThinkingVariants } from "@omniroute/open-sse/utils/noThinkingAlias";
+import { getAllEmbeddingModels } from "@omniroute/open-sse/config/embeddingRegistry";
+import { getAllImageModels } from "@omniroute/open-sse/config/imageRegistry";
+import { getAllRerankModels } from "@omniroute/open-sse/config/rerankRegistry";
+import { getAllAudioModels } from "@omniroute/open-sse/config/audioRegistry";
+import { getAllModerationModels } from "@omniroute/open-sse/config/moderationRegistry";
+import { getAllVideoModels } from "@omniroute/open-sse/config/videoRegistry";
+import { getAllMusicModels } from "@omniroute/open-sse/config/musicRegistry";
+import { REGISTRY } from "@omniroute/open-sse/config/providerRegistry";
+import { CODEX_NATIVE_UNPREFIXED_MODELS } from "@omniroute/open-sse/services/model";
+import { resolveNestedComboTargets } from "@omniroute/open-sse/services/combo";
 import {
   AUTO_TEMPLATE_VARIANTS,
   AUTO_SUFFIX_VARIANTS,
   AUTO_FAMILY_IDS,
   createBuiltinAutoCombo,
-} from "@BlackRiver Gateway/open-sse/services/autoCombo/builtinCatalog";
+} from "@omniroute/open-sse/services/autoCombo/builtinCatalog";
 import { getAllSyncedAvailableModels, type SyncedAvailableModel } from "@/lib/db/models";
 import { getModelCatalogCacheVersion } from "@/lib/db/readCache";
 import { getCompatibleFallbackModels } from "@/lib/providers/managedAvailableModels";
@@ -52,8 +52,8 @@ import {
   isNoAuthRawProviderPrefix,
   normalizeBlockedProviderSet,
 } from "@/shared/utils/noAuthProviders";
-import { parseModel } from "@BlackRiver Gateway/open-sse/services/model";
-import { getTokenLimit } from "@BlackRiver Gateway/open-sse/services/contextManager";
+import { parseModel } from "@omniroute/open-sse/services/model";
+import { getTokenLimit } from "@omniroute/open-sse/services/contextManager";
 import { extractApiKey } from "@/sse/services/auth";
 import type { ComboModelStep } from "@/lib/combos/steps";
 import {
@@ -408,7 +408,7 @@ async function buildUnifiedModelsResponseCore(
     };
 
     const prefixRoutesToProvider = (prefix: string, providerId: string) => {
-      const parsed = parseModel(`${prefix}/__BlackRiver Gateway_probe__`);
+      const parsed = parseModel(`${prefix}/__OMNIROUTE_probe__`);
       return parsed.provider === providerId;
     };
 
@@ -1437,7 +1437,7 @@ async function buildUnifiedModelsResponseCore(
         );
       } else if (!keyMeta) {
         // #6406: A valid apiKey without a DB metadata row is an env-var master key
-        // (BlackRiver Gateway_API_KEY / ROUTER_API_KEY per isValidApiKey). Those keys have no
+        // (OMNIROUTE_API_KEY / ROUTER_API_KEY per isValidApiKey). Those keys have no
         // per-key allow/deny/quota restrictions — they authenticate the request but
         // do NOT scope the catalog. Skipping the per-model filter matches the intent:
         // auth GATES access; env-var master keys see everything the unauth path sees.

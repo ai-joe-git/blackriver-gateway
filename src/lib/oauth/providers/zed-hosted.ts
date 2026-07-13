@@ -5,7 +5,7 @@ import {
   decryptZedAccessToken,
   fetchZedAuthenticatedUser,
   resolveZedOrganizationId,
-} from "@BlackRiver Gateway/open-sse/shared/zedAuth.ts";
+} from "@omniroute/open-sse/shared/zedAuth.ts";
 
 /**
  * Zed Hosted Models OAuth provider.

@@ -8,7 +8,7 @@ import {
   normalizeMemorySettings,
   toMemorySettingsUpdates,
 } from "@/lib/memory/settings";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
 
 export async function GET(request: NextRequest) {
   if (!(await isAuthenticated(request))) {

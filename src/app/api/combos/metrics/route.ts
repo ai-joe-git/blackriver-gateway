@@ -4,7 +4,7 @@ import {
   getComboMetrics,
   resetComboMetrics,
   resetAllComboMetrics,
-} from "@BlackRiver Gateway/open-sse/services/comboMetrics.ts";
+} from "@omniroute/open-sse/services/comboMetrics.ts";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 
 // GET /api/combos/metrics - Get per-combo metrics

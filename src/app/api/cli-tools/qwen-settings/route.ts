@@ -43,13 +43,13 @@ const readEnv = async () => {
   }
 };
 
-// Check if settings has BlackRiver Gateway config
-const hasBlackRiver GatewayConfig = (settings: any) => {
+// Check if settings has OmniRoute config
+const hasOmniRouteConfig = (settings: any) => {
   if (!settings || !settings.modelProviders) return false;
   const openai = settings.modelProviders.openai;
   if (!Array.isArray(openai)) return false;
   return openai.some((p: any) => {
-    if (p.name?.includes("BlackRiver Gateway") || p.id === "BlackRiver Gateway") return true;
+    if (p.name?.includes("OmniRoute") || p.id === "OmniRoute") return true;
     if (!p.baseUrl) return false;
     try {
       const urlObj = new URL(p.baseUrl);
@@ -98,7 +98,7 @@ export async function GET(request: Request) {
       runtimeMode: runtime.runtimeMode,
       reason: runtime.reason,
       settings,
-      hasBlackRiver Gateway: hasBlackRiver GatewayConfig(settings),
+      hasOmniRoute: hasOmniRouteConfig(settings),
       settingsPath: getQwenSettingsPath(),
       envPath: getQwenEnvPath(),
     });
@@ -108,7 +108,7 @@ export async function GET(request: Request) {
   }
 }
 
-// POST - Write BlackRiver Gateway config to settings.json + .env
+// POST - Write OmniRoute config to settings.json + .env
 export async function POST(request: Request) {
   const authError = await requireCliToolsAuth(request);
   if (authError) return authError;
@@ -153,7 +153,7 @@ export async function POST(request: Request) {
       }
     }
 
-    const resolvedApiKey = apiKey || "sk_BlackRiver Gateway";
+    const resolvedApiKey = apiKey || "sk_OmniRoute";
     const resolvedModel = model || "coder-model";
     const normalizedBaseUrl = String(baseUrl || "")
       .trim()
@@ -171,7 +171,7 @@ export async function POST(request: Request) {
     // --- Write API keys to ~/.qwen/.env ---
     let envContent = await readEnv();
     const envLines = envContent.split("\n").filter((line) => {
-      // Remove old BlackRiver Gateway-related keys we're about to write
+      // Remove old OmniRoute-related keys we're about to write
       return (
         !line.startsWith("OPENAI_API_KEY=") &&
         !line.startsWith("ANTHROPIC_API_KEY=") &&
@@ -196,10 +196,10 @@ export async function POST(request: Request) {
 
     if (!existingConfig.modelProviders) existingConfig.modelProviders = {};
 
-    // openai provider — primary, supports all models via BlackRiver Gateway
+    // openai provider — primary, supports all models via OmniRoute
     const openaiEntry = {
       id: resolvedModel,
-      name: `${resolvedModel} (BlackRiver Gateway)`,
+      name: `${resolvedModel} (OmniRoute)`,
       envKey: "OPENAI_API_KEY",
       baseUrl: normalizedBaseUrl,
       generationConfig: {
@@ -210,7 +210,7 @@ export async function POST(request: Request) {
     if (!existingConfig.modelProviders.openai) existingConfig.modelProviders.openai = [];
     const openaiProviders = existingConfig.modelProviders.openai;
     const openaiIdx = openaiProviders.findIndex(
-      (p: any) => p && (p.baseUrl === normalizedBaseUrl || p.id === "BlackRiver Gateway")
+      (p: any) => p && (p.baseUrl === normalizedBaseUrl || p.id === "OmniRoute")
     );
     if (openaiIdx >= 0) {
       openaiProviders[openaiIdx] = openaiEntry;
@@ -218,10 +218,10 @@ export async function POST(request: Request) {
       openaiProviders.push(openaiEntry);
     }
 
-    // anthropic provider — for Claude models via BlackRiver Gateway
+    // anthropic provider — for Claude models via OmniRoute
     const anthropicEntry = {
       id: "claude-sonnet-4-6",
-      name: "Claude Sonnet 4.6 (BlackRiver Gateway)",
+      name: "Claude Sonnet 4.6 (OmniRoute)",
       envKey: "ANTHROPIC_API_KEY",
       baseUrl: normalizedBaseUrl,
       generationConfig: {
@@ -240,10 +240,10 @@ export async function POST(request: Request) {
       anthropicProviders.push(anthropicEntry);
     }
 
-    // gemini provider — for Gemini models via BlackRiver Gateway
+    // gemini provider — for Gemini models via OmniRoute
     const geminiEntry = {
       id: "gemini-3-flash",
-      name: "Gemini 3 Flash (BlackRiver Gateway)",
+      name: "Gemini 3 Flash (OmniRoute)",
       envKey: "GEMINI_API_KEY",
       baseUrl: normalizedBaseUrl,
     };
@@ -278,7 +278,7 @@ export async function POST(request: Request) {
   }
 }
 
-// DELETE - Remove BlackRiver Gateway config from settings.json and .env
+// DELETE - Remove OmniRoute config from settings.json and .env
 export async function DELETE(request: Request) {
   const authError = await requireCliToolsAuth(request);
   if (authError) return authError;
@@ -310,12 +310,12 @@ export async function DELETE(request: Request) {
       throw error;
     }
 
-    // Remove BlackRiver Gateway entries from each provider type
+    // Remove OmniRoute entries from each provider type
     const providerTypes = ["openai", "anthropic", "gemini"];
     for (const type of providerTypes) {
       if (Array.isArray(existingConfig.modelProviders?.[type])) {
         existingConfig.modelProviders[type] = existingConfig.modelProviders[type].filter(
-          (p: any) => !p.name?.includes("BlackRiver Gateway") && p.id !== "BlackRiver Gateway"
+          (p: any) => !p.name?.includes("OmniRoute") && p.id !== "OmniRoute"
         );
         // Remove empty provider arrays
         if (existingConfig.modelProviders[type].length === 0) {
@@ -354,7 +354,7 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: "BlackRiver Gateway settings removed from Qwen Code",
+      message: "OmniRoute settings removed from Qwen Code",
     });
   } catch (error) {
     console.log("Error resetting qwen settings:", error);

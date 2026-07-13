@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAuditStats } from "@BlackRiver Gateway/open-sse/mcp-server/audit";
+import { getAuditStats } from "@omniroute/open-sse/mcp-server/audit";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 
 export async function GET(request: Request) {

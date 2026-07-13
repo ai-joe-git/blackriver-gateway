@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import {
   SEARCH_PROVIDERS,
   SEARCH_CREDENTIAL_FALLBACKS,
-} from "@BlackRiver Gateway/open-sse/config/searchRegistry.ts";
+} from "@omniroute/open-sse/config/searchRegistry.ts";
 import { isAuthenticated } from "@/shared/utils/apiAuth";
 import { getProviderCredentials } from "@/sse/services/auth";
 import { isAllRateLimitedCredentials } from "@/app/api/v1/_shared/rateLimit";
-import { buildErrorBody } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { buildErrorBody } from "@omniroute/open-sse/utils/error.ts";
 import {
   SearchProviderCatalogResponseSchema,
   type SearchProviderCatalogItem,

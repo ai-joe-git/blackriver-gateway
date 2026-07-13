@@ -3,7 +3,7 @@ import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import {
   listCavemanRulePacks,
   listSupportedCompressionLanguages,
-} from "@BlackRiver Gateway/open-sse/services/compression";
+} from "@omniroute/open-sse/services/compression";
 
 export async function GET(req: Request) {
   const authError = await requireManagementAuth(req);

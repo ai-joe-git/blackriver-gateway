@@ -1,7 +1,7 @@
-import { errorResponse } from "@BlackRiver Gateway/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@BlackRiver Gateway/open-sse/config/constants.ts";
+import { errorResponse } from "@omniroute/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
 
-import { attachBlackRiver GatewayMetaHeaders } from "@/domain/BlackRiver GatewayResponseMeta";
+import { attachOmniRouteMetaHeaders } from "@/domain/OmniRouteResponseMeta";
 import { calculateModalCost } from "@/lib/usage/costCalculator";
 import { generateRequestId } from "@/shared/utils/requestId";
 import { toJsonErrorPayload } from "@/shared/utils/upstreamError";
@@ -107,7 +107,7 @@ export async function successfulMediaGenerationResponse({
   const seconds = Number(duration) || 0;
   const costUsd = await calculateModalCost(billingMode, provider, model, { seconds });
   const headers = new Headers({ "Content-Type": "application/json" });
-  attachBlackRiver GatewayMetaHeaders(headers, {
+  attachOmniRouteMetaHeaders(headers, {
     provider,
     model,
     costUsd,

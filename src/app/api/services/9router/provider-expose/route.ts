@@ -2,7 +2,7 @@
  * POST /api/services/9router/provider-expose
  *
  * Toggle provider exposure for the 9router embedded service.
- * When enabled, 9Router models are discoverable as `9router/...` in BlackRiver Gateway routing.
+ * When enabled, 9Router models are discoverable as `9router/...` in OmniRoute routing.
  *
  * Body: { enabled: boolean }
  * Response: 204 No Content on success.
@@ -13,7 +13,7 @@
 import { z } from "zod";
 import { updateServiceField } from "@/lib/db/versionManager";
 import { createErrorResponse } from "@/lib/api/errorResponse";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 
 const BodySchema = z.object({ enabled: z.boolean() });
 

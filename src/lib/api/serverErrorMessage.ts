@@ -1,7 +1,7 @@
 /**
  * Extract a human-readable message from a parsed API error body.
  *
- * BlackRiver Gateway API error bodies follow the shape produced by
+ * OmniRoute API error bodies follow the shape produced by
  * `comboErrorResponse`/`buildErrorBody`:
  *
  *   { error: { message: string, details?: Array<{ message?: string }> } }

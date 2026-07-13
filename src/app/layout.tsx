@@ -22,13 +22,13 @@ export const viewport: Viewport = {
 
 export async function generateMetadata() {
   const settings = await getSettings();
-  const instanceName = settings?.instanceName || "BlackRiver Gateway";
+  const instanceName = settings?.instanceName || "OmniRoute";
   const customFaviconUrl = settings?.customFaviconUrl || settings?.customFaviconBase64;
 
   return {
     title: `${instanceName} — AI Gateway for Multi-Provider LLMs`,
     description:
-      "BlackRiver Gateway is an AI gateway for multi-provider LLMs. One endpoint for all your AI providers.",
+      "OmniRoute is an AI gateway for multi-provider LLMs. One endpoint for all your AI providers.",
     manifest: "/manifest.webmanifest",
     applicationName: instanceName,
     appleWebApp: {

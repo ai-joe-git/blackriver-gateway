@@ -23,7 +23,7 @@ import {
 // ── State (globalThis singleton) ──────────────────────────────────────────
 
 declare global {
-  var __BlackRiver GatewayEventBus:
+  var __OmniRouteEventBus:
     | {
         initialized: boolean;
         listeners: Map<DashboardEventName, Set<Function>>;
@@ -36,8 +36,8 @@ declare global {
 }
 
 function getBusState() {
-  if (!globalThis.__BlackRiver GatewayEventBus) {
-    globalThis.__BlackRiver GatewayEventBus = {
+  if (!globalThis.__OmniRouteEventBus) {
+    globalThis.__OmniRouteEventBus = {
       initialized: false,
       listeners: new Map(),
       wildcardListeners: new Set(),
@@ -46,7 +46,7 @@ function getBusState() {
       emitCount: 0,
     };
   }
-  return globalThis.__BlackRiver GatewayEventBus;
+  return globalThis.__OmniRouteEventBus;
 }
 
 // ── Event History ─────────────────────────────────────────────────────────

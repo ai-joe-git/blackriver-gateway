@@ -2,7 +2,7 @@ import { z } from "zod";
 import { deleteProxyById, listProxies, updateProxy } from "@/lib/localDb";
 import { createErrorResponseFromUnknown } from "@/lib/api/errorResponse";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
-import { createProxyDispatcher } from "@BlackRiver Gateway/open-sse/utils/proxyDispatcher";
+import { createProxyDispatcher } from "@omniroute/open-sse/utils/proxyDispatcher";
 import { fetch as undiciFetch } from "undici";
 import { resolveHealthCheckStatusWrite } from "@/lib/proxyHealth/statusPolicy";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
@@ -40,7 +40,7 @@ async function testSingleProxy(proxy: { id: string; type: string; host: string; 
       method: "HEAD",
       signal: controller.signal,
       dispatcher,
-      headers: { "User-Agent": "BlackRiver Gateway/1.0" },
+      headers: { "User-Agent": "OmniRoute/1.0" },
     });
     const latencyMs = Date.now() - start;
     const alive = resp.status < 500;

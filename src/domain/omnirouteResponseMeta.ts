@@ -1,5 +1,5 @@
 import { getProviderAlias } from "@/shared/constants/providers";
-import { BlackRiver Gateway_RESPONSE_HEADERS } from "@/shared/constants/headers";
+import { OMNIROUTE_RESPONSE_HEADERS } from "@/shared/constants/headers";
 import { APP_CONFIG } from "@/shared/constants/appConfig";
 
 type UsageLike = Record<string, unknown> | null | undefined;
@@ -51,7 +51,7 @@ function toHeaderValue(value: string): string {
   return encodeURIComponent(toWellFormedUnicode(withoutControls));
 }
 
-export function getBlackRiver GatewayTokenCounts(usage: UsageLike): { input: number; output: number } {
+export function getOmniRouteTokenCounts(usage: UsageLike): { input: number; output: number } {
   if (!usage || typeof usage !== "object") {
     return { input: 0, output: 0 };
   }
@@ -74,12 +74,12 @@ export function getBlackRiver GatewayTokenCounts(usage: UsageLike): { input: num
   };
 }
 
-export function formatBlackRiver GatewayCost(costUsd: unknown): string {
+export function formatOmniRouteCost(costUsd: unknown): string {
   const normalized = toFiniteNumber(costUsd);
   return normalized > 0 ? normalized.toFixed(10) : "0.0000000000";
 }
 
-export function buildBlackRiver GatewayResponseMetaHeaders({
+export function buildOmniRouteResponseMetaHeaders({
   cacheHit = false,
   costUsd = 0,
   costSavedUsd = undefined,
@@ -96,7 +96,7 @@ export function buildBlackRiver GatewayResponseMetaHeaders({
    * Cost the cache AVOIDED. A semantic-cache HIT serves at ≈0 incremental cost
    * (`costUsd: 0`) but saved the original call's cost — surface it here so billing
    * consumers don't charge for hits while analytics can still see what was saved.
-   * Emitted as `X-BlackRiver Gateway-Cost-Saved` only when provided (omitted on normal
+   * Emitted as `X-OmniRoute-Cost-Saved` only when provided (omitted on normal
    * responses); pass `0` to explicitly mark a free-model HIT that saved nothing.
    */
   costSavedUsd?: unknown;
@@ -107,48 +107,48 @@ export function buildBlackRiver GatewayResponseMetaHeaders({
   requestId?: string | null;
   usage?: UsageLike;
 }): Record<string, string> {
-  const tokens = getBlackRiver GatewayTokenCounts(usage);
+  const tokens = getOmniRouteTokenCounts(usage);
   const headers: Record<string, string> = {
-    [BlackRiver Gateway_RESPONSE_HEADERS.cacheHit]: toHeaderValue(String(cacheHit)),
-    [BlackRiver Gateway_RESPONSE_HEADERS.latencyMs]: toHeaderValue(String(toNonNegativeInteger(latencyMs))),
-    [BlackRiver Gateway_RESPONSE_HEADERS.responseCost]: toHeaderValue(formatBlackRiver GatewayCost(costUsd)),
-    [BlackRiver Gateway_RESPONSE_HEADERS.tokensIn]: toHeaderValue(String(tokens.input)),
-    [BlackRiver Gateway_RESPONSE_HEADERS.tokensOut]: toHeaderValue(String(tokens.output)),
-    [BlackRiver Gateway_RESPONSE_HEADERS.version]: toHeaderValue(APP_CONFIG.version),
+    [OMNIROUTE_RESPONSE_HEADERS.cacheHit]: toHeaderValue(String(cacheHit)),
+    [OMNIROUTE_RESPONSE_HEADERS.latencyMs]: toHeaderValue(String(toNonNegativeInteger(latencyMs))),
+    [OMNIROUTE_RESPONSE_HEADERS.responseCost]: toHeaderValue(formatOmniRouteCost(costUsd)),
+    [OMNIROUTE_RESPONSE_HEADERS.tokensIn]: toHeaderValue(String(tokens.input)),
+    [OMNIROUTE_RESPONSE_HEADERS.tokensOut]: toHeaderValue(String(tokens.output)),
+    [OMNIROUTE_RESPONSE_HEADERS.version]: toHeaderValue(APP_CONFIG.version),
   };
 
   if (typeof model === "string" && model.trim().length > 0) {
-    headers[BlackRiver Gateway_RESPONSE_HEADERS.model] = toHeaderValue(model);
+    headers[OMNIROUTE_RESPONSE_HEADERS.model] = toHeaderValue(model);
   }
 
   if (typeof requestId === "string" && requestId.trim().length > 0) {
-    headers[BlackRiver Gateway_RESPONSE_HEADERS.requestId] = toHeaderValue(requestId);
+    headers[OMNIROUTE_RESPONSE_HEADERS.requestId] = toHeaderValue(requestId);
   }
 
   if (typeof provider === "string" && provider.trim().length > 0) {
-    headers[BlackRiver Gateway_RESPONSE_HEADERS.provider] = toHeaderValue(getProviderAlias(provider));
+    headers[OMNIROUTE_RESPONSE_HEADERS.provider] = toHeaderValue(getProviderAlias(provider));
   }
 
   // Cache-saved cost: emitted only when the caller passes a value (cache HITs), so
   // non-cache responses keep their existing header shape. `0` is a valid saved cost.
   if (costSavedUsd != null) {
-    headers[BlackRiver Gateway_RESPONSE_HEADERS.costSaved] = toHeaderValue(
-      formatBlackRiver GatewayCost(costSavedUsd)
+    headers[OMNIROUTE_RESPONSE_HEADERS.costSaved] = toHeaderValue(
+      formatOmniRouteCost(costSavedUsd)
     );
   }
 
   const attempts = toNonNegativeInteger(fallbackAttempts);
   if (attempts > 0) {
-    headers[BlackRiver Gateway_RESPONSE_HEADERS.fallbackAttempts] = toHeaderValue(String(attempts));
+    headers[OMNIROUTE_RESPONSE_HEADERS.fallbackAttempts] = toHeaderValue(String(attempts));
   }
 
   return headers;
 }
 
-export function buildBlackRiver GatewaySseMetadataComment(
-  options: Parameters<typeof buildBlackRiver GatewayResponseMetaHeaders>[0]
+export function buildOmniRouteSseMetadataComment(
+  options: Parameters<typeof buildOmniRouteResponseMetaHeaders>[0]
 ): string {
-  const headers = buildBlackRiver GatewayResponseMetaHeaders(options);
+  const headers = buildOmniRouteResponseMetaHeaders(options);
   const lines = Object.entries(headers)
     .filter(([, value]) => typeof value === "string" && value.trim().length > 0)
     .map(([name, value]) => `: ${name.toLowerCase()}=${value}`);
@@ -157,15 +157,15 @@ export function buildBlackRiver GatewaySseMetadataComment(
 }
 
 /**
- * Single choke-point for attaching the X-BlackRiver Gateway-* response meta headers.
+ * Single choke-point for attaching the X-OmniRoute-* response meta headers.
  * Mutates `headers` in place (accepts a Headers instance OR a plain Record).
  * Use at EVERY non-streaming success return so no route forgets the telemetry.
  */
-export function attachBlackRiver GatewayMetaHeaders(
+export function attachOmniRouteMetaHeaders(
   headers: Headers | Record<string, string>,
-  meta: Parameters<typeof buildBlackRiver GatewayResponseMetaHeaders>[0]
+  meta: Parameters<typeof buildOmniRouteResponseMetaHeaders>[0]
 ): void {
-  const built = buildBlackRiver GatewayResponseMetaHeaders(meta);
+  const built = buildOmniRouteResponseMetaHeaders(meta);
   if (headers instanceof Headers) {
     for (const [name, value] of Object.entries(built)) headers.set(name, value);
   } else {
@@ -174,21 +174,21 @@ export function attachBlackRiver GatewayMetaHeaders(
 }
 
 /**
- * Attach the X-BlackRiver Gateway-* meta headers onto an already-built Response, ADDING
+ * Attach the X-OmniRoute-* meta headers onto an already-built Response, ADDING
  * (never replacing) headers so the original Content-Type / body stay intact.
  * Tries to mutate in place; if the Response headers are immutable, clones the
  * Response carrying over body + status + headers (mirrors
  * `chatHelpers.ts::withSessionHeader`). Use for opaque handler-built Responses
  * (audio streams, passthrough proxies) where the body cannot be re-serialized.
  */
-export function attachBlackRiver GatewayMetaToResponse(
+export function attachOmniRouteMetaToResponse(
   response: Response,
-  meta: Parameters<typeof buildBlackRiver GatewayResponseMetaHeaders>[0]
+  meta: Parameters<typeof buildOmniRouteResponseMetaHeaders>[0]
 ): Response {
   if (!response) return response;
 
   try {
-    attachBlackRiver GatewayMetaHeaders(response.headers, meta);
+    attachOmniRouteMetaHeaders(response.headers, meta);
     return response;
   } catch {
     const cloned = new Response(response.body, {
@@ -196,7 +196,7 @@ export function attachBlackRiver GatewayMetaToResponse(
       statusText: response.statusText,
       headers: response.headers,
     });
-    attachBlackRiver GatewayMetaHeaders(cloned.headers, meta);
+    attachOmniRouteMetaHeaders(cloned.headers, meta);
     return cloned;
   }
 }

@@ -1,5 +1,5 @@
 /**
- * XP/Level Engine for BlackRiver Gateway Gamification
+ * XP/Level Engine for OmniRoute Gamification
  *
  * Pure functions for XP calculations, level progression, and reward definitions.
  * No side effects or DB calls — all stateful logic lives in the persistence layer.
@@ -126,7 +126,7 @@ export function getLevelTier(level: number): "bronze" | "silver" | "gold" | "pla
 
 /** Base XP rewards for each gamified action. */
 export const XP_REWARDS = {
-  /** Per API request routed through BlackRiver Gateway */
+  /** Per API request routed through OmniRoute */
   request: 1,
   /** Switching to a different provider */
   provider_switch: 5,

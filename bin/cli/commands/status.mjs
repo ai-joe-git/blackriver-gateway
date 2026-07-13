@@ -73,7 +73,7 @@ export async function runStatusCommand(opts = {}) {
     return 0;
   }
 
-  printHeading("BlackRiver Gateway Status");
+  printHeading("OmniRoute Status");
   console.log(`  Version:     ${status.version}`);
   console.log(`  Data Dir:    ${status.dataDir}`);
   console.log(

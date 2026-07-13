@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/shared/utils/cn";
 import { getActiveSidebarHref } from "@/shared/utils/sidebarRouteMatch";
 import { APP_CONFIG } from "@/shared/constants/appConfig";
-import BlackRiver GatewayLogo from "./BlackRiver GatewayLogo";
+import OmniRouteLogo from "./OmniRouteLogo";
 import Button from "./Button";
 import { ConfirmModal } from "./Modal";
 import CloudSyncStatus from "./CloudSyncStatus";
@@ -31,7 +31,7 @@ import {
   type SidebarItemOrder,
 } from "@/shared/constants/sidebarVisibility";
 
-const isE2EMode = process.env.NEXT_PUBLIC_BlackRiver Gateway_E2E_MODE === "1";
+const isE2EMode = process.env.NEXT_PUBLIC_OMNIROUTE_E2E_MODE === "1";
 const DEFAULT_EXPANDED: SidebarSectionId = "omni-proxy";
 const EXPANDED_SECTIONS_KEY = "sidebar-expanded-sections";
 const PINNED_SECTIONS_KEY = "sidebar-pinned-sections";
@@ -504,7 +504,7 @@ export default function Sidebar({
                   className="size-5 object-contain"
                 />
               ) : (
-                <BlackRiver GatewayLogo size={18} className="text-white" />
+                <OmniRouteLogo size={18} className="text-white" />
               )}
             </div>
             {!collapsed && (

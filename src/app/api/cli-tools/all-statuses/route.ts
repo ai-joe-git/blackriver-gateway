@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import pino from "pino";
 
-import { buildErrorBody } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { buildErrorBody } from "@omniroute/open-sse/utils/error.ts";
 
 import { requireCliToolsAuth } from "@/lib/api/requireCliToolsAuth";
 import { CLI_TOOLS } from "@/shared/constants/cliTools";

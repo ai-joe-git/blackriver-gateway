@@ -12,7 +12,7 @@ import { matchesSearch } from "@/shared/utils/turkishText";
  * Generates the chatLanguageModels.json block for VS Code GitHub Copilot
  * using the Azure vendor pattern as required by Copilot's architecture.
  *
- * Feature request: https://github.com/diegosouzapw/BlackRiver Gateway/issues/142
+ * Feature request: https://github.com/diegosouzapw/OmniRoute/issues/142
  */
 export default function CopilotToolCard({
   tool,
@@ -30,7 +30,7 @@ export default function CopilotToolCard({
   const [selectedModels, setSelectedModels] = useState<Set<string>>(() => {
     if (typeof window === "undefined") return new Set<string>();
     try {
-      const saved = localStorage.getItem("BlackRiver Gateway-copilot-selected-models");
+      const saved = localStorage.getItem("OmniRoute-copilot-selected-models");
       return saved ? new Set<string>(JSON.parse(saved)) : new Set<string>();
     } catch {
       return new Set<string>();
@@ -38,7 +38,7 @@ export default function CopilotToolCard({
   });
   const [selectedApiKeyId, setSelectedApiKeyId] = useState(() => {
     if (typeof window !== "undefined") {
-      const savedKey = localStorage.getItem("BlackRiver Gateway-cli-key-copilot");
+      const savedKey = localStorage.getItem("OmniRoute-cli-key-copilot");
       if (savedKey && apiKeys?.some((k: any) => k.id === savedKey)) return savedKey;
     }
     return apiKeys?.length > 0 ? apiKeys[0].id : "";
@@ -86,7 +86,7 @@ export default function CopilotToolCard({
   useEffect(() => {
     if (selectedModels.size > 0) {
       localStorage.setItem(
-        "BlackRiver Gateway-copilot-selected-models",
+        "OmniRoute-copilot-selected-models",
         JSON.stringify([...selectedModels])
       );
     }
@@ -142,16 +142,16 @@ export default function CopilotToolCard({
     }));
 
     const config = {
-      name: "BlackRiver Gateway",
+      name: "OmniRoute",
       vendor: "azure",
-      apiKey: `\${input:chat.lm.secret.BlackRiver Gateway}`,
+      apiKey: `\${input:chat.lm.secret.OmniRoute}`,
       models,
     };
 
     const responsesConfig = {
-      name: "BlackRiver Gateway-responses",
+      name: "OmniRoute-responses",
       vendor: "azure",
-      apiKey: `\${input:chat.lm.secret.BlackRiver Gateway}`,
+      apiKey: `\${input:chat.lm.secret.OmniRoute}`,
       models: responseModels,
     };
 
@@ -166,7 +166,7 @@ export default function CopilotToolCard({
 
   const handleApiKeyChange = (value: string) => {
     setSelectedApiKeyId(value);
-    if (value) localStorage.setItem("BlackRiver Gateway-cli-key-copilot", value);
+    if (value) localStorage.setItem("OmniRoute-cli-key-copilot", value);
   };
 
   return (

@@ -3,7 +3,7 @@ import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { validateBody, isValidationFailure } from "@/shared/validation/helpers";
 import { MemorySummarizeSchema } from "@/shared/schemas/memory";
 import { summarizeMemoriesOlderThan } from "@/lib/memory/summarization";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
 
 export async function POST(request: Request) {
   const authError = await requireManagementAuth(request);

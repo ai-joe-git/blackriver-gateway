@@ -3,20 +3,20 @@ import { Metadata } from "next";
 import { source } from "@/lib/source";
 
 export const metadata: Metadata = {
-  title: "BlackRiver Gateway Documentation",
+  title: "OmniRoute Documentation",
   description:
     "Everything you need to route, compress, and scale your AI — setup guides, API reference, compression, deployment, and more.",
   openGraph: {
-    title: "BlackRiver Gateway Documentation",
+    title: "OmniRoute Documentation",
     description:
-      "Comprehensive docs for BlackRiver Gateway AI gateway — setup, API, compression, deployment, and more.",
+      "Comprehensive docs for OmniRoute AI gateway — setup, API, compression, deployment, and more.",
     type: "website",
-    url: "https://BlackRiver Gateway.online/docs",
+    url: "https://OmniRoute.online/docs",
   },
   twitter: {
     card: "summary_large_image",
-    title: "BlackRiver Gateway Documentation",
-    description: "Comprehensive docs for BlackRiver Gateway AI gateway",
+    title: "OmniRoute Documentation",
+    description: "Comprehensive docs for OmniRoute AI gateway",
   },
 };
 
@@ -25,13 +25,13 @@ const featuredLinks = [
     href: "/docs/getting-started/quick-start",
     title: "Quick Start",
     icon: "rocket_launch",
-    desc: "Get BlackRiver Gateway running in 3 minutes",
+    desc: "Get OmniRoute running in 3 minutes",
   },
   {
     href: "/docs/getting-started/auto-combo-guide",
     title: "Auto-Combo Guide",
     icon: "auto_awesome",
-    desc: "Let BlackRiver Gateway pick the best AI for you",
+    desc: "Let OmniRoute pick the best AI for you",
   },
   {
     href: "/docs/getting-started/providers-guide",
@@ -64,7 +64,7 @@ export default function DocsHomePage() {
   return (
     <div className="max-w-4xl mx-auto py-8 px-4">
       <div className="text-center mb-16 mt-8">
-        <h1 className="text-4xl font-bold text-fd-foreground mb-5">BlackRiver Gateway Documentation</h1>
+        <h1 className="text-4xl font-bold text-fd-foreground mb-5">OmniRoute Documentation</h1>
         <p className="text-lg text-fd-muted-foreground mb-6">
           Everything you need to route, compress, and scale your AI
         </p>

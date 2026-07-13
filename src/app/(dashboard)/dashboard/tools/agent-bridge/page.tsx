@@ -40,7 +40,7 @@ export default async function AgentBridgePage() {
 
   try {
     const base =
-      process.env.BlackRiver Gateway_BASE_URL ??
+      process.env.OMNIROUTE_BASE_URL ??
       `http://127.0.0.1:${process.env.PORT ?? 20128}`;
     const res = await fetch(`${base}/api/tools/agent-bridge/state`, {
       cache: "no-store",

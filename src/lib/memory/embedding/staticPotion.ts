@@ -9,7 +9,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
 import type { EmbeddingResult, EmbeddingError } from "./types";
 
 const MODEL_ID = "minishlab/potion-base-8M";
@@ -20,7 +20,7 @@ const HF_BASE =
 function getModelDir(): string {
   const staticCacheDir = process.env.MEMORY_STATIC_CACHE_DIR;
   if (staticCacheDir) return path.join(staticCacheDir, MODEL_NAME);
-  const dataDir = process.env.DATA_DIR ?? path.join(os.homedir(), ".BlackRiver Gateway");
+  const dataDir = process.env.DATA_DIR ?? path.join(os.homedir(), ".OmniRoute");
   return path.join(dataDir, "embeddings", MODEL_NAME);
 }
 

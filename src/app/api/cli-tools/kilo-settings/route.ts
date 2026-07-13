@@ -23,14 +23,14 @@ const KILO_CONFIG_DIR = path.join(os.homedir(), ".config", "kilo");
 // "installed but not configured" instead of a 500 misread as "not installed".
 const readAuth = async () => readJsoncConfig(AUTH_PATH);
 
-// Check if BlackRiver Gateway OpenAI-compatible provider is configured
-const hasBlackRiver GatewayConfig = (auth) => {
+// Check if OmniRoute OpenAI-compatible provider is configured
+const hasOmniRouteConfig = (auth) => {
   if (!auth) return false;
-  const routerEntry = auth["openai-compatible"] || auth["BlackRiver Gateway"];
+  const routerEntry = auth["openai-compatible"] || auth["OmniRoute"];
   if (!routerEntry) return false;
   const baseUrl = routerEntry.baseUrl || routerEntry.baseURL || "";
   return (
-    baseUrl.includes("localhost") || baseUrl.includes("127.0.0.1") || baseUrl.includes("BlackRiver Gateway")
+    baseUrl.includes("localhost") || baseUrl.includes("127.0.0.1") || baseUrl.includes("OmniRoute")
   );
 };
 
@@ -98,7 +98,7 @@ export async function GET(request: Request) {
         auth: auth ? Object.keys(auth) : [],
         extensionSettings,
       },
-      hasBlackRiver Gateway: hasBlackRiver GatewayConfig(auth),
+      hasOmniRoute: hasOmniRouteConfig(auth),
       authPath: AUTH_PATH,
     });
   } catch (error) {
@@ -107,7 +107,7 @@ export async function GET(request: Request) {
   }
 }
 
-// POST - Configure Kilo Code to use BlackRiver Gateway as OpenAI-compatible provider
+// POST - Configure Kilo Code to use OmniRoute as OpenAI-compatible provider
 export async function POST(request) {
   const authError = await requireCliToolsAuth(request);
   if (authError) return authError;
@@ -161,10 +161,10 @@ export async function POST(request) {
     // Normalize baseUrl
     const normalizedBaseUrl = baseUrl.endsWith("/v1") ? baseUrl : `${baseUrl}/v1`;
 
-    // Add/update BlackRiver Gateway as openai-compatible provider
+    // Add/update OmniRoute as openai-compatible provider
     auth["openai-compatible"] = {
       type: "api-key",
-      apiKey: apiKey || "sk_BlackRiver Gateway",
+      apiKey: apiKey || "sk_OmniRoute",
       baseUrl: normalizedBaseUrl,
       model: model,
     };
@@ -190,9 +190,9 @@ export async function POST(request) {
 
       // Set custom provider config for the extension
       vscodeSettings["kilocode.customProvider"] = {
-        name: "BlackRiver Gateway",
+        name: "OmniRoute",
         baseURL: normalizedBaseUrl,
-        apiKey: apiKey || "sk_BlackRiver Gateway",
+        apiKey: apiKey || "sk_OmniRoute",
       };
       vscodeSettings["kilocode.defaultModel"] = model;
 
@@ -219,7 +219,7 @@ export async function POST(request) {
   }
 }
 
-// DELETE - Remove BlackRiver Gateway config from Kilo
+// DELETE - Remove OmniRoute config from Kilo
 export async function DELETE(request: Request) {
   const authError = await requireCliToolsAuth(request);
   if (authError) return authError;
@@ -245,9 +245,9 @@ export async function DELETE(request: Request) {
       throw error;
     }
 
-    // Remove BlackRiver Gateway provider
+    // Remove OmniRoute provider
     delete auth["openai-compatible"];
-    delete auth["BlackRiver Gateway"];
+    delete auth["OmniRoute"];
 
     await fs.writeFile(AUTH_PATH, JSON.stringify(auth, null, 2));
 
@@ -278,7 +278,7 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: "BlackRiver Gateway settings removed from Kilo Code",
+      message: "OmniRoute settings removed from Kilo Code",
     });
   } catch (error) {
     console.log("Error resetting kilo settings:", error);

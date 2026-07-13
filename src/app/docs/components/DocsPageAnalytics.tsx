@@ -8,7 +8,7 @@ interface PageAnalyticsProps {
   section: string;
 }
 
-const STORAGE_KEY = "BlackRiver Gateway_docs_analytics";
+const STORAGE_KEY = "OMNIROUTE_docs_analytics";
 const MAX_EVENTS = 200;
 
 interface AnalyticsEvent {

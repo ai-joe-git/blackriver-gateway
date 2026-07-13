@@ -24,7 +24,7 @@ export async function GET(): Promise<Response> {
       status: 200,
       headers: {
         "Content-Type": "application/x-pem-file",
-        "Content-Disposition": 'attachment; filename="BlackRiver Gateway-mitm.crt"',
+        "Content-Disposition": 'attachment; filename="OmniRoute-mitm.crt"',
         "Content-Length": String(pem.length),
       },
     });

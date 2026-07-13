@@ -17,7 +17,7 @@
  */
 import { NextResponse } from "next/server";
 
-import { buildErrorBody } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { buildErrorBody } from "@omniroute/open-sse/utils/error.ts";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { GenerateBodySchema } from "@/lib/agentSkills/schemas";
 

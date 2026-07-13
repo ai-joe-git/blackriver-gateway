@@ -113,11 +113,11 @@ export const NOAUTH_PROVIDERS = {
     serviceKinds: ["llm"],
     isLocalCli: true,
     freeNote:
-      "Local passthrough — runs the Augment CLI (`auggie`) on this machine. Auth is handled by `auggie login`, not BlackRiver Gateway.",
+      "Local passthrough — runs the Augment CLI (`auggie`) on this machine. Auth is handled by `auggie login`, not OmniRoute.",
     authHint:
-      "No API key stored by BlackRiver Gateway. Install the Auggie CLI and run `auggie login` on this machine, then BlackRiver Gateway spawns it locally for each request.",
+      "No API key stored by OmniRoute. Install the Auggie CLI and run `auggie login` on this machine, then OmniRoute spawns it locally for each request.",
     notice: {
-      text: "Augment (Auggie CLI) requires the `auggie` binary installed and authenticated locally (`auggie login`). BlackRiver Gateway spawns it as a subprocess and never sees or stores your Augment credentials.",
+      text: "Augment (Auggie CLI) requires the `auggie` binary installed and authenticated locally (`auggie login`). OmniRoute spawns it as a subprocess and never sees or stores your Augment credentials.",
     },
   },
 };

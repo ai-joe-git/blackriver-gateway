@@ -1,5 +1,5 @@
 import { getDbInstance } from "./core";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 
 export interface WebhookDelivery {
   id: number;

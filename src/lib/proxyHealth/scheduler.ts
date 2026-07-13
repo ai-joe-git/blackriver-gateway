@@ -12,7 +12,7 @@
  */
 
 import { deleteProxyById, listProxies, updateProxy } from "@/lib/localDb";
-import { createProxyDispatcher, clearDispatcherCache } from "@BlackRiver Gateway/open-sse/utils/proxyDispatcher";
+import { createProxyDispatcher, clearDispatcherCache } from "@omniroute/open-sse/utils/proxyDispatcher";
 import { fetch as undiciFetch } from "undici";
 import {
   decideProxyHealthAction,
@@ -68,7 +68,7 @@ function isBuildProcess(): boolean {
 }
 
 function isBackgroundServicesDisabled(): boolean {
-  const raw = process.env.BlackRiver Gateway_DISABLE_BACKGROUND_SERVICES;
+  const raw = process.env.OMNIROUTE_DISABLE_BACKGROUND_SERVICES;
   if (!raw) return false;
   return ["1", "true", "yes", "on"].includes(raw.trim().toLowerCase());
 }
@@ -97,7 +97,7 @@ async function testOneProxy(proxy: {
       method: "HEAD",
       signal: controller.signal,
       dispatcher,
-      headers: { "User-Agent": "BlackRiver Gateway/1.0" },
+      headers: { "User-Agent": "OmniRoute/1.0" },
     });
     // A 5xx from the probe target means the proxy DID relay — the target is at
     // fault, not the proxy. Do not penalize the proxy for that.

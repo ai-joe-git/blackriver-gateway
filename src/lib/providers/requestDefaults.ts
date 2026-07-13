@@ -248,7 +248,7 @@ export function buildOpenAIStoreSessionId(sessionId: unknown): string | undefine
     .slice(0, 96);
 
   if (!normalized) return undefined;
-  return `BlackRiver Gateway-session-${normalized}`;
+  return `OmniRoute-session-${normalized}`;
 }
 
 export function ensureOpenAIStoreSessionFallback(

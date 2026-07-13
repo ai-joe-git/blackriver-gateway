@@ -1,5 +1,5 @@
 "use client";
-import type { CompressionHeatmap } from "@BlackRiver Gateway/open-sse/services/compression/diffHelper";
+import type { CompressionHeatmap } from "@omniroute/open-sse/services/compression/diffHelper";
 
 /**
  * Converts a saliency score (0–1) to an RGBA background color.

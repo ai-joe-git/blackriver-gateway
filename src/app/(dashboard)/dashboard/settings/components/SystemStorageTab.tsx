@@ -62,7 +62,7 @@ export default function SystemStorageTab() {
   const tc = useTranslations("common");
   const [storageHealth, setStorageHealth] = useState({
     driver: "sqlite",
-    dbPath: "~/.BlackRiver Gateway/storage.sqlite",
+    dbPath: "~/.OmniRoute/storage.sqlite",
     sizeBytes: 0,
     retentionDays: {
       app: 7,
@@ -515,7 +515,7 @@ export default function SystemStorageTab() {
     try {
       await fetchAndDownload(
         "/api/settings/export-json",
-        `BlackRiver Gateway-legacy-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.json`,
+        `OmniRoute-legacy-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.json`,
         "JSON Export failed"
       );
     } catch (err) {
@@ -580,7 +580,7 @@ export default function SystemStorageTab() {
     try {
       await fetchAndDownload(
         "/api/db-backups/export",
-        `BlackRiver Gateway-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.sqlite`,
+        `OmniRoute-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.sqlite`,
         t("exportFailed")
       );
     } catch (err) {
@@ -1253,7 +1253,7 @@ export default function SystemStorageTab() {
             {t("databasePath")}
           </p>
           <p className="text-sm font-mono text-text-main break-all">
-            {storageHealth.dbPath || "~/.BlackRiver Gateway/storage.sqlite"}
+            {storageHealth.dbPath || "~/.OmniRoute/storage.sqlite"}
           </p>
         </div>
       </div>
@@ -1285,7 +1285,7 @@ export default function SystemStorageTab() {
               try {
                 await fetchAndDownload(
                   "/api/db-backups/exportAll",
-                  "BlackRiver Gateway-full-backup.tar.gz",
+                  "OmniRoute-full-backup.tar.gz",
                   t("exportFailed")
                 );
               } catch (err) {

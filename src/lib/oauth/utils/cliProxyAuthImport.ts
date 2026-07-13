@@ -16,7 +16,7 @@ import path from "path";
 type JsonRecord = Record<string, unknown>;
 
 /**
- * CLIProxyAPI `type` → BlackRiver Gateway provider id. Only OAuth-based providers BlackRiver Gateway
+ * CLIProxyAPI `type` → OmniRoute provider id. Only OAuth-based providers OmniRoute
  * supports are mapped; unknown types are skipped during import.
  */
 export const CLIPROXY_TYPE_TO_PROVIDER: Record<string, string> = {

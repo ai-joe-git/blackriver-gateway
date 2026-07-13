@@ -1,4 +1,4 @@
-import { runWithProxyContext, getOriginalFetch } from "@BlackRiver Gateway/open-sse/utils/proxyFetch.ts";
+import { runWithProxyContext, getOriginalFetch } from "@omniroute/open-sse/utils/proxyFetch.ts";
 import { FetchTimeoutError, fetchWithTimeout } from "@/shared/utils/fetchTimeout";
 import {
   OutboundUrlGuardError,

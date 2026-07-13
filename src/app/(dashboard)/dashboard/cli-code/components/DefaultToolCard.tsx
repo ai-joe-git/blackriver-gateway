@@ -51,7 +51,7 @@ export default function DefaultToolCard({
   const selectedKeyObj = apiKeys?.find((k) => k.id === selectedApiKeyId);
 
   const resolveApiKeyValue = useCallback(
-    () => selectedKeyObj?.rawKey || (!cloudEnabled ? "sk_BlackRiver Gateway" : t("yourApiKeyPlaceholder")),
+    () => selectedKeyObj?.rawKey || (!cloudEnabled ? "sk_OmniRoute" : t("yourApiKeyPlaceholder")),
     [cloudEnabled, selectedKeyObj?.rawKey, t]
   );
 
@@ -99,7 +99,7 @@ export default function DefaultToolCard({
 
   // Persist and restore model selection per tool via localStorage
   useEffect(() => {
-    const savedModel = localStorage.getItem(`BlackRiver Gateway-cli-model-${toolId}`);
+    const savedModel = localStorage.getItem(`OmniRoute-cli-model-${toolId}`);
     if (savedModel) {
       if (isMultiModelTool) {
         try {
@@ -120,7 +120,7 @@ export default function DefaultToolCard({
         setModelValue(savedModel);
       }
     }
-    const savedKey = localStorage.getItem(`BlackRiver Gateway-cli-key-${toolId}`);
+    const savedKey = localStorage.getItem(`OmniRoute-cli-key-${toolId}`);
     // (#523) localStorage may contain a masked key string from before the fix —
     // match by prefix/suffix against known keys to find the id.
     if (savedKey && apiKeys?.length > 0) {
@@ -139,9 +139,9 @@ export default function DefaultToolCard({
     (value) => {
       setModelValue(value);
       if (value) {
-        localStorage.setItem(`BlackRiver Gateway-cli-model-${toolId}`, value);
+        localStorage.setItem(`OmniRoute-cli-model-${toolId}`, value);
       } else {
-        localStorage.removeItem(`BlackRiver Gateway-cli-model-${toolId}`);
+        localStorage.removeItem(`OmniRoute-cli-model-${toolId}`);
       }
     },
     [toolId]
@@ -157,9 +157,9 @@ export default function DefaultToolCard({
       setModelValue(normalized[0] || "");
 
       if (normalized.length > 0) {
-        localStorage.setItem(`BlackRiver Gateway-cli-model-${toolId}`, JSON.stringify(normalized));
+        localStorage.setItem(`OmniRoute-cli-model-${toolId}`, JSON.stringify(normalized));
       } else {
-        localStorage.removeItem(`BlackRiver Gateway-cli-model-${toolId}`);
+        localStorage.removeItem(`OmniRoute-cli-model-${toolId}`);
       }
     },
     [toolId]
@@ -170,7 +170,7 @@ export default function DefaultToolCard({
       setSelectedApiKeyId(value);
       if (value) {
         // (#523) Store the key id in localStorage for persistence
-        localStorage.setItem(`BlackRiver Gateway-cli-key-${toolId}`, value);
+        localStorage.setItem(`OmniRoute-cli-key-${toolId}`, value);
       }
     },
     [toolId]
@@ -270,7 +270,7 @@ export default function DefaultToolCard({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           baseUrl: baseUrlWithV1,
-          apiKey: !cloudEnabled ? "sk_BlackRiver Gateway" : null,
+          apiKey: !cloudEnabled ? "sk_OmniRoute" : null,
           keyId: selectedKeyId,
           model: modelValue,
           models: isMultiModelTool ? getSelectedModels() : undefined,
@@ -327,7 +327,7 @@ export default function DefaultToolCard({
           </>
         ) : (
           <span className="text-sm text-text-muted">
-            {cloudEnabled ? t("noApiKeysCreateOne") : "sk_BlackRiver Gateway"}
+            {cloudEnabled ? t("noApiKeysCreateOne") : "sk_OmniRoute"}
           </span>
         )}
       </div>

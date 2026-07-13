@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-const LS_KEY = "BlackRiver Gateway:concept-files-collapsed";
+const LS_KEY = "OmniRoute:concept-files-collapsed";
 
 interface Props {
   className?: string;

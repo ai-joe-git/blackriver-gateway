@@ -28,7 +28,7 @@ describe("normalizeQdrantConfig — defaults & disabled state", () => {
     expect(cfg.apiKey).toBeNull();
     // Defaults still applied for non-toggle fields:
     expect(cfg.port).toBe(6333);
-    expect(cfg.collection).toBe("BlackRiver Gateway_memory");
+    expect(cfg.collection).toBe("OMNIROUTE_memory");
     expect(cfg.embeddingModel).toBe("openai/text-embedding-3-small");
     expect(cfg.vectorSize).toBe(1536);
     expect(cfg.hnswEfConstruct).toBe(128);

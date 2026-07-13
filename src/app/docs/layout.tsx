@@ -8,11 +8,11 @@ import LanguageSelector from "@/shared/components/LanguageSelector";
 
 export const metadata = {
   title: {
-    template: "%s — BlackRiver Gateway Docs",
-    default: "BlackRiver Gateway Documentation",
+    template: "%s — OmniRoute Docs",
+    default: "OmniRoute Documentation",
   },
   description:
-    "Comprehensive documentation for BlackRiver Gateway AI gateway — setup, API, compression, deployment, and more.",
+    "Comprehensive documentation for OmniRoute AI gateway — setup, API, compression, deployment, and more.",
   robots: {
     index: true,
     follow: true,
@@ -21,7 +21,7 @@ export const metadata = {
 
 const docsLayoutOptions: BaseLayoutProps = {
   nav: {
-    title: "BlackRiver Gateway Docs",
+    title: "OmniRoute Docs",
     url: "/docs",
     children: (
       <Suspense fallback={<div className="w-24 h-8" />}>
@@ -40,7 +40,7 @@ const docsLayoutOptions: BaseLayoutProps = {
       secondary: true,
     },
   ],
-  githubUrl: "https://github.com/diegosouzapw/BlackRiver Gateway",
+  githubUrl: "https://github.com/diegosouzapw/OmniRoute",
 };
 
 export default function Layout({ children }: { children: ReactNode }) {

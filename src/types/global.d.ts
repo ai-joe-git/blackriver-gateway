@@ -1,5 +1,5 @@
 /**
- * Global Type Declarations for BlackRiver Gateway
+ * Global Type Declarations for OmniRoute
  *
  * Ambient declarations for modules and globals that don't ship their own types.
  */
@@ -21,12 +21,12 @@ declare namespace NodeJS {
     PORT?: string;
     API_HOST?: string;
     DASHBOARD_PORT?: string;
-    BlackRiver Gateway_PUBLIC_BASE_URL?: string;
-    BlackRiver Gateway_CGPT_WEB_IMAGE_TIMEOUT_MS?: string;
-    BlackRiver Gateway_CGPT_WEB_IMAGE_CACHE_MAX_MB?: string;
-    BlackRiver Gateway_BASE_URL?: string;
-    BlackRiver Gateway_DISABLE_BACKGROUND_SERVICES?: string;
-    BlackRiver Gateway_PORT?: string;
+    OMNIROUTE_PUBLIC_BASE_URL?: string;
+    OMNIROUTE_CGPT_WEB_IMAGE_TIMEOUT_MS?: string;
+    OMNIROUTE_CGPT_WEB_IMAGE_CACHE_MAX_MB?: string;
+    OMNIROUTE_BASE_URL?: string;
+    OMNIROUTE_DISABLE_BACKGROUND_SERVICES?: string;
+    OMNIROUTE_PORT?: string;
     PRICING_SYNC_ENABLED?: string;
     NODE_ENV?: "development" | "production" | "test";
   }

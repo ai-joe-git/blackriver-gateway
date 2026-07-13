@@ -28,10 +28,10 @@
  *      or set to a loopback address. This blocks proxied requests from the
  *      public internet when the dev server is bound to localhost.
  *   2. In production (`NODE_ENV=production`), reject unconditionally unless
- *      BlackRiver Gateway_LOCAL_ENDPOINTS_ENABLED=1 is set. The flag is opt-in so
+ *      OMNIROUTE_LOCAL_ENDPOINTS_ENABLED=1 is set. The flag is opt-in so
  *      accidental dev deployments do not expose the API.
- *   3. Trust-list the BlackRiver Gateway desktop app via a shared bearer token
- *      (BlackRiver Gateway_LOCAL_ENDPOINTS_TOKEN). The desktop app injects the header
+ *   3. Trust-list the OmniRoute desktop app via a shared bearer token
+ *      (OMNIROUTE_LOCAL_ENDPOINTS_TOKEN). The desktop app injects the header
  *      and the server verifies it.
  *
  * If you are adding a new endpoint under /api/local/* you must:
@@ -44,7 +44,7 @@ export function isLocalRequestAllowed(): { allowed: true } | { allowed: false; r
   const headers = (globalThis as { __omniRequestHeaders?: Headers }).__omniRequestHeaders;
   if (headers) {
     // 1. Bearer token path (desktop app trust)
-    const expected = process.env.BlackRiver Gateway_LOCAL_ENDPOINTS_TOKEN;
+    const expected = process.env.OMNIROUTE_LOCAL_ENDPOINTS_TOKEN;
     if (expected) {
       const supplied = headers.get("authorization")?.replace(/^Bearer\s+/i, "") ?? "";
       if (supplied && constantTimeEqual(supplied, expected)) {
@@ -65,7 +65,7 @@ export function isLocalRequestAllowed(): { allowed: true } | { allowed: false; r
   }
 
   // Production opt-in
-  if (process.env.NODE_ENV === "production" && process.env.BlackRiver Gateway_LOCAL_ENDPOINTS_ENABLED !== "1") {
+  if (process.env.NODE_ENV === "production" && process.env.OMNIROUTE_LOCAL_ENDPOINTS_ENABLED !== "1") {
     return { allowed: false, reason: "disabled in production" };
   }
 

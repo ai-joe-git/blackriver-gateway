@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import BlackRiver GatewayLogo from "@/shared/components/BlackRiver GatewayLogo";
+import OmniRouteLogo from "@/shared/components/OmniRouteLogo";
 
 export default function Navigation() {
   const t = useTranslations("landing");
@@ -21,7 +21,7 @@ export default function Navigation() {
           aria-label={t("navigateHome")}
         >
           <div className="size-8 rounded bg-linear-to-br from-[#E54D5E] to-[#C93D4E] flex items-center justify-center text-white">
-            <BlackRiver GatewayLogo size={20} className="text-white" />
+            <OmniRouteLogo size={20} className="text-white" />
           </div>
           <h2 className="text-white text-lg sm:text-xl font-bold tracking-tight truncate sm:max-w-none max-w-[160px]">
             {t("brandName")}
@@ -50,7 +50,7 @@ export default function Navigation() {
           </Link>
           <a
             className="text-gray-300 hover:text-white text-sm font-medium transition-colors flex items-center gap-1"
-            href="https://github.com/diegosouzapw/BlackRiver Gateway"
+            href="https://github.com/diegosouzapw/OmniRoute"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -108,7 +108,7 @@ export default function Navigation() {
             </Link>
             <a
               className="text-gray-300 hover:text-white text-sm font-medium transition-colors"
-              href="https://github.com/diegosouzapw/BlackRiver Gateway"
+              href="https://github.com/diegosouzapw/OmniRoute"
               target="_blank"
               rel="noopener noreferrer"
             >

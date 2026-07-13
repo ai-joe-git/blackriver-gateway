@@ -42,7 +42,7 @@ export default function ClineToolCard({
 
   const getConfigStatus = () => {
     if (!cliReady) return null;
-    if (!clineStatus.hasBlackRiver Gateway) return "not_configured";
+    if (!clineStatus.hasOmniRoute) return "not_configured";
     const baseUrlVal = clineStatus.settings?.openAiBaseUrl || "";
     const localMatch = baseUrlVal.includes("localhost") || baseUrlVal.includes("127.0.0.1");
     const cloudMatch = cloudEnabled && CLOUD_URL && baseUrlVal.startsWith(CLOUD_URL);
@@ -168,7 +168,7 @@ export default function ClineToolCard({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           baseUrl: normalizedBaseUrl,
-          apiKey: !cloudEnabled ? "sk_BlackRiver Gateway" : null,
+          apiKey: !cloudEnabled ? "sk_OmniRoute" : null,
           keyId: selectedKeyId,
           model: selectedModel,
         }),
@@ -319,7 +319,7 @@ export default function ClineToolCard({
                       </span>
                       <div className="flex flex-col gap-1">
                         <p className="text-sm text-green-700 dark:text-green-300">
-                          {t("BlackRiver GatewayConfiguredOpenAiCompatible")}
+                          {t("OmniRouteConfiguredOpenAiCompatible")}
                         </p>
                         <p className="text-xs text-text-muted">
                           {t("provider")}: <strong>openai</strong> • {t("model")}:{" "}
@@ -375,7 +375,7 @@ export default function ClineToolCard({
                       </select>
                     ) : (
                       <p className="text-sm text-text-muted">
-                        {cloudEnabled ? t("noApiKeysAvailable") : t("usingDefaultBlackRiver Gateway")}
+                        {cloudEnabled ? t("noApiKeysAvailable") : t("usingDefaultOmniRoute")}
                       </p>
                     )}
                   </div>

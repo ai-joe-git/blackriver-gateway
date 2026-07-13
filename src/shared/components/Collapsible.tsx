@@ -26,7 +26,7 @@ interface CollapsibleProps {
  * Minimal click-to-expand section. Stateless from the caller's perspective
  * (open/closed lives in local state — does NOT survive page refresh, per the
  * UX brief). Uses material-symbols-outlined chevrons to match the rest of
- * the BlackRiver Gateway UI.
+ * the OmniRoute UI.
  */
 export default function Collapsible({
   title,

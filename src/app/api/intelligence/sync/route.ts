@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { intelligenceSyncRequestSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 
 export async function POST(request: NextRequest) {
   const authError = await requireManagementAuth(request);

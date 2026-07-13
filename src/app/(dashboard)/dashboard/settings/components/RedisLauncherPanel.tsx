@@ -36,7 +36,7 @@ async function apiCall(endpoint: string, options: RequestInit = {}) {
 
 /**
  * Compact 1-click Redis control. Sits inside the resilience settings tab and
- * shells out to the same logic exposed via the `BlackRiver Gateway redis` CLI command.
+ * shells out to the same logic exposed via the `OmniRoute redis` CLI command.
  * The actual container management is delegated to the server-side endpoint
  * at /api/local/redis/* so the browser never executes podman/docker directly.
  */
@@ -146,7 +146,7 @@ export default function RedisLauncherPanel() {
       <p className="mt-3 text-xs text-text-muted">
         {t(
           "redisLauncherHint",
-          "Equivalent to running `BlackRiver Gateway redis up`. The container is named `BlackRiver Gateway-redis` and listens on 127.0.0.1:6379."
+          "Equivalent to running `OmniRoute redis up`. The container is named `OmniRoute-redis` and listens on 127.0.0.1:6379."
         )}
       </p>
     </div>

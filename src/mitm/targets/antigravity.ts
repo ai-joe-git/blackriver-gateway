@@ -25,10 +25,10 @@ const ENDPOINTS = [
 ];
 
 const INSTRUCTIONS = [
-  "1. Install BlackRiver Gateway's root certificate",
+  "1. Install OmniRoute's root certificate",
   "2. Start the MITM proxy via Dashboard or CLI",
   "3. Configure model mappings in Dashboard → AgentBridge → Antigravity",
-  "4. Open Antigravity IDE — API calls will be routed through BlackRiver Gateway",
+  "4. Open Antigravity IDE — API calls will be routed through OmniRoute",
 ];
 
 export const ANTIGRAVITY_TARGET: MitmTarget = {
@@ -73,7 +73,7 @@ export const ANTIGRAVITY_MITM_PROFILE: MitmTarget & {
 } = {
   ...ANTIGRAVITY_TARGET,
   description:
-    "Intercepts Antigravity IDE requests to cloudcode-pa.googleapis.com and routes them through BlackRiver Gateway.",
+    "Intercepts Antigravity IDE requests to cloudcode-pa.googleapis.com and routes them through OmniRoute.",
   targetHost: HOSTS[0],
   targetPort: 443,
   localPort: 443,

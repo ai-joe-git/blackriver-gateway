@@ -1,24 +1,24 @@
-import { handleEmbedding } from "@BlackRiver Gateway/open-sse/handlers/embeddings.ts";
+import { handleEmbedding } from "@omniroute/open-sse/handlers/embeddings.ts";
 import {
   parseEmbeddingModel,
   getEmbeddingProvider,
   buildDynamicEmbeddingProvider,
   type EmbeddingProviderNodeRow,
   type EmbeddingProvider,
-} from "@BlackRiver Gateway/open-sse/config/embeddingRegistry.ts";
-import { errorResponse, unavailableResponse } from "@BlackRiver Gateway/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@BlackRiver Gateway/open-sse/config/constants.ts";
+} from "@omniroute/open-sse/config/embeddingRegistry.ts";
+import { errorResponse, unavailableResponse } from "@omniroute/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
 import * as log from "@/sse/utils/logger";
 import { toJsonErrorPayload } from "@/shared/utils/upstreamError";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";
 import { getProviderNodes, getComboByName, getCombos, getDatabaseSettings } from "@/lib/localDb";
 import { resolveProxyForConnection } from "@/lib/db/settings";
-import { runWithProxyContext } from "@BlackRiver Gateway/open-sse/utils/proxyFetch.ts";
-import { handleComboChat } from "@BlackRiver Gateway/open-sse/services/combo.ts";
-import { resolveBareModelToConnectionDefault } from "@BlackRiver Gateway/open-sse/services/model.ts";
+import { runWithProxyContext } from "@omniroute/open-sse/utils/proxyFetch.ts";
+import { handleComboChat } from "@omniroute/open-sse/services/combo.ts";
+import { resolveBareModelToConnectionDefault } from "@omniroute/open-sse/services/model.ts";
 import { findEmbeddingComboDimensionConflict } from "./familyGuard";
 import { calculateCost } from "@/lib/usage/costCalculator";
-import { attachBlackRiver GatewayMetaHeaders } from "@/domain/BlackRiver GatewayResponseMeta";
+import { attachOmniRouteMetaHeaders } from "@/domain/OmniRouteResponseMeta";
 import { generateRequestId } from "@/shared/utils/requestId";
 
 type ValidatedEmbeddingBody = Record<string, unknown> & { model: string };
@@ -265,7 +265,7 @@ export async function createEmbeddingResponse(
     responseHeaders.set("Content-Type", "application/json");
     const usage = (result.data as { usage?: Record<string, number> })?.usage ?? null;
     const costUsd = usage ? await calculateCost(provider, effectiveModel ?? "", usage) : 0;
-    attachBlackRiver GatewayMetaHeaders(responseHeaders, {
+    attachOmniRouteMetaHeaders(responseHeaders, {
       provider,
       model: effectiveModel,
       usage,

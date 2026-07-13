@@ -8,7 +8,7 @@
  */
 
 const KNOWN_WEAK_SECRETS = [
-  "BlackRiver Gateway-default-secret-change-me",
+  "OmniRoute-default-secret-change-me",
   "change-me-to-a-long-random-secret",
   "endpoint-proxy-api-key-secret",
   "change-me-storage-encryption-key",

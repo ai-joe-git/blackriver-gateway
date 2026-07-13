@@ -12,11 +12,11 @@ import type { MitmTarget } from "../types";
 const HOSTS = ["api.anthropic.com"];
 const ENDPOINTS = ["/v1/messages"];
 const INSTRUCTIONS = [
-  "1. Install BlackRiver Gateway's root certificate (Dashboard → AgentBridge → Cert)",
-  "2. Start the MITM proxy: `BlackRiver Gateway mitm start --target kiro`",
+  "1. Install OmniRoute's root certificate (Dashboard → AgentBridge → Cert)",
+  "2. Start the MITM proxy: `OmniRoute mitm start --target kiro`",
   "3. Set your system HTTP proxy to 127.0.0.1:20130 (or use transparent MITM via DNS override)",
-  "4. Open Kiro IDE — API calls will be automatically routed through BlackRiver Gateway.",
-  "5. Verify: check the Proxy Logs in BlackRiver Gateway dashboard and look for provider=anthropic source=mitm",
+  "4. Open Kiro IDE — API calls will be automatically routed through OmniRoute.",
+  "5. Verify: check the Proxy Logs in OmniRoute dashboard and look for provider=anthropic source=mitm",
 ];
 
 export const KIRO_TARGET: MitmTarget = {
@@ -52,7 +52,7 @@ export const KIRO_MITM_PROFILE: MitmTarget & {
 } = {
   ...KIRO_TARGET,
   description:
-    "Intercepts Kiro IDE requests to api.anthropic.com and routes them through BlackRiver Gateway.",
+    "Intercepts Kiro IDE requests to api.anthropic.com and routes them through OmniRoute.",
   targetHost: HOSTS[0],
   targetPort: 443,
   localPort: 20130,

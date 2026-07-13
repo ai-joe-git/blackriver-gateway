@@ -17,7 +17,7 @@ const useEmailPrivacyStore = create<EmailPrivacyState>()(
       setEmailsVisible: (visible) => set({ emailsVisible: visible }),
     }),
     {
-      name: "BlackRiver Gateway-email-privacy",
+      name: "OmniRoute-email-privacy",
     }
   )
 );

@@ -11,7 +11,7 @@ import type { MitmTargetView } from "@/mitm/types";
 import type { AgentStateEntry } from "../AgentBridgePageClient";
 import type { MappingRow } from "./ModelMappingTable";
 
-const RISK_STORAGE_KEY_PREFIX = "BlackRiver Gateway-agentbridge-risk-dismissed-";
+const RISK_STORAGE_KEY_PREFIX = "OmniRoute-agentbridge-risk-dismissed-";
 
 function hasAcceptedRisk(agentId: string): boolean {
   try {

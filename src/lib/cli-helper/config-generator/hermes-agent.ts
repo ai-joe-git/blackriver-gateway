@@ -15,11 +15,11 @@
  *
  * interface HermesAgentRoleSelection {
  *   role: 'default' | 'delegation' | 'vision' | 'compression' | 'web_extract' | 'skills_hub' | 'approval' | ...;
- *   model: string;                    // the model name the user chose from BlackRiver Gateway
+ *   model: string;                    // the model name the user chose from OmniRoute
  * }
  *
  * interface HermesAgentConfigPayload {
- *   baseUrl: string;                  // usually the BlackRiver Gateway base URL
+ *   baseUrl: string;                  // usually the OmniRoute base URL
  *   keyId?: string | null;            // preferred: reference to a stored key
  *   apiKey?: string | null;           // fallback plaintext key
  *   selections: HermesAgentRoleSelection[];
@@ -71,7 +71,7 @@ function normalizeBaseUrl(base: string): string {
 function getProviderBlock(baseUrl: string, apiKey: string) {
   const normalized = normalizeBaseUrl(baseUrl);
   return {
-    provider: "BlackRiver Gateway",
+    provider: "OmniRoute",
     model: "", // will be filled per-role
     base_url: `${normalized}/v1`,
     api_key: apiKey,
@@ -92,7 +92,7 @@ export async function generateHermesAgentConfig(
   }
 
   // Resolve the actual key to use (in real impl we would look up keyId)
-  const resolvedKey = apiKey || "YOUR_BlackRiver Gateway_API_KEY_HERE";
+  const resolvedKey = apiKey || "YOUR_OMNIROUTE_API_KEY_HERE";
 
   // Read existing config if present (non-destructive merge)
   let existing: any = {};
@@ -104,9 +104,9 @@ export async function generateHermesAgentConfig(
     // no existing file — start fresh
   }
 
-  // Build the providers.BlackRiver Gateway entry (shared)
+  // Build the providers.OmniRoute entry (shared)
   const normalizedBase = normalizeBaseUrl(baseUrl);
-  const BlackRiver GatewayProvider = {
+  const OmniRouteProvider = {
     base_url: `${normalizedBase}/v1`,
     api_key: resolvedKey,
   };
@@ -116,7 +116,7 @@ export async function generateHermesAgentConfig(
     ...existing,
     providers: {
       ...(existing.providers || {}),
-      BlackRiver Gateway: BlackRiver GatewayProvider,
+      OmniRoute: OmniRouteProvider,
     },
   };
 
@@ -128,14 +128,14 @@ export async function generateHermesAgentConfig(
       next.model = {
         ...(existing.model || {}),
         default: model,
-        provider: "BlackRiver Gateway",
+        provider: "OmniRoute",
         base_url: `${normalizedBase}/v1`,
       };
     } else if (role === "delegation") {
       next.delegation = {
         ...(existing.delegation || {}),
         model,
-        provider: "BlackRiver Gateway",
+        provider: "OmniRoute",
         base_url: `${normalizedBase}/v1`,
         api_key: resolvedKey,
       };
@@ -144,7 +144,7 @@ export async function generateHermesAgentConfig(
       if (!next.auxiliary) next.auxiliary = {};
       next.auxiliary[role] = {
         ...(existing.auxiliary?.[role] || {}),
-        provider: "BlackRiver Gateway",
+        provider: "OmniRoute",
         model,
         base_url: `${normalizedBase}/v1`,
         api_key: resolvedKey,

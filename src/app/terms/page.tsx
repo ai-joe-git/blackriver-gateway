@@ -57,7 +57,7 @@ export default function TermsPage() {
               <li>{t("termsNoTransmission")}</li>
               <li>
                 {t("termsDataLocationText")}{" "}
-                <code className="text-primary text-sm">~/.BlackRiver Gateway/</code>.
+                <code className="text-primary text-sm">~/.OmniRoute/</code>.
               </li>
             </ul>
           </section>
@@ -77,7 +77,7 @@ export default function TermsPage() {
           <p>
             {t("questionsVisit")}{" "}
             <a
-              href="https://github.com/diegosouzapw/BlackRiver Gateway"
+              href="https://github.com/diegosouzapw/OmniRoute"
               className="text-primary hover:underline"
               target="_blank"
               rel="noopener noreferrer"

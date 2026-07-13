@@ -6,7 +6,7 @@
  * This satisfies D8 + D25 (serverExternalPackages + no bundle impact).
  */
 
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
 import type { EmbeddingResult, EmbeddingError } from "./types";
 
 const TRANSFORMERS_MODEL =

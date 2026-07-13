@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import {
   getRtkFilterCatalog,
   getRtkFilterLoadDiagnostics,
-} from "@BlackRiver Gateway/open-sse/services/compression/engines/rtk/filterLoader";
+} from "@omniroute/open-sse/services/compression/engines/rtk/filterLoader";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 
 export async function GET(request: Request) {

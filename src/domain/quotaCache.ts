@@ -13,9 +13,9 @@
  * @module domain/quotaCache
  */
 
-import { getUsageForProvider } from "@BlackRiver Gateway/open-sse/services/usage.ts";
+import { getUsageForProvider } from "@omniroute/open-sse/services/usage.ts";
 import { getProviderConnectionById, resolveProxyForConnection } from "@/lib/localDb";
-import { runWithProxyContext } from "@BlackRiver Gateway/open-sse/utils/proxyFetch.ts";
+import { runWithProxyContext } from "@omniroute/open-sse/utils/proxyFetch.ts";
 import { safePercentage } from "@/shared/utils/formatting";
 import {
   saveQuotaSnapshot,
@@ -23,7 +23,7 @@ import {
   getLatestQuotaSnapshotsForConnection,
 } from "@/lib/db/quotaSnapshots";
 import { recordProviderQuotaResetEventIfChanged } from "@/lib/db/quotaResetEvents";
-import { getCodexQuotaWindowFilterForModel } from "@BlackRiver Gateway/open-sse/config/codexQuotaScopes.ts";
+import { getCodexQuotaWindowFilterForModel } from "@omniroute/open-sse/config/codexQuotaScopes.ts";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 

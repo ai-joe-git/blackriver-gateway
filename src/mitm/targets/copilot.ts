@@ -22,7 +22,7 @@ export const COPILOT_TARGET: MitmTarget = {
       "Sign in to GitHub with a Copilot-enabled account",
       "Enable DNS routing for this agent",
       "Restart VS Code",
-      "Done — Copilot now routes via BlackRiver Gateway",
+      "Done — Copilot now routes via OmniRoute",
     ],
     detection: { command: "code --list-extensions", platform: "all" },
   },

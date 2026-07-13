@@ -101,7 +101,7 @@ export default function RelayProxyClient() {
         <div>
           <h1 className="text-xl font-bold">Serverless Relay Proxies</h1>
           <p className="text-sm text-text-muted mt-1">
-            Create public API endpoints that proxy to BlackRiver Gateway with rate limiting and access control
+            Create public API endpoints that proxy to OmniRoute with rate limiting and access control
           </p>
         </div>
         <Button onClick={() => setShowCreate(!showCreate)}>

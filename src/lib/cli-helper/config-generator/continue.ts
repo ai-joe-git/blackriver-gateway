@@ -26,7 +26,7 @@ export async function generateContinueConfig(options: {
   const config = {
     models: [
       {
-        title: "BlackRiver Gateway",
+        title: "OmniRoute",
         apiKey: options.apiKey,
         apiBase: `${base}/v1`,
       },

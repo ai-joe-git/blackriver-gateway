@@ -48,7 +48,7 @@ export const HooksSchema = z.object({
 // ── Requires ──
 
 export const RequiresSchema = z.object({
-  BlackRiver Gateway: z.string().optional(),
+  OmniRoute: z.string().optional(),
   permissions: z.array(PermissionSchema).optional(),
 });
 
@@ -96,7 +96,7 @@ export interface PluginManifestWithDefaults extends PluginManifest {
   main: string;
   source: "local" | "marketplace";
   tags: string[];
-  requires: { BlackRiver Gateway?: string; permissions: Permission[] };
+  requires: { OmniRoute?: string; permissions: Permission[] };
   hooks: {
     onRequest: boolean;
     onResponse: boolean;
@@ -119,7 +119,7 @@ export function applyDefaults(manifest: PluginManifest): PluginManifestWithDefau
     source: manifest.source ?? "local",
     tags: manifest.tags ?? [],
     requires: {
-      BlackRiver Gateway: manifest.requires?.BlackRiver Gateway,
+      OmniRoute: manifest.requires?.OmniRoute,
       permissions: manifest.requires?.permissions ?? [],
     },
     hooks: {

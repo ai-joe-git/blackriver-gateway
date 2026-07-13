@@ -1,5 +1,5 @@
-export const SHOW_CONFIGURED_ONLY_STORAGE_KEY = "BlackRiver Gateway-providers-show-configured-only";
-export const PROVIDER_DISPLAY_MODE_STORAGE_KEY = "BlackRiver Gateway-providers-display-mode";
+export const SHOW_CONFIGURED_ONLY_STORAGE_KEY = "OmniRoute-providers-show-configured-only";
+export const PROVIDER_DISPLAY_MODE_STORAGE_KEY = "OmniRoute-providers-display-mode";
 
 export type ProviderDisplayMode = "all" | "configured" | "compact";
 

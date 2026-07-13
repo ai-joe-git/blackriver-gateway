@@ -16,16 +16,16 @@
 const SHUTDOWN_TIMEOUT_MS = parseInt(process.env.SHUTDOWN_TIMEOUT_MS || "30000", 10);
 
 declare global {
-  var __BlackRiver GatewayShutdown:
+  var __OmniRouteShutdown:
     | { init: boolean; shuttingDown: boolean; activeRequests: number }
     | undefined;
 }
 
 function getShutdownState() {
-  if (!globalThis.__BlackRiver GatewayShutdown) {
-    globalThis.__BlackRiver GatewayShutdown = { init: false, shuttingDown: false, activeRequests: 0 };
+  if (!globalThis.__OmniRouteShutdown) {
+    globalThis.__OmniRouteShutdown = { init: false, shuttingDown: false, activeRequests: 0 };
   }
-  return globalThis.__BlackRiver GatewayShutdown;
+  return globalThis.__OmniRouteShutdown;
 }
 
 /**
@@ -98,7 +98,7 @@ async function cleanup(): Promise<void> {
   try {
     const [{ closeAuditDb }, { closeDbInstance }, { flushSpendBatchWriter }, { closeLogRotation }] =
       await Promise.all([
-        import("@BlackRiver Gateway/open-sse/mcp-server/audit.ts"),
+        import("@omniroute/open-sse/mcp-server/audit.ts"),
         import("@/lib/db/core"),
         import("@/lib/spend/batchWriter"),
         import("@/lib/logRotation"),

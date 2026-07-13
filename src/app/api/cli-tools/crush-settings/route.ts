@@ -14,14 +14,14 @@ import { saveCliToolLastConfigured, deleteCliToolLastConfigured } from "@/lib/db
 import { cliModelConfigSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { resolveApiKey } from "@/shared/services/apiKeyResolver";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
 
 const TOOL_ID = "crush";
 
 // Crush (charmbracelet/crush) reads a file-based config, default
 // ~/.config/crush/crush.json — same default `bin/cli/commands/setup-crush.mjs`
 // (resolveCrushTarget / runSetupCrushCommand) writes to, so the dashboard and
-// the `BlackRiver Gateway setup-crush` CLI command agree on one canonical location.
+// the `OmniRoute setup-crush` CLI command agree on one canonical location.
 const getCrushConfigPath = (): string =>
   getCliPrimaryConfigPath(TOOL_ID) ??
   path.join(process.env.HOME ?? "~", ".config", "crush", "crush.json");
@@ -29,8 +29,8 @@ const getCrushConfigPath = (): string =>
 const getCrushDir = () => path.dirname(getCrushConfigPath());
 
 /**
- * Crush's config uses a `providers.<id>` map. BlackRiver Gateway is registered under
- * the `BlackRiver Gateway` provider id as an `openai-compat` provider — same shape
+ * Crush's config uses a `providers.<id>` map. OmniRoute is registered under
+ * the `OmniRoute` provider id as an `openai-compat` provider — same shape
  * `buildCrushProvider()`/`mergeCrushConfig()` in setup-crush.mjs produce.
  */
 type CrushProvider = {
@@ -47,15 +47,15 @@ const ensureV1 = (url: string): string => {
   return s.endsWith("/v1") ? s : `${s}/v1`;
 };
 
-const hasBlackRiver GatewayConfig = (settings: Record<string, unknown> | null): boolean => {
+const hasOmniRouteConfig = (settings: Record<string, unknown> | null): boolean => {
   if (!settings) return false;
   const providers = settings.providers as Record<string, unknown> | undefined;
-  const BlackRiver Gateway = providers?.BlackRiver Gateway as Record<string, unknown> | undefined;
+  const OmniRoute = providers?.OmniRoute as Record<string, unknown> | undefined;
   return (
-    !!BlackRiver Gateway &&
-    BlackRiver Gateway.type === "openai-compat" &&
-    typeof BlackRiver Gateway.base_url === "string" &&
-    BlackRiver Gateway.base_url.length > 0
+    !!OmniRoute &&
+    OmniRoute.type === "openai-compat" &&
+    typeof OmniRoute.base_url === "string" &&
+    OmniRoute.base_url.length > 0
   );
 };
 
@@ -104,7 +104,7 @@ export async function GET(request: Request) {
       runtimeMode: runtime.runtimeMode,
       reason: runtime.reason,
       config,
-      hasBlackRiver Gateway: hasBlackRiver GatewayConfig(config),
+      hasOmniRoute: hasOmniRouteConfig(config),
       configPath: getCrushConfigPath(),
     });
   } catch (err) {
@@ -112,7 +112,7 @@ export async function GET(request: Request) {
   }
 }
 
-// POST — write BlackRiver Gateway settings to crush.json (providers.BlackRiver Gateway)
+// POST — write OmniRoute settings to crush.json (providers.OmniRoute)
 export async function POST(request: Request) {
   const authError = await requireCliToolsAuth(request);
   if (authError) return authError;
@@ -163,14 +163,14 @@ export async function POST(request: Request) {
       type: "openai-compat",
       base_url: normalizedBaseUrl,
       api_key: apiKey,
-      models: [{ id: model, name: `BlackRiver Gateway: ${model}`, context_window: DEFAULT_CONTEXT_WINDOW }],
+      models: [{ id: model, name: `OmniRoute: ${model}`, context_window: DEFAULT_CONTEXT_WINDOW }],
     };
 
     const updated: Record<string, unknown> = {
       ...existing,
       providers: {
         ...((existing.providers as Record<string, unknown>) || {}),
-        BlackRiver Gateway: provider,
+        OmniRoute: provider,
       },
     };
 
@@ -193,7 +193,7 @@ export async function POST(request: Request) {
   }
 }
 
-// DELETE — remove BlackRiver Gateway provider from Crush config
+// DELETE — remove OmniRoute provider from Crush config
 export async function DELETE(request: Request) {
   const authError = await requireCliToolsAuth(request);
   if (authError) return authError;
@@ -221,10 +221,10 @@ export async function DELETE(request: Request) {
       throw err;
     }
 
-    // Remove only the BlackRiver Gateway-managed provider entry — preserve the rest
+    // Remove only the OmniRoute-managed provider entry — preserve the rest
     // of the user's providers map (Crush supports multiple providers).
     const providers = { ...((existing.providers as Record<string, unknown>) || {}) };
-    delete providers.BlackRiver Gateway;
+    delete providers.OmniRoute;
 
     if (Object.keys(providers).length === 0) {
       delete existing.providers;
@@ -245,7 +245,7 @@ export async function DELETE(request: Request) {
       /* non-critical */
     }
 
-    return NextResponse.json({ success: true, message: "Crush BlackRiver Gateway settings removed" });
+    return NextResponse.json({ success: true, message: "Crush OmniRoute settings removed" });
   } catch (err) {
     return NextResponse.json({ error: { message: sanitizeErrorMessage(err) } }, { status: 500 });
   }

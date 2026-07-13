@@ -1,5 +1,5 @@
-import { errorResponse } from "@BlackRiver Gateway/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@BlackRiver Gateway/open-sse/config/constants.ts";
+import { errorResponse } from "@omniroute/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
 import * as log from "@/sse/utils/logger";
 import { enforceApiKeyPolicy } from "@/shared/utils/apiKeyPolicy";
 import { isRequireApiKeyEnabled } from "@/shared/utils/featureFlags";

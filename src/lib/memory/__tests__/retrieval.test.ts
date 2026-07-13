@@ -149,22 +149,22 @@ describe("Memory Retrieval — FTS5 integration", () => {
 
   beforeEach(() => {
     // Capture whatever DB singleton existed before the test
-    savedDb = (globalThis as any).__BlackRiver GatewayDb;
+    savedDb = (globalThis as any).__OmniRouteDb;
 
     // Stand up an in-memory SQLite DB and inject it as the singleton
     db = new Database(":memory:");
     db.pragma("journal_mode = WAL");
     setupSchema(db);
     setupFts(db);
-    (globalThis as any).__BlackRiver GatewayDb = db;
+    (globalThis as any).__OmniRouteDb = db;
   });
 
   afterEach(() => {
     // Restore the previous singleton (or remove it)
     if (savedDb) {
-      (globalThis as any).__BlackRiver GatewayDb = savedDb;
+      (globalThis as any).__OmniRouteDb = savedDb;
     } else {
-      delete (globalThis as any).__BlackRiver GatewayDb;
+      delete (globalThis as any).__OmniRouteDb;
     }
     try {
       db.close();

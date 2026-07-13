@@ -20,7 +20,7 @@
  */
 
 import { NextResponse } from "next/server";
-import { buildErrorBody } from "@BlackRiver Gateway/open-sse/utils/error";
+import { buildErrorBody } from "@omniroute/open-sse/utils/error";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { QuotaStoreSettingsSchema } from "@/shared/schemas/quota";
 import { getSettings, updateSettings } from "@/lib/localDb";

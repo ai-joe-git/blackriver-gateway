@@ -13,12 +13,12 @@ export async function resolveApiKey(
       /* fall through */
     }
   }
-  return apiKey || "sk_BlackRiver Gateway";
+  return apiKey || "sk_OmniRoute";
 }
 
 /**
  * Get or create a DB-backed API key for CLI tool setup.
- * Returns a valid BlackRiver Gateway API key (not a placeholder like "sk_BlackRiver Gateway").
+ * Returns a valid OmniRoute API key (not a placeholder like "sk_OmniRoute").
  * Used when user has not explicitly selected a key from API Keys.
  */
 export async function getOrCreateApiKey(apiKeyId?: string | null): Promise<string> {

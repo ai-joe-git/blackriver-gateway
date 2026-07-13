@@ -1,7 +1,7 @@
 /**
  * Plugin scanner — discovers plugins from the filesystem.
  *
- * Scans ~/.BlackRiver Gateway/plugins/ for subdirectories containing plugin.json manifests.
+ * Scans ~/.OmniRoute/plugins/ for subdirectories containing plugin.json manifests.
  * Returns validated manifests with directory paths.
  *
  * @module plugins/scanner
@@ -22,11 +22,11 @@ export interface DiscoveredPlugin {
 }
 
 /**
- * Get the default plugin directory: ~/.BlackRiver Gateway/plugins/
+ * Get the default plugin directory: ~/.OmniRoute/plugins/
  */
 export function getDefaultPluginDir(): string {
   const home = process.env.HOME || process.env.USERPROFILE || "/tmp";
-  return join(home, ".BlackRiver Gateway", "plugins");
+  return join(home, ".OmniRoute", "plugins");
 }
 
 /**

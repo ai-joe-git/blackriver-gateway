@@ -15,7 +15,7 @@ import {
 
 /**
  * GET /api/settings/export-json
- * Exports a legacy BlackRiver Gateway-compatible JSON backup.
+ * Exports a legacy OmniRoute-compatible JSON backup.
  */
 export async function GET(request: Request) {
   if (await isAuthRequired(request)) {
@@ -51,7 +51,7 @@ export async function GET(request: Request) {
       // Metadata to identify export version
       _meta: {
         exportedAt: new Date().toISOString(),
-        version: "BlackRiver Gateway-v3-legacy-export",
+        version: "OmniRoute-v3-legacy-export",
         includesHistory: includeHistory,
       },
     };
@@ -69,7 +69,7 @@ export async function GET(request: Request) {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Content-Disposition": `attachment; filename="BlackRiver Gateway-legacy-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.json"`,
+        "Content-Disposition": `attachment; filename="OmniRoute-legacy-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.json"`,
       },
     });
   } catch (error) {

@@ -66,10 +66,10 @@ export const buildOpenCodeProviderConfig = ({
 
   return {
     npm: "@ai-sdk/openai-compatible",
-    name: "BlackRiver Gateway",
+    name: "OmniRoute",
     options: {
       baseURL: normalizedBaseUrl,
-      apiKey: apiKey || "sk_BlackRiver Gateway",
+      apiKey: apiKey || "sk_OmniRoute",
     },
     models: modelsRecord,
   };
@@ -78,7 +78,7 @@ export const buildOpenCodeProviderConfig = ({
 export const buildOpenCodeConfigDocument = (input: OpenCodeConfigInput) => ({
   $schema: "https://opencode.ai/config.json",
   provider: {
-    BlackRiver Gateway: buildOpenCodeProviderConfig(input),
+    OmniRoute: buildOpenCodeProviderConfig(input),
   },
 });
 
@@ -96,7 +96,7 @@ export const mergeOpenCodeConfig = (
     $schema: safeConfig.$schema || "https://opencode.ai/config.json",
     provider: {
       ...((safeConfig as any).provider || {}),
-      BlackRiver Gateway: buildOpenCodeProviderConfig(input),
+      OmniRoute: buildOpenCodeProviderConfig(input),
     },
   };
 };
@@ -132,7 +132,7 @@ export const mergeOpenCodeConfigText = (
   );
   nextText = applyEdits(nextText, schemaEdits);
 
-  const providerEdits = modify(nextText, ["provider", "BlackRiver Gateway"], providerConfig, {
+  const providerEdits = modify(nextText, ["provider", "OmniRoute"], providerConfig, {
     formattingOptions: { insertSpaces: true, tabSize: 2 },
   });
 

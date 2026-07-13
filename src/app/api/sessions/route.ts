@@ -3,8 +3,8 @@ import {
   getActiveSessions,
   getActiveSessionCount,
   getAllActiveSessionCountsByKey,
-} from "@BlackRiver Gateway/open-sse/services/sessionManager.ts";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
+} from "@omniroute/open-sse/services/sessionManager.ts";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 
 export async function GET() {
   try {

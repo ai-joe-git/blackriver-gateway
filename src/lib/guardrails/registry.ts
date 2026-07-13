@@ -68,7 +68,7 @@ export function resolveDisabledGuardrails({
       ? (apiKeyInfo as Record<string, unknown>).disabledGuardrails
       : undefined;
   const headerDisabled =
-    getHeaderValue(headers, "x-BlackRiver Gateway-disabled-guardrails") ||
+    getHeaderValue(headers, "x-OmniRoute-disabled-guardrails") ||
     getHeaderValue(headers, "x-disabled-guardrails");
 
   return [...coerceDisabledGuardrails(apiKeyDisabled)]

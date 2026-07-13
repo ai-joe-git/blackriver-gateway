@@ -4,9 +4,9 @@ import {
   getTargetFormat,
   buildProviderUrl,
   buildProviderHeaders,
-} from "@BlackRiver Gateway/open-sse/services/provider.ts";
-import { translateRequest } from "@BlackRiver Gateway/open-sse/translator/index.ts";
-import { FORMATS } from "@BlackRiver Gateway/open-sse/translator/formats.ts";
+} from "@omniroute/open-sse/services/provider.ts";
+import { translateRequest } from "@omniroute/open-sse/translator/index.ts";
+import { FORMATS } from "@omniroute/open-sse/translator/formats.ts";
 import { getProviderConnections } from "@/lib/localDb";
 import { translatorTranslateSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";

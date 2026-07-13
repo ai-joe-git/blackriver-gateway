@@ -652,7 +652,7 @@ export interface EndpointUsageParams {
  * NULL endpoints fold into the 'unknown' bucket so legacy rows stay visible.
  *
  * Inspired by decolua/9router#152 (byEndpoint aggregation), reshaped for the
- * BlackRiver Gateway SQLite schema + analytics conventions.
+ * OmniRoute SQLite schema + analytics conventions.
  */
 export function getEndpointUsageRows(params: EndpointUsageParams = {}): EndpointUsageRow[] {
   const db = getDbInstance();

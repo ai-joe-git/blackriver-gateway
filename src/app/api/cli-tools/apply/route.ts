@@ -25,7 +25,7 @@ const TOOL_CONFIG_PATHS: Record<string, string> = {
 
 function ensureBackup(configPath: string): string | null {
   if (!fs.existsSync(configPath)) return null;
-  const backupDir = path.join(path.dirname(configPath), ".BlackRiver Gateway.bak");
+  const backupDir = path.join(path.dirname(configPath), ".OmniRoute.bak");
   if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir, { recursive: true });
   const backupPath = path.join(backupDir, path.basename(configPath) + ".bak");
   fs.copyFileSync(configPath, backupPath);

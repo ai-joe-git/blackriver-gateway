@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { EngineConfigField } from "@BlackRiver Gateway/open-sse/services/compression/engines/types";
+import type { EngineConfigField } from "@omniroute/open-sse/services/compression/engines/types";
 import { EngineConfigForm } from "@/shared/components/compression/EngineConfigForm";
 
 // ── Types ─────────────────────────────────────────────────────────────────

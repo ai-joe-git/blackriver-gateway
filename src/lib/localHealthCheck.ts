@@ -49,7 +49,7 @@ function isAutomatedTestProcess(): boolean {
 // ── State (globalThis survives HMR re-evaluation) ───────────────────────
 
 declare global {
-  var __BlackRiver GatewayLocalHC:
+  var __OmniRouteLocalHC:
     | {
         initialized: boolean;
         sweepTimer: ReturnType<typeof setTimeout> | null;
@@ -60,15 +60,15 @@ declare global {
 }
 
 function getLHCState() {
-  if (!globalThis.__BlackRiver GatewayLocalHC) {
-    globalThis.__BlackRiver GatewayLocalHC = {
+  if (!globalThis.__OmniRouteLocalHC) {
+    globalThis.__OmniRouteLocalHC = {
       initialized: false,
       sweepTimer: null,
       healthCache: new Map(),
       sweepInProgress: false,
     };
   }
-  return globalThis.__BlackRiver GatewayLocalHC;
+  return globalThis.__OmniRouteLocalHC;
 }
 
 const healthCache = getLHCState().healthCache;
@@ -83,7 +83,7 @@ function isEnvFlagEnabled(name: string): boolean {
 
 function isLocalHealthCheckDisabled(): boolean {
   return (
-    isEnvFlagEnabled("BlackRiver Gateway_DISABLE_LOCAL_HEALTHCHECK") ||
+    isEnvFlagEnabled("OMNIROUTE_DISABLE_LOCAL_HEALTHCHECK") ||
     isBuildProcess() ||
     isAutomatedTestProcess()
   );

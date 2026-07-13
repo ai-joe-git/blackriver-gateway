@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { isLocalRequestAllowed } from "@/lib/security/localEndpoints";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 
 import {
   REDIS_CONTAINER_NAME,
@@ -10,8 +10,8 @@ import {
   runRedisRuntimeCommand,
 } from "../redisRuntime";
 
-const HOST_PORT = process.env.BlackRiver Gateway_REDIS_HOST_PORT || "6379";
-const IMAGE = process.env.BlackRiver Gateway_REDIS_IMAGE || "docker.io/redis:7-alpine";
+const HOST_PORT = process.env.OMNIROUTE_REDIS_HOST_PORT || "6379";
+const IMAGE = process.env.OMNIROUTE_REDIS_IMAGE || "docker.io/redis:7-alpine";
 
 export async function POST() {
   const guard = isLocalRequestAllowed();

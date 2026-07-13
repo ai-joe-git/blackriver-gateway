@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import type {
   CompressionEngineId,
   CompressionPipelineStep,
-} from "@BlackRiver Gateway/open-sse/services/compression/types.ts";
+} from "@omniroute/open-sse/services/compression/types.ts";
 
 import { backupDbFile } from "./backup";
 import { getDbInstance, rowToCamel } from "./core";

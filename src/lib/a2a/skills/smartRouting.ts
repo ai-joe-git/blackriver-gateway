@@ -1,21 +1,21 @@
 /**
  * A2A Skill: Smart Routing
  *
- * Receives a prompt + metadata → routes via BlackRiver Gateway pipeline →
+ * Receives a prompt + metadata → routes via OmniRoute pipeline →
  * returns response with routing_explanation, cost_envelope, resilience_trace, policy_verdict.
  */
 
 import type { A2ATask, TaskArtifact } from "../taskManager";
-import { resolveBlackRiver GatewayBaseUrl } from "@/shared/utils/resolveBlackRiver GatewayBaseUrl";
+import { resolveOmniRouteBaseUrl } from "@/shared/utils/resolveOmniRouteBaseUrl";
 
-const BlackRiver Gateway_BASE_URL = resolveBlackRiver GatewayBaseUrl();
-const BlackRiver Gateway_API_KEY = process.env.BlackRiver Gateway_API_KEY || "";
+const OMNIROUTE_BASE_URL = resolveOmniRouteBaseUrl();
+const OMNIROUTE_API_KEY = process.env.OMNIROUTE_API_KEY || "";
 
 async function routeFetch(path: string, options: RequestInit = {}): Promise<any> {
-  const url = `${BlackRiver Gateway_BASE_URL}${path}`;
+  const url = `${OMNIROUTE_BASE_URL}${path}`;
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    ...(BlackRiver Gateway_API_KEY ? { Authorization: `Bearer ${BlackRiver Gateway_API_KEY}` } : {}),
+    ...(OMNIROUTE_API_KEY ? { Authorization: `Bearer ${OMNIROUTE_API_KEY}` } : {}),
   };
   const res = await fetch(url, { ...options, headers, signal: AbortSignal.timeout(30000) });
   if (!res.ok) throw new Error(`API [${res.status}]: ${await res.text().catch(() => "error")}`);

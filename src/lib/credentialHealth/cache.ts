@@ -39,7 +39,7 @@ const MAX_ENTRIES = 500;
 // ── State (globalThis singleton) ──────────────────────────────────────────
 
 declare global {
-  var __BlackRiver GatewayCredentialCache:
+  var __OmniRouteCredentialCache:
     | {
         initialized: boolean;
         cache: Map<string, CredentialCacheEntry>;
@@ -48,13 +48,13 @@ declare global {
 }
 
 function getCacheState() {
-  if (!globalThis.__BlackRiver GatewayCredentialCache) {
-    globalThis.__BlackRiver GatewayCredentialCache = {
+  if (!globalThis.__OmniRouteCredentialCache) {
+    globalThis.__OmniRouteCredentialCache = {
       initialized: false,
       cache: new Map(),
     };
   }
-  return globalThis.__BlackRiver GatewayCredentialCache;
+  return globalThis.__OmniRouteCredentialCache;
 }
 
 // ── Public API ────────────────────────────────────────────────────────────

@@ -7,7 +7,7 @@ import { getRuntimePorts } from "@/lib/runtime/ports";
 const { apiPort } = getRuntimePorts();
 
 /**
- * Check if a tool has BlackRiver Gateway configured by reading its config file directly.
+ * Check if a tool has OmniRoute configured by reading its config file directly.
  * This replaces the expensive self-referential HTTP calls to /api/cli-tools/*-settings.
  *
  * @param toolId - CLI tool identifier (e.g. "claude", "codex", "cline")
@@ -28,11 +28,11 @@ export async function checkToolConfigStatus(
     // Codex uses TOML config — parse as raw text, not JSON
     if (toolId === "codex") {
       const lower = content.toLowerCase();
-      const hasBlackRiver Gateway =
-        lower.includes("BlackRiver Gateway") ||
+      const hasOmniRoute =
+        lower.includes("OmniRoute") ||
         lower.includes(`localhost:${apiPort}`) ||
         lower.includes(`127.0.0.1:${apiPort}`);
-      if (!hasBlackRiver Gateway) return "not_configured";
+      if (!hasOmniRoute) return "not_configured";
 
       // Also verify auth.json has an API key (not masked/empty)
       try {
@@ -52,27 +52,27 @@ export async function checkToolConfigStatus(
 
     if (toolId === "hermes") {
       const lower = content.toLowerCase();
-      const hasBlackRiver Gateway =
-        lower.includes("BlackRiver Gateway") ||
+      const hasOmniRoute =
+        lower.includes("OmniRoute") ||
         lower.includes(`localhost:${apiPort}`) ||
         lower.includes(`127.0.0.1:${apiPort}`);
-      return hasBlackRiver Gateway ? "configured" : "not_configured";
+      return hasOmniRoute ? "configured" : "not_configured";
     }
 
     const config = JSON.parse(content) as Record<string, unknown>;
 
-    // Each tool stores BlackRiver Gateway config differently
+    // Each tool stores OmniRoute config differently
     switch (toolId) {
       case "claude":
         return (config?.env as Record<string, unknown>)?.ANTHROPIC_BASE_URL
           ? "configured"
           : "not_configured";
       case "qwen": {
-        // Check modelProviders for BlackRiver Gateway entries
+        // Check modelProviders for OmniRoute entries
         const mp = config?.modelProviders;
         if (!mp) return "not_configured";
         const qwenConfigStr = JSON.stringify(mp).toLowerCase();
-        return qwenConfigStr.includes("BlackRiver Gateway") ||
+        return qwenConfigStr.includes("OmniRoute") ||
           qwenConfigStr.includes(`localhost:${apiPort}`) ||
           qwenConfigStr.includes(`127.0.0.1:${apiPort}`)
           ? "configured"
@@ -82,11 +82,11 @@ export async function checkToolConfigStatus(
       case "openclaw":
       case "cline":
       case "kilo": {
-        // Generic check: look for BlackRiver Gateway-specific markers in the config
+        // Generic check: look for OmniRoute-specific markers in the config
         const configStr = JSON.stringify(config).toLowerCase();
         if (
-          configStr.includes("BlackRiver Gateway") ||
-          configStr.includes("sk_BlackRiver Gateway") ||
+          configStr.includes("OmniRoute") ||
+          configStr.includes("sk_OmniRoute") ||
           configStr.includes(`localhost:${apiPort}`) ||
           configStr.includes(`127.0.0.1:${apiPort}`)
         ) {

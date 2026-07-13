@@ -9,14 +9,14 @@ import type { SqliteAdapter } from "./types";
 const _require = createRequire(import.meta.url);
 
 declare global {
-  var __BlackRiver GatewaySqlJsAdapters: Map<string, SqliteAdapter> | undefined;
+  var __OmniRouteSqlJsAdapters: Map<string, SqliteAdapter> | undefined;
 }
 
 function getSqlJsCache(): Map<string, SqliteAdapter> {
-  if (!globalThis.__BlackRiver GatewaySqlJsAdapters) {
-    globalThis.__BlackRiver GatewaySqlJsAdapters = new Map();
+  if (!globalThis.__OmniRouteSqlJsAdapters) {
+    globalThis.__OmniRouteSqlJsAdapters = new Map();
   }
-  return globalThis.__BlackRiver GatewaySqlJsAdapters;
+  return globalThis.__OmniRouteSqlJsAdapters;
 }
 
 /** Tenta abrir com better-sqlite3 e node:sqlite sincronamente. Retorna null se ambos falharem. */

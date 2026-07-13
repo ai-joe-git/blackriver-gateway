@@ -25,10 +25,10 @@ const getOpenClawDir = () => path.dirname(getOpenClawSettingsPath());
 // "installed but not configured" instead of a 500 misread as "not installed".
 const readSettings = async () => readJsoncConfig(getOpenClawSettingsPath());
 
-// Check if settings has BlackRiver Gateway config
-const hasBlackRiver GatewayConfig = (settings: any) => {
+// Check if settings has OmniRoute config
+const hasOmniRouteConfig = (settings: any) => {
   if (!settings || !settings.models || !settings.models.providers) return false;
-  return !!settings.models.providers["BlackRiver Gateway"];
+  return !!settings.models.providers["OmniRoute"];
 };
 
 // GET - Check openclaw CLI and read current settings
@@ -65,7 +65,7 @@ export async function GET(request: Request) {
       runtimeMode: runtime.runtimeMode,
       reason: runtime.reason,
       settings,
-      hasBlackRiver Gateway: hasBlackRiver GatewayConfig(settings),
+      hasOmniRoute: hasOmniRouteConfig(settings),
       settingsPath: getOpenClawSettingsPath(),
     });
   } catch (error) {
@@ -74,7 +74,7 @@ export async function GET(request: Request) {
   }
 }
 
-// POST - Update BlackRiver Gateway settings (merge with existing settings)
+// POST - Update OmniRoute settings (merge with existing settings)
 export async function POST(request: Request) {
   const authError = await requireCliToolsAuth(request);
   if (authError) return authError;
@@ -139,10 +139,10 @@ export async function POST(request: Request) {
     const normalizedBaseUrl = baseUrl.endsWith("/v1") ? baseUrl : `${baseUrl}/v1`;
 
     // Update agents.defaults.model.primary
-    settings.agents.defaults.model.primary = `BlackRiver Gateway/${model}`;
+    settings.agents.defaults.model.primary = `OmniRoute/${model}`;
 
-    // Update models.providers.BlackRiver Gateway
-    settings.models.providers["BlackRiver Gateway"] = {
+    // Update models.providers.OmniRoute
+    settings.models.providers["OmniRoute"] = {
       baseUrl: normalizedBaseUrl,
       apiKey: apiKey || "your_api_key",
       api: "openai-completions",
@@ -175,7 +175,7 @@ export async function POST(request: Request) {
   }
 }
 
-// DELETE - Remove BlackRiver Gateway settings only (keep other settings)
+// DELETE - Remove OmniRoute settings only (keep other settings)
 export async function DELETE(request: Request) {
   const authError = await requireCliToolsAuth(request);
   if (authError) return authError;
@@ -206,9 +206,9 @@ export async function DELETE(request: Request) {
       throw error;
     }
 
-    // Remove BlackRiver Gateway from models.providers
+    // Remove OmniRoute from models.providers
     if (settings.models && settings.models.providers) {
-      delete settings.models.providers["BlackRiver Gateway"];
+      delete settings.models.providers["OmniRoute"];
 
       // Remove providers object if empty
       if (Object.keys(settings.models.providers).length === 0) {
@@ -216,8 +216,8 @@ export async function DELETE(request: Request) {
       }
     }
 
-    // Reset agents.defaults.model.primary if it uses BlackRiver Gateway
-    if (settings.agents?.defaults?.model?.primary?.startsWith("BlackRiver Gateway/")) {
+    // Reset agents.defaults.model.primary if it uses OmniRoute
+    if (settings.agents?.defaults?.model?.primary?.startsWith("OmniRoute/")) {
       delete settings.agents.defaults.model.primary;
     }
 
@@ -233,7 +233,7 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: "BlackRiver Gateway settings removed successfully",
+      message: "OmniRoute settings removed successfully",
     });
   } catch (error) {
     console.log("Error resetting openclaw settings:", error);

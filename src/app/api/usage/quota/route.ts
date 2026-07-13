@@ -3,7 +3,7 @@ import { getProviderConnections } from "@/lib/localDb";
 import {
   getLearnedLimits,
   getRateLimitStatus,
-} from "@BlackRiver Gateway/open-sse/services/rateLimitManager.ts";
+} from "@omniroute/open-sse/services/rateLimitManager.ts";
 import {
   normalizeQuotaResponse,
   sanitizeQuotaProvider,

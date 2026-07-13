@@ -44,7 +44,7 @@ export default function PrivacyPage() {
             </h2>
             <p className="mb-3">
               {t("privacyDataStoredIn")}{" "}
-              <code className="text-primary text-sm">~/.BlackRiver Gateway/storage.sqlite</code>:
+              <code className="text-primary text-sm">~/.OmniRoute/storage.sqlite</code>:
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li>
@@ -138,7 +138,7 @@ export default function PrivacyPage() {
             </h2>
             <p>
               {t("privacySection7TextStart")}{" "}
-              <code className="text-primary text-sm">~/.BlackRiver Gateway/</code>{" "}
+              <code className="text-primary text-sm">~/.OmniRoute/</code>{" "}
               {t("privacySection7TextEnd")}
             </p>
           </section>
@@ -148,7 +148,7 @@ export default function PrivacyPage() {
           <p>
             {t("questionsVisit")}{" "}
             <a
-              href="https://github.com/diegosouzapw/BlackRiver Gateway"
+              href="https://github.com/diegosouzapw/OmniRoute"
               className="text-primary hover:underline"
               target="_blank"
               rel="noopener noreferrer"

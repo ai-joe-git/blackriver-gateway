@@ -7,7 +7,7 @@ import { getFreeProxyById, promoteFreeProxyToPool } from "@/lib/localDb";
 import {
   createProxyDispatcher,
   proxyConfigToUrl,
-} from "@BlackRiver Gateway/open-sse/utils/proxyDispatcher.ts";
+} from "@omniroute/open-sse/utils/proxyDispatcher.ts";
 
 type QuickTester = (
   host: string,

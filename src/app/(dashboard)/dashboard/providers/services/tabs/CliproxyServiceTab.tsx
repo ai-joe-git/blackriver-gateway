@@ -16,7 +16,7 @@ export function CliproxyServiceTab() {
       <ServiceLifecycleButtons name={NAME} />
       <AutoStartToggle
         name={NAME}
-        description="Launch CLIProxyAPI automatically when BlackRiver Gateway starts"
+        description="Launch CLIProxyAPI automatically when OmniRoute starts"
       />
       <CliproxyConnectionPanel />
       <CliproxyModelMappingEditor />

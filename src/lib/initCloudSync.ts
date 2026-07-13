@@ -22,12 +22,12 @@ export function shouldSkipCloudSyncInitialization(
     return true;
   }
 
-  const raw = env.BlackRiver Gateway_DISABLE_BACKGROUND_SERVICES;
+  const raw = env.OMNIROUTE_DISABLE_BACKGROUND_SERVICES;
   if (raw && new Set(["1", "true", "yes", "on"]).has(raw.trim().toLowerCase())) {
     return true;
   }
 
-  return isAutomatedTestProcess(env, argv) && env.BlackRiver Gateway_ENABLE_RUNTIME_BACKGROUND_TASKS !== "1";
+  return isAutomatedTestProcess(env, argv) && env.OMNIROUTE_ENABLE_RUNTIME_BACKGROUND_TASKS !== "1";
 }
 
 export async function ensureCloudSyncInitialized() {

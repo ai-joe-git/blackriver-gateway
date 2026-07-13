@@ -12,7 +12,7 @@ export default async function HomePage() {
     redirect("/dashboard/onboarding");
   }
   const machineId = await getMachineId();
-  const isBootstrapped = process.env.BlackRiver Gateway_BOOTSTRAPPED === "true";
+  const isBootstrapped = process.env.OMNIROUTE_BOOTSTRAPPED === "true";
   return (
     <>
       {isBootstrapped && <BootstrapBanner />}

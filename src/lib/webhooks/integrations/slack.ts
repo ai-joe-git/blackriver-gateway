@@ -36,7 +36,7 @@ export function buildSlackPayload(
         elements: [
           {
             type: "mrkdwn",
-            text: `BlackRiver Gateway · ${new Date().toISOString()}`,
+            text: `OmniRoute · ${new Date().toISOString()}`,
           },
         ],
       },

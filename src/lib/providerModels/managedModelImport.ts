@@ -20,7 +20,7 @@ import { normalizeDiscoveredModels } from "@/lib/providerModels/modelDiscovery";
 import {
   ANTIGRAVITY_MODEL_ALIASES,
   ANTIGRAVITY_REVERSE_MODEL_ALIASES,
-} from "@BlackRiver Gateway/open-sse/config/antigravityModelAliases.ts";
+} from "@omniroute/open-sse/config/antigravityModelAliases.ts";
 
 type JsonRecord = Record<string, unknown>;
 

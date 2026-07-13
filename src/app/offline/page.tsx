@@ -27,7 +27,7 @@ export default function OfflinePage() {
         </span>
         <h1 className="text-2xl font-semibold">Connectivity Issue</h1>
         <p className="mt-3 text-text-muted leading-relaxed">
-          BlackRiver Gateway cannot reach the network right now. Check your internet, VPN, or proxy settings.
+          OmniRoute cannot reach the network right now. Check your internet, VPN, or proxy settings.
         </p>
 
         <div

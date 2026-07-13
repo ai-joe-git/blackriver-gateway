@@ -20,10 +20,10 @@ export const ZED_TARGET: MitmTarget = {
   ],
   setupTutorial: {
     steps: [
-      "Install BlackRiver Gateway's root certificate",
+      "Install OmniRoute's root certificate",
       "Enable DNS routing for Zed",
       "Restart Zed",
-      "Done — Zed traffic now routes through BlackRiver Gateway",
+      "Done — Zed traffic now routes through OmniRoute",
     ],
     detection: { command: "which zed", platform: "all" },
   },

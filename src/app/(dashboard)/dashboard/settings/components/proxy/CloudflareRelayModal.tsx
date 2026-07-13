@@ -20,7 +20,7 @@ export default function CloudflareRelayModal({
   const [accountId, setAccountId] = useState("");
   const [apiToken, setApiToken] = useState("");
   const [projectName, setProjectName] = useState(
-    process.env.NEXT_PUBLIC_CLOUDFLARE_RELAY_DEFAULT_PROJECT || "BlackRiver Gateway-relay"
+    process.env.NEXT_PUBLIC_CLOUDFLARE_RELAY_DEFAULT_PROJECT || "OmniRoute-relay"
   );
   const [deploying, setDeploying] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -138,7 +138,7 @@ export default function CloudflareRelayModal({
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
               className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus:border-primary"
-              placeholder="BlackRiver Gateway-relay"
+              placeholder="OmniRoute-relay"
             />
           </div>
         </div>

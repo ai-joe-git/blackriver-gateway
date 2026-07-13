@@ -576,7 +576,7 @@ export default function EvalsTab() {
   function handleExportSuite(suite: EvalSuite) {
     try {
       const exportPayload = {
-        format: "BlackRiver Gateway.eval-suite.v1",
+        format: "OmniRoute.eval-suite.v1",
         exportedAt: new Date().toISOString(),
         id: suite.id,
         name: suite.name || suite.id,

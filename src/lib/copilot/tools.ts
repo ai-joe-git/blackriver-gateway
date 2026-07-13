@@ -1,13 +1,13 @@
 /**
- * BlackRiver Gateway Copilot — Tool definitions
+ * OmniRoute Copilot — Tool definitions
  *
- * Tools the copilot can execute to configure BlackRiver Gateway on behalf of the user,
+ * Tools the copilot can execute to configure OmniRoute on behalf of the user,
  * query the codebase via CodeGraph, and execute CLI commands for full control.
  */
 
 import { execFile, execSync } from "node:child_process";
 import { promisify } from "node:util";
-import { sanitizeErrorMessage } from "@BlackRiver Gateway/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
 
 const execFileAsync = promisify(execFile);
 import { createCombo, getCombos, updateCombo } from "@/lib/db/combos";
@@ -60,11 +60,11 @@ function formatCodeGraphResult(result: CodeGraphQueryResult): string {
   );
 }
 
-// ── Helper: check if BlackRiver Gateway CLI is available ──────────────────────────────
+// ── Helper: check if OmniRoute CLI is available ──────────────────────────────
 
-function getBlackRiver GatewayCliPath(): string | null {
+function getOmniRouteCliPath(): string | null {
   try {
-    const result = execSync("which BlackRiver Gateway 2>/dev/null || command -v BlackRiver Gateway 2>/dev/null", {
+    const result = execSync("which OmniRoute 2>/dev/null || command -v OmniRoute 2>/dev/null", {
       encoding: "utf-8",
       timeout: 3000,
     }).trim();
@@ -254,7 +254,7 @@ export const COPILOT_TOOLS: CopilotTool[] = [
   {
     name: "searchCodeGraph",
     description:
-      "Search for symbols in the BlackRiver Gateway codebase by name (functions, classes, types, variables). Use this to understand how the app works internally.",
+      "Search for symbols in the OmniRoute codebase by name (functions, classes, types, variables). Use this to understand how the app works internally.",
     parameters: [
       {
         name: "query",
@@ -297,7 +297,7 @@ export const COPILOT_TOOLS: CopilotTool[] = [
   {
     name: "findCallees",
     description:
-      "Find all functions/symbols that a specific function calls. Useful for understanding dependencies and code flow within BlackRiver Gateway.",
+      "Find all functions/symbols that a specific function calls. Useful for understanding dependencies and code flow within OmniRoute.",
     parameters: [
       {
         name: "symbol",
@@ -365,15 +365,15 @@ export const COPILOT_TOOLS: CopilotTool[] = [
 
   // ── CLI Execution Tool ──
   {
-    name: "runBlackRiver GatewayCli",
+    name: "runOmniRouteCli",
     description:
-      "Execute an 'BlackRiver Gateway' CLI command to configure or query the BlackRiver Gateway app. Gives complete control over the app — use for advanced operations not covered by other tools. Common commands: BlackRiver Gateway list-keys, BlackRiver Gateway switch-combo [id], BlackRiver Gateway set-budget 10, BlackRiver Gateway set-strategy [id] priority, BlackRiver Gateway health, BlackRiver Gateway mcp (starts MCP server), BlackRiver Gateway db-health, BlackRiver Gateway reset-password.",
+      "Execute an 'OmniRoute' CLI command to configure or query the OmniRoute app. Gives complete control over the app — use for advanced operations not covered by other tools. Common commands: OmniRoute list-keys, OmniRoute switch-combo [id], OmniRoute set-budget 10, OmniRoute set-strategy [id] priority, OmniRoute health, OmniRoute mcp (starts MCP server), OmniRoute db-health, OmniRoute reset-password.",
     parameters: [
       {
         name: "command",
         type: "string",
         description:
-          "CLI command arguments (everything after 'BlackRiver Gateway'). Example: 'list-keys', 'switch-combo abc123', 'health'",
+          "CLI command arguments (everything after 'OmniRoute'). Example: 'list-keys', 'switch-combo abc123', 'health'",
         required: true,
       },
     ],
@@ -381,8 +381,8 @@ export const COPILOT_TOOLS: CopilotTool[] = [
       const cmd = args.command as string;
       if (!cmd) return "Please provide a command to execute.";
 
-      const cliPath = getBlackRiver GatewayCliPath();
-      if (!cliPath) return "BlackRiver Gateway CLI not found in PATH. Install BlackRiver Gateway first.";
+      const cliPath = getOmniRouteCliPath();
+      if (!cliPath) return "OmniRoute CLI not found in PATH. Install OmniRoute first.";
 
       try {
         const trimmedCmd = cmd.trim();

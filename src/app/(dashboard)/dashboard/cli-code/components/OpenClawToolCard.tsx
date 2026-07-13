@@ -41,7 +41,7 @@ export default function OpenClawToolCard({
 
   const getConfigStatus = () => {
     if (!cliReady) return null;
-    const currentProvider = openclawStatus.settings?.models?.providers?.["BlackRiver Gateway"];
+    const currentProvider = openclawStatus.settings?.models?.providers?.["OmniRoute"];
     if (!currentProvider) return "not_configured";
     const localMatch =
       currentProvider.baseUrl?.includes("localhost") ||
@@ -85,11 +85,11 @@ export default function OpenClawToolCard({
   useEffect(() => {
     if (openclawStatus?.installed && !hasInitializedModel.current) {
       hasInitializedModel.current = true;
-      const provider = openclawStatus.settings?.models?.providers?.["BlackRiver Gateway"];
+      const provider = openclawStatus.settings?.models?.providers?.["OmniRoute"];
       if (provider) {
         const primaryModel = openclawStatus.settings?.agents?.defaults?.model?.primary;
         if (primaryModel) {
-          const modelId = primaryModel.replace("BlackRiver Gateway/", "");
+          const modelId = primaryModel.replace("OmniRoute/", "");
           setSelectedModel(modelId);
         }
         // (#523) Keys from /api/keys are masked (first 8 + "****" + last 4).
@@ -142,7 +142,7 @@ export default function OpenClawToolCard({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           baseUrl: getEffectiveBaseUrl(),
-          apiKey: !cloudEnabled ? "sk_BlackRiver Gateway" : null,
+          apiKey: !cloudEnabled ? "sk_OmniRoute" : null,
           keyId: selectedKeyId,
           model: selectedModel,
         }),
@@ -241,19 +241,19 @@ export default function OpenClawToolCard({
     // (#523) Look up the key object by id to get the masked display value.
     const selectedKeyObj = apiKeys?.find((k) => k.id === selectedApiKeyId);
     const keyToDisplay =
-      selectedKeyObj?.key || (!cloudEnabled ? "sk_BlackRiver Gateway" : "<API_KEY_FROM_DASHBOARD>");
+      selectedKeyObj?.key || (!cloudEnabled ? "sk_OmniRoute" : "<API_KEY_FROM_DASHBOARD>");
 
     const settingsContent = {
       agents: {
         defaults: {
           model: {
-            primary: `BlackRiver Gateway/${selectedModel || "provider/model-id"}`,
+            primary: `OmniRoute/${selectedModel || "provider/model-id"}`,
           },
         },
       },
       models: {
         providers: {
-          BlackRiver Gateway: {
+          OmniRoute: {
             baseUrl: getEffectiveBaseUrl(),
             apiKey: keyToDisplay,
             api: "openai-completions",
@@ -341,7 +341,7 @@ export default function OpenClawToolCard({
               </div>
               {/*
                 Always surface Manual Config even when the CLI is not
-                detected locally — typical of remote BlackRiver Gateway
+                detected locally — typical of remote OmniRoute
                 deployments where the CLI lives on the user's machine,
                 not on the server. Upstream report: #579.
               */}
@@ -360,7 +360,7 @@ export default function OpenClawToolCard({
             <>
               <div className="flex flex-col gap-2">
                 {/* Current Base URL */}
-                {openclawStatus?.settings?.models?.providers?.["BlackRiver Gateway"]?.baseUrl && (
+                {openclawStatus?.settings?.models?.providers?.["OmniRoute"]?.baseUrl && (
                   <div className="flex items-center gap-2">
                     <span className="w-32 shrink-0 text-sm font-semibold text-text-main text-right">
                       {t("current")}
@@ -369,7 +369,7 @@ export default function OpenClawToolCard({
                       arrow_forward
                     </span>
                     <span className="flex-1 px-2 py-1.5 text-xs text-text-muted truncate">
-                      {openclawStatus.settings.models.providers["BlackRiver Gateway"].baseUrl}
+                      {openclawStatus.settings.models.providers["OmniRoute"].baseUrl}
                     </span>
                   </div>
                 )}
@@ -422,7 +422,7 @@ export default function OpenClawToolCard({
                     </select>
                   ) : (
                     <span className="flex-1 text-xs text-text-muted px-2 py-1.5">
-                      {cloudEnabled ? t("noApiKeysCreateOne") : t("defaultBlackRiver GatewayKey")}
+                      {cloudEnabled ? t("noApiKeysCreateOne") : t("defaultOmniRouteKey")}
                     </span>
                   )}
                 </div>
@@ -487,7 +487,7 @@ export default function OpenClawToolCard({
                   variant="outline"
                   size="sm"
                   onClick={handleResetSettings}
-                  disabled={!openclawStatus?.hasBlackRiver Gateway}
+                  disabled={!openclawStatus?.hasOmniRoute}
                   loading={restoring}
                 >
                   <span className="material-symbols-outlined text-[14px] mr-1">restore</span>

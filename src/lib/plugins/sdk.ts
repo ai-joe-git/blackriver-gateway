@@ -2,7 +2,7 @@
  * Plugin SDK — typed API for plugin developers.
  *
  * Provides `definePlugin()` factory and re-exports all types needed
- * to build BlackRiver Gateway plugins.
+ * to build OmniRoute plugins.
  *
  * @module plugins/sdk
  */
@@ -34,11 +34,11 @@ export interface PluginDefinition {
 }
 
 /**
- * Define an BlackRiver Gateway plugin with type safety.
+ * Define an OmniRoute plugin with type safety.
  *
  * @example
  * ```ts
- * import { definePlugin } from "BlackRiver Gateway/plugins/sdk";
+ * import { definePlugin } from "OmniRoute/plugins/sdk";
  *
  * export default definePlugin({
  *   name: "my-plugin",

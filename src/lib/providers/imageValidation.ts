@@ -1,4 +1,4 @@
-import { getImageProvider } from "@BlackRiver Gateway/open-sse/config/imageRegistry";
+import { getImageProvider } from "@omniroute/open-sse/config/imageRegistry";
 
 import { getProviderOutboundGuard } from "@/shared/network/outboundUrlGuard";
 import {

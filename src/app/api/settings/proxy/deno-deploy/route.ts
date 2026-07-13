@@ -218,7 +218,7 @@ export async function POST(request: Request) {
       headers,
       body: JSON.stringify({
         slug: projectName,
-        labels: { "custom.kind": "BlackRiver Gateway-relay" },
+        labels: { "custom.kind": "OmniRoute-relay" },
         config: {
           install: "deno install",
           runtime: { type: "dynamic", entrypoint: "main.ts" },

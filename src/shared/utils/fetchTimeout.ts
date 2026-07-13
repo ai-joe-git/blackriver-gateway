@@ -8,7 +8,7 @@
  */
 
 const DEFAULT_TIMEOUT_MS =
-  parseInt(process.env.BlackRiver Gateway_DEFAULT_FETCH_TIMEOUT_MS || "", 10) || 120000; // 2 minutes
+  parseInt(process.env.OMNIROUTE_DEFAULT_FETCH_TIMEOUT_MS || "", 10) || 120000; // 2 minutes
 const FETCH_TIMEOUT_MS = parseInt(process.env.FETCH_TIMEOUT_MS || "", 10) || DEFAULT_TIMEOUT_MS;
 
 interface FetchTimeoutOptions extends RequestInit {

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-export const RISK_ACKNOWLEDGED_STORAGE_KEY = "BlackRiver Gateway-risk-acknowledged";
+export const RISK_ACKNOWLEDGED_STORAGE_KEY = "OmniRoute-risk-acknowledged";
 
 export type RiskAcknowledgedMap = Record<string, true>;
 

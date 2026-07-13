@@ -1,13 +1,13 @@
 /**
- * BlackRiver Gateway logo SVG — network hub icon with connected nodes.
+ * OmniRoute logo SVG — network hub icon with connected nodes.
  * Matches the favicon and app icon design.
  */
-type BlackRiver GatewayLogoProps = {
+type OmniRouteLogoProps = {
   size?: number;
   className?: string;
 };
 
-export default function BlackRiver GatewayLogo({ size = 20, className = "" }: BlackRiver GatewayLogoProps) {
+export default function OmniRouteLogo({ size = 20, className = "" }: OmniRouteLogoProps) {
   return (
     <svg
       width={size}

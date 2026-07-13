@@ -38,7 +38,7 @@ export function getModelSyncInternalBaseUrl(): string {
 }
 
 const globalState = globalThis as typeof globalThis & {
-  __BlackRiver GatewayModelSyncInternalAuthToken?: string;
+  __OmniRouteModelSyncInternalAuthToken?: string;
 };
 
 let schedulerTimer: NodeJS.Timeout | null = null;
@@ -47,8 +47,8 @@ let internalAuthToken: string | null = null;
 
 function getInternalAuthToken(): string {
   if (!internalAuthToken) {
-    internalAuthToken = globalState.__BlackRiver GatewayModelSyncInternalAuthToken || randomUUID();
-    globalState.__BlackRiver GatewayModelSyncInternalAuthToken = internalAuthToken;
+    internalAuthToken = globalState.__OmniRouteModelSyncInternalAuthToken || randomUUID();
+    globalState.__OmniRouteModelSyncInternalAuthToken = internalAuthToken;
   }
   return internalAuthToken;
 }
@@ -62,8 +62,8 @@ export function buildModelSyncInternalHeaders(): Record<string, string> {
 }
 
 export function isModelSyncInternalRequest(request: { headers: Headers }): boolean {
-  if (!internalAuthToken && globalState.__BlackRiver GatewayModelSyncInternalAuthToken) {
-    internalAuthToken = globalState.__BlackRiver GatewayModelSyncInternalAuthToken;
+  if (!internalAuthToken && globalState.__OmniRouteModelSyncInternalAuthToken) {
+    internalAuthToken = globalState.__OmniRouteModelSyncInternalAuthToken;
   }
   const headerToken = request.headers.get(MODEL_SYNC_INTERNAL_AUTH_HEADER);
   return Boolean(headerToken && internalAuthToken && headerToken === internalAuthToken);
@@ -173,7 +173,7 @@ async function runSyncCycle(apiBaseUrl: string): Promise<void> {
 
 /**
  * Start the model sync scheduler.
- * @param apiBaseUrl — internal base URL to call BlackRiver Gateway's own API
+ * @param apiBaseUrl — internal base URL to call OmniRoute's own API
  * @param intervalMs — sync interval in milliseconds (default: 24h)
  */
 export function startModelSyncScheduler(

@@ -56,7 +56,7 @@ export const denoDeploySchema = z.object({
     .min(3)
     .max(52)
     .regex(/^[a-z0-9-]+$/, "Project name must be lowercase alphanumeric with hyphens")
-    .default("BlackRiver Gateway-deno-relay"),
+    .default("OmniRoute-deno-relay"),
 });
 
 export const vercelDeploySchema = z.object({
@@ -77,7 +77,7 @@ export const vercelDeploySchema = z.object({
     .min(3)
     .max(52)
     .regex(/^[a-z0-9-]+$/, "Project name must be lowercase alphanumeric with hyphens")
-    .default("BlackRiver Gateway-relay"),
+    .default("OmniRoute-relay"),
 });
 
 export const cloudflareDeploySchema = z.object({
@@ -106,6 +106,6 @@ export const cloudflareDeploySchema = z.object({
     .min(3)
     .max(52)
     .regex(/^[a-z0-9-]+$/, "Worker name must be lowercase alphanumeric with hyphens")
-    .default("BlackRiver Gateway-relay"),
+    .default("OmniRoute-relay"),
 });
 

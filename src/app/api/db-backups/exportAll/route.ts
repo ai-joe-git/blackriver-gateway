@@ -28,8 +28,8 @@ export async function GET(request: NextRequest) {
 
     const db = getDbInstance();
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
-    const tempDir = path.join(os.tmpdir(), `BlackRiver Gateway-export-${timestamp}`);
-    const zipPath = path.join(os.tmpdir(), `BlackRiver Gateway-full-backup-${timestamp}.zip`);
+    const tempDir = path.join(os.tmpdir(), `OmniRoute-export-${timestamp}`);
+    const zipPath = path.join(os.tmpdir(), `OmniRoute-full-backup-${timestamp}.zip`);
 
     try {
       // Create temp directory
@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
       const metadata = {
         exportedAt: new Date().toISOString(),
         version: process.env.npm_package_version || "unknown",
-        format: "BlackRiver Gateway-full-backup-v1",
+        format: "OmniRoute-full-backup-v1",
         contents: [
           "storage.sqlite - Full database",
           "settings.json - Key-value settings",
@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
         status: 200,
         headers: {
           "Content-Type": "application/gzip",
-          "Content-Disposition": `attachment; filename="BlackRiver Gateway-full-backup-${timestamp}.tar.gz"`,
+          "Content-Disposition": `attachment; filename="OmniRoute-full-backup-${timestamp}.tar.gz"`,
           "Content-Length": archiveBuffer.length.toString(),
         },
       });

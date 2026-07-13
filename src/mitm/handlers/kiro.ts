@@ -2,7 +2,7 @@
  * Kiro IDE handler.
  *
  * Kiro uses the Anthropic Messages API (POST /v1/messages with `x-api-key`).
- * We translate the `model` field and forward to the BlackRiver Gateway router via
+ * We translate the `model` field and forward to the OmniRoute router via
  * `/v1/chat/completions` — the router's translator will adapt the request
  * shape back to whatever upstream provider the mapped model points to.
  *
@@ -33,7 +33,7 @@ export class KiroHandler extends MitmHandlerBase {
 
       if (!upstream.ok) {
         const errText = await upstream.text().catch(() => "");
-        throw new Error(`BlackRiver Gateway ${upstream.status}: ${errText}`);
+        throw new Error(`OmniRoute ${upstream.status}: ${errText}`);
       }
 
       let collected = "";

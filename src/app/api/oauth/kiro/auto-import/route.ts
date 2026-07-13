@@ -12,7 +12,7 @@ import {
 import { syncToCloud } from "@/lib/cloudSync";
 import { getConsistentMachineId } from "@/shared/utils/machineId";
 import { KiroService } from "@/lib/oauth/services/kiro";
-import { runWithProxyContext } from "@BlackRiver Gateway/open-sse/utils/proxyFetch.ts";
+import { runWithProxyContext } from "@omniroute/open-sse/utils/proxyFetch.ts";
 
 /**
  * GET /api/oauth/kiro/auto-import
@@ -370,7 +370,7 @@ export function findKiroConnectionByProfileArn(
   return null;
 }
 
-// ── Save to BlackRiver Gateway DB ──────────────────────────────────────────────────────
+// ── Save to OmniRoute DB ──────────────────────────────────────────────────────
 
 type SaveAndRespondResult = Awaited<ReturnType<typeof tryKiroCliSqlite>> & {
   // Fields added by tryAwsSsoCache for IDC tokens (#2059)

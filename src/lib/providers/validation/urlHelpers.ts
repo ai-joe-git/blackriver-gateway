@@ -4,7 +4,7 @@
 import {
   stripAnthropicMessagesSuffix,
   stripClaudeCodeCompatibleEndpointSuffix,
-} from "@BlackRiver Gateway/open-sse/services/claudeCodeCompatible.ts";
+} from "@omniroute/open-sse/services/claudeCodeCompatible.ts";
 import { isOpenAICompatibleProvider } from "@/shared/constants/providers";
 
 export const OPENAI_LIKE_FORMATS = new Set(["openai", "openai-responses"]);
