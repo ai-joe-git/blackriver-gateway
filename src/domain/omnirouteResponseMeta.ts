@@ -79,7 +79,7 @@ export function formatOmniRouteCost(costUsd: unknown): string {
   return normalized > 0 ? normalized.toFixed(10) : "0.0000000000";
 }
 
-export function buildOmniRouteResponseMetaHeaders({
+export function buildomnirouteResponseMetaHeaders({
   cacheHit = false,
   costUsd = 0,
   costSavedUsd = undefined,
@@ -146,9 +146,9 @@ export function buildOmniRouteResponseMetaHeaders({
 }
 
 export function buildOmniRouteSseMetadataComment(
-  options: Parameters<typeof buildOmniRouteResponseMetaHeaders>[0]
+  options: Parameters<typeof buildomnirouteResponseMetaHeaders>[0]
 ): string {
-  const headers = buildOmniRouteResponseMetaHeaders(options);
+  const headers = buildomnirouteResponseMetaHeaders(options);
   const lines = Object.entries(headers)
     .filter(([, value]) => typeof value === "string" && value.trim().length > 0)
     .map(([name, value]) => `: ${name.toLowerCase()}=${value}`);
@@ -163,9 +163,9 @@ export function buildOmniRouteSseMetadataComment(
  */
 export function attachOmniRouteMetaHeaders(
   headers: Headers | Record<string, string>,
-  meta: Parameters<typeof buildOmniRouteResponseMetaHeaders>[0]
+  meta: Parameters<typeof buildomnirouteResponseMetaHeaders>[0]
 ): void {
-  const built = buildOmniRouteResponseMetaHeaders(meta);
+  const built = buildomnirouteResponseMetaHeaders(meta);
   if (headers instanceof Headers) {
     for (const [name, value] of Object.entries(built)) headers.set(name, value);
   } else {
@@ -183,7 +183,7 @@ export function attachOmniRouteMetaHeaders(
  */
 export function attachOmniRouteMetaToResponse(
   response: Response,
-  meta: Parameters<typeof buildOmniRouteResponseMetaHeaders>[0]
+  meta: Parameters<typeof buildomnirouteResponseMetaHeaders>[0]
 ): Response {
   if (!response) return response;
 

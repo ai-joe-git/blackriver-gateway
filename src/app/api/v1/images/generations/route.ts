@@ -22,7 +22,7 @@ import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { getAllCustomModels, resolveProxyForConnection } from "@/lib/localDb";
 import { resolveImageRouteModel } from "@/lib/images/imageRouteModel";
 import { runWithProxyContext } from "@omniroute/open-sse/utils/proxyFetch.ts";
-import { attachOmniRouteMetaHeaders } from "@/domain/OmniRouteResponseMeta";
+import { attachOmniRouteMetaHeaders } from "@/domain/omnirouteResponseMeta";
 import { calculateModalCost } from "@/lib/usage/costCalculator";
 import { generateRequestId } from "@/shared/utils/requestId";
 import { getSpecialtyModelsResponse } from "@/app/api/v1/_shared/specialtyCatalog";

@@ -18,7 +18,7 @@ import { handleComboChat } from "@omniroute/open-sse/services/combo.ts";
 import { resolveBareModelToConnectionDefault } from "@omniroute/open-sse/services/model.ts";
 import { findEmbeddingComboDimensionConflict } from "./familyGuard";
 import { calculateCost } from "@/lib/usage/costCalculator";
-import { attachOmniRouteMetaHeaders } from "@/domain/OmniRouteResponseMeta";
+import { attachOmniRouteMetaHeaders } from "@/domain/omnirouteResponseMeta";
 import { generateRequestId } from "@/shared/utils/requestId";
 
 type ValidatedEmbeddingBody = Record<string, unknown> & { model: string };

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   attachOmniRouteMetaHeaders,
-  buildOmniRouteResponseMetaHeaders,
+  buildomnirouteResponseMetaHeaders,
   buildOmniRouteSseMetadataComment,
   formatOmniRouteCost,
   getOmniRouteTokenCounts,
@@ -28,8 +28,8 @@ test("getOmniRouteTokenCounts normalizes common usage shapes", () => {
   );
 });
 
-test("buildOmniRouteResponseMetaHeaders formats provider alias, tokens, latency, and cost", () => {
-  const headers = buildOmniRouteResponseMetaHeaders({
+test("buildomnirouteResponseMetaHeaders formats provider alias, tokens, latency, and cost", () => {
+  const headers = buildomnirouteResponseMetaHeaders({
     provider: "claude",
     model: "claude-sonnet-4-6",
     cacheHit: true,
@@ -50,8 +50,8 @@ test("buildOmniRouteResponseMetaHeaders formats provider alias, tokens, latency,
   assert.equal(headers["X-OmniRoute-Response-Cost"], "0.0012345679");
 });
 
-test("buildOmniRouteResponseMetaHeaders keeps ASCII model header values unchanged", () => {
-  const headers = buildOmniRouteResponseMetaHeaders({
+test("buildomnirouteResponseMetaHeaders keeps ASCII model header values unchanged", () => {
+  const headers = buildomnirouteResponseMetaHeaders({
     provider: "openai",
     model: "gpt-4o-mini",
   });
@@ -59,9 +59,9 @@ test("buildOmniRouteResponseMetaHeaders keeps ASCII model header values unchange
   assert.equal(headers[OMNIROUTE_RESPONSE_HEADERS.model], "gpt-4o-mini");
 });
 
-test("buildOmniRouteResponseMetaHeaders percent-encodes non-ASCII model header values", () => {
+test("buildomnirouteResponseMetaHeaders percent-encodes non-ASCII model header values", () => {
   const model = "free-mix/[假流式]gemini-3.5-flash";
-  const headers = buildOmniRouteResponseMetaHeaders({
+  const headers = buildomnirouteResponseMetaHeaders({
     provider: "openai",
     model,
   });
@@ -70,8 +70,8 @@ test("buildOmniRouteResponseMetaHeaders percent-encodes non-ASCII model header v
   assert.doesNotThrow(() => new Headers(headers));
 });
 
-test("buildOmniRouteResponseMetaHeaders strips control characters from string header values", () => {
-  const headers = buildOmniRouteResponseMetaHeaders({
+test("buildomnirouteResponseMetaHeaders strips control characters from string header values", () => {
+  const headers = buildomnirouteResponseMetaHeaders({
     provider: "openai",
     model: "free\r\nX-Injected: yes\u0000-model",
     requestId: "req-1\nreq-2\rreq-3\u0007",
@@ -84,26 +84,26 @@ test("buildOmniRouteResponseMetaHeaders strips control characters from string he
   assert.doesNotThrow(() => new Headers(headers));
 });
 
-test("buildOmniRouteResponseMetaHeaders always emits X-OmniRoute-Version", () => {
-  const headers = buildOmniRouteResponseMetaHeaders({ provider: "openai", model: "gpt" });
+test("buildomnirouteResponseMetaHeaders always emits X-OmniRoute-Version", () => {
+  const headers = buildomnirouteResponseMetaHeaders({ provider: "openai", model: "gpt" });
   assert.equal(headers[OMNIROUTE_RESPONSE_HEADERS.version], APP_CONFIG.version);
 
   // Even with no provider/model at all, the version is still attached.
-  const bare = buildOmniRouteResponseMetaHeaders({});
+  const bare = buildomnirouteResponseMetaHeaders({});
   assert.equal(bare[OMNIROUTE_RESPONSE_HEADERS.version], APP_CONFIG.version);
 });
 
-test("buildOmniRouteResponseMetaHeaders emits X-OmniRoute-Request-Id only when provided", () => {
-  const withId = buildOmniRouteResponseMetaHeaders({ model: "gpt", requestId: "req-123" });
+test("buildomnirouteResponseMetaHeaders emits X-OmniRoute-Request-Id only when provided", () => {
+  const withId = buildomnirouteResponseMetaHeaders({ model: "gpt", requestId: "req-123" });
   assert.equal(withId[OMNIROUTE_RESPONSE_HEADERS.requestId], "req-123");
 
-  const noId = buildOmniRouteResponseMetaHeaders({ model: "gpt" });
+  const noId = buildomnirouteResponseMetaHeaders({ model: "gpt" });
   assert.equal(noId[OMNIROUTE_RESPONSE_HEADERS.requestId], undefined);
 
-  const nullId = buildOmniRouteResponseMetaHeaders({ model: "gpt", requestId: null });
+  const nullId = buildomnirouteResponseMetaHeaders({ model: "gpt", requestId: null });
   assert.equal(nullId[OMNIROUTE_RESPONSE_HEADERS.requestId], undefined);
 
-  const blankId = buildOmniRouteResponseMetaHeaders({ model: "gpt", requestId: "   " });
+  const blankId = buildomnirouteResponseMetaHeaders({ model: "gpt", requestId: "   " });
   assert.equal(blankId[OMNIROUTE_RESPONSE_HEADERS.requestId], undefined);
 });
 
@@ -155,10 +155,10 @@ test("buildOmniRouteSseMetadataComment emits comment lines compatible with SSE",
   assert.match(comment, /^: x-omniroute-response-cost=0\.0000000000/m);
 });
 
-test("buildOmniRouteResponseMetaHeaders emits X-OmniRoute-Cost-Saved only when costSavedUsd is provided", () => {
+test("buildomnirouteResponseMetaHeaders emits X-OmniRoute-Cost-Saved only when costSavedUsd is provided", () => {
   // Cache HIT: the incremental cost of serving the hit is 0, but the cache saved the
   // original (would-have-been) cost — surfaced via the Cost-Saved header for analytics.
-  const hit = buildOmniRouteResponseMetaHeaders({
+  const hit = buildomnirouteResponseMetaHeaders({
     provider: "openai",
     model: "gpt-4o",
     cacheHit: true,
@@ -169,7 +169,7 @@ test("buildOmniRouteResponseMetaHeaders emits X-OmniRoute-Cost-Saved only when c
   assert.equal(hit[OMNIROUTE_RESPONSE_HEADERS.costSaved], "0.0125000000");
 
   // A normal response (no costSavedUsd) omits the Cost-Saved header entirely.
-  const miss = buildOmniRouteResponseMetaHeaders({
+  const miss = buildomnirouteResponseMetaHeaders({
     provider: "openai",
     model: "gpt-4o",
     costUsd: 0.0125,
@@ -177,7 +177,7 @@ test("buildOmniRouteResponseMetaHeaders emits X-OmniRoute-Cost-Saved only when c
   assert.equal(miss[OMNIROUTE_RESPONSE_HEADERS.costSaved], undefined);
 
   // A free-model HIT still emits Cost-Saved (= 0) — it explicitly passed costSavedUsd.
-  const freeHit = buildOmniRouteResponseMetaHeaders({
+  const freeHit = buildomnirouteResponseMetaHeaders({
     cacheHit: true,
     costUsd: 0,
     costSavedUsd: 0,

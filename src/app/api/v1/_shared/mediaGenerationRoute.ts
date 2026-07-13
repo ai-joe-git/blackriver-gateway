@@ -1,7 +1,7 @@
 import { errorResponse } from "@omniroute/open-sse/utils/error.ts";
 import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
 
-import { attachOmniRouteMetaHeaders } from "@/domain/OmniRouteResponseMeta";
+import { attachOmniRouteMetaHeaders } from "@/domain/omnirouteResponseMeta";
 import { calculateModalCost } from "@/lib/usage/costCalculator";
 import { generateRequestId } from "@/shared/utils/requestId";
 import { toJsonErrorPayload } from "@/shared/utils/upstreamError";

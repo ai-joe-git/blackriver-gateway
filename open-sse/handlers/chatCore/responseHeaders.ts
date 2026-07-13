@@ -1,6 +1,6 @@
 import {
   attachOmniRouteMetaHeaders,
-  buildOmniRouteResponseMetaHeaders,
+  buildomnirouteResponseMetaHeaders,
 } from "@/domain/omnirouteResponseMeta";
 import { OMNIROUTE_RESPONSE_HEADERS } from "@/shared/constants/headers";
 
@@ -58,7 +58,7 @@ export function stripNextMiddlewareControlHeaders(headers: Headers): void {
 
 export function buildStreamingResponseHeaders(
   providerHeaders: Headers,
-  meta: Parameters<typeof buildOmniRouteResponseMetaHeaders>[0]
+  meta: Parameters<typeof buildomnirouteResponseMetaHeaders>[0]
 ): Record<string, string> {
   const forwardedHeaders: [string, string][] = [];
   providerHeaders.forEach((value, key) => {
